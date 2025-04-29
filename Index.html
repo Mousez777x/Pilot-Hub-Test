@@ -1343,3 +1343,1975 @@
                 <p><strong>Sample Answer:</strong> "During my final year of high school, I was struggling with advanced physics concepts that are crucial for aviation. Rather than giving up, I developed a structured approach to overcome this challenge. I identified my specific weak areas, sought additional resources including online tutorials and practice problems, and arranged extra sessions with my teacher. I also formed a study group with classmates who were strong in physics, which allowed me to gain different perspectives on problem-solving. Through consistent effort over three months, I improved my understanding significantly and achieved an A grade in my final exam. This experience taught me the importance of perseverance, seeking help when needed, and using multiple learning strategies to master difficult concepts—skills that I believe will serve me well during pilot training."</p>
               </div>
             </div>
+&lt;!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadet Pilot Hub - Your Complete Aviation Resource</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Global Styles */
+        :root {
+            --primary-color: #003366;
+            --secondary-color: #0066cc;
+            --accent-color: #ff9900;
+            --light-bg: #f5f7fa;
+            --dark-text: #333;
+            --light-text: #fff;
+            --border-color: #ddd;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--dark-text);
+            background-color: var(--light-bg);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: var(--accent-color);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 20px;
+        }
+        
+        nav ul li a {
+            color: var(--light-text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--light-text);
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1464037866556-6812c9d1c72e');
+            background-size: cover;
+            background-position: center;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--light-text);
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--light-text);
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #e68a00;
+        }
+        
+        /* Section Styles */
+        section {
+            padding: 60px 0;
+        }
+        
+        section:nth-child(even) {
+            background-color: #fff;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .section-header h2 {
+            font-size: 36px;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .section-header p {
+            font-size: 18px;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Card Styles */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .card {
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .card:hover .card-img img {
+            transform: scale(1.05);
+        }
+        
+        .card-content {
+            padding: 20px;
+        }
+        
+        .card h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+        
+        .card p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        /* About Section */
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+        
+        .about-img {
+            flex: 1;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text h2 {
+            font-size: 36px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .about-text p {
+            margin-bottom: 15px;
+        }
+        
+        /* Resources Section */
+        .resource-category {
+            margin-bottom: 40px;
+        }
+        
+        .resource-category h3 {
+            font-size: 24px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent-color);
+        }
+        
+        .resource-list {
+            list-style: none;
+        }
+        
+        .resource-list li {
+            margin-bottom: 15px;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .resource-list li:before {
+            content: "\f0da";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+        }
+        
+        /* Simulation Section */
+        .simulation-container {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        
+        .simulation-container h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .simulation-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .simulation-canvas {
+            width: 100%;
+            height: 300px;
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        /* Contact Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        
+        .contact-info {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 30px;
+            border-radius: 8px;
+        }
+        
+        .contact-info h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        
+        .contact-info-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+        
+        .contact-info-item i {
+            margin-right: 15px;
+            font-size: 20px;
+            color: var(--accent-color);
+        }
+        
+        .contact-form {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+        }
+        
+        textarea.form-control {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 50px 0 20px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-col h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: var(--accent-color);
+        }
+        
+        .footer-col ul {
+            list-style: none;
+        }
+        
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-col ul li a {
+            color: var(--light-text);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-col ul li a:hover {
+            color: var(--accent-color);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--light-text);
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary-color);
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+        }
+        
+        /* Specific Styles for Resources */
+        .math-formula, .physics-formula {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid var(--accent-color);
+            margin-bottom: 15px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .terminology-item {
+            margin-bottom: 20px;
+        }
+        
+        .terminology-item h4 {
+            color: var(--secondary-color);
+            margin-bottom: 5px;
+        }
+        
+        /* Simulation Specific Styles */
+        .simulation-parameter {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .simulation-parameter label {
+            width: 150px;
+            font-weight: 500;
+        }
+        
+        .simulation-parameter input {
+            width: 100px;
+            padding: 8px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+        
+        .simulation-result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f0f8ff;
+            border-radius: 5px;
+            border: 1px solid #d0e3ff;
+        }
+        
+        /* FAQ Section */
+        .faq-item {
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 20px;
+        }
+        
+        .faq-question {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .faq-question:after {
+            content: '\f107';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            transition: transform 0.3s;
+        }
+        
+        .faq-question.active:after {
+            transform: rotate(180deg);
+        }
+        
+        .faq-answer {
+            display: none;
+            padding: 10px 0;
+        }
+        
+        .faq-answer.show {
+            display: block;
+        }
+        
+        /* Success Stories */
+        .testimonial {
+            background-color: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .testimonial-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 15px;
+        }
+        
+        .testimonial-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .testimonial-author h4 {
+            margin: 0;
+            color: var(--primary-color);
+        }
+        
+        .testimonial-author p {
+            margin: 5px 0 0;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .testimonial-content {
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .testimonial-content:before {
+            content: '\f10d';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: var(--accent-color);
+            opacity: 0.5;
+        }
+        
+        /* Table Styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        
+        table th, table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        table th {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+        }
+        
+        table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        /* Tabs */
+        .tabs {
+            margin-bottom: 30px;
+        }
+        
+        .tab-nav {
+            display: flex;
+            border-bottom: 2px solid var(--border-color);
+            margin-bottom: 20px;
+        }
+        
+        .tab-btn {
+            padding: 10px 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            color: #666;
+            position: relative;
+            transition: color 0.3s;
+        }
+        
+        .tab-btn:after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--accent-color);
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+        
+        .tab-btn.active {
+            color: var(--primary-color);
+        }
+        
+        .tab-btn.active:after {
+            transform: scaleX(1);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        /* Pilot Products */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+        }
+        
+        .product-card {
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .product-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .product-card:hover .product-img img {
+            transform: scale(1.05);
+        }
+        
+        .product-details {
+            padding: 15px;
+        }
+        
+        .product-title {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+        
+        .product-price {
+            font-weight: bold;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+        }
+        
+        .product-rating {
+            color: #ffc107;
+            margin-bottom: 15px;
+        }
+        
+        /* Newsletter */
+        .newsletter {
+            background-color: var(--primary-color);
+            padding: 40px;
+            border-radius: 8px;
+            color: var(--light-text);
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .newsletter h3 {
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+        
+        .newsletter p {
+            margin-bottom: 25px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .newsletter-form input {
+            flex: 1;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 5px 0 0 5px;
+            font-size: 16px;
+        }
+        
+        .newsletter-form button {
+            background-color: var(--accent-color);
+            color: var(--light-text);
+            border: none;
+            padding: 0 25px;
+            border-radius: 0 5px 5px 0;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .newsletter-form button:hover {
+            background-color: #e68a00;
+        }
+        
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--accent-color);
+            color: var(--light-text);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+        }
+        
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background-color: #e68a00;
+        }
+    </style>
+</head>
+<body>
+    &lt;!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-plane"></i>
+                <span>Cadet Pilot Hub</span>
+            </div>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul id="nav-menu">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#resources">Resources</a></li>
+                    <li><a href="#simulations">Simulations</a></li>
+                    <li><a href="#uae-programs">UAE Programs</a></li>
+                    <li><a href="#interview">Interview Prep</a></li>
+                    <li><a href="#flight-training">Flight Training</a></li>
+                    <li><a href="#products">Pilot Products</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    &lt;!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <h1>Your Journey to Becoming a Pilot Starts Here</h1>
+            <p>Comprehensive resources, training materials, and guidance for aspiring cadet pilots</p>
+            <a href="#resources" class="btn">Explore Resources</a>
+        </div>
+    </section>
+
+    &lt;!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-img">
+                    <img src="https://images.unsplash.com/photo-1559329007-40df8a9345d8" alt="Pilot in cockpit">
+                </div>
+                <div class="about-text">
+                    <h2>About Cadet Pilot Hub</h2>
+                    <p>Welcome to Cadet Pilot Hub, your comprehensive resource center for aspiring pilots. We are dedicated to providing high-quality educational materials, practical guidance, and industry insights to help you succeed in your journey to becoming a professional pilot.</p>
+                    <p>Our team consists of experienced pilots, aviation educators, and industry professionals who are passionate about nurturing the next generation of aviators. We understand the challenges and requirements of cadet pilot programs, particularly in the UAE region, and have tailored our resources to help you navigate this competitive field.</p>
+                    <p>Whether you're preparing for aptitude tests, interviews, or looking to enhance your understanding of aviation concepts, Cadet Pilot Hub is your trusted companion throughout your aviation career journey.</p>
+                    <a href="#resources" class="btn">Our Resources</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    &lt;!-- Resources Section -->
+    <section id="resources" class="bg-light">
+        <div class="container">
+            <div class="section-header">
+                <h2>Educational Resources</h2>
+                <p>Comprehensive study materials to help you prepare for cadet pilot assessments and exams</p>
+            </div>
+            
+            &lt;!-- Tabs for different resource categories -->
+            <div class="tabs">
+                <div class="tab-nav">
+                    <button class="tab-btn active" data-tab="math">Mathematics</button>
+                    <button class="tab-btn" data-tab="physics">Physics</button>
+                    <button class="tab-btn" data-tab="english">Aviation English</button>
+                </div>
+                
+                &lt;!-- Mathematics Tab -->
+                <div id="math-tab" class="tab-content active">
+                    <div class="resource-category">
+                        <h3>Essential Mathematics for Pilots</h3>
+                        <p>Mathematics plays a crucial role in aviation, from flight planning to performance calculations. Here are the key mathematical concepts you need to master:</p>
+                        
+                        <h4>Algebra Fundamentals</h4>
+                        <ul class="resource-list">
+                            <li>Linear equations and inequalities</li>
+                            <li>Quadratic equations and functions</li>
+                            <li>Systems of equations</li>
+                            <li>Exponents and logarithms</li>
+                        </ul>
+                        
+                        <div class="math-formula">
+                            <p>Quadratic Formula: x = (-b ± √(b² - 4ac)) / 2a</p>
+                        </div>
+                        
+                        <h4>Trigonometry</h4>
+                        <ul class="resource-list">
+                            <li>Trigonometric ratios (sine, cosine, tangent)</li>
+                            <li>Angle measurement (degrees and radians)</li>
+                            <li>Trigonometric identities</li>
+                            <li>Applications in navigation and heading calculations</li>
+                        </ul>
+                        
+                        <div class="math-formula">
+                            <p>Law of Sines: a/sin(A) = b/sin(B) = c/sin(C)</p>
+                            <p>Law of Cosines: c² = a² + b² - 2ab·cos(C)</p>
+                        </div>
+                        
+                        <h4>Vectors and Coordinate Geometry</h4>
+                        <ul class="resource-list">
+                            <li>Vector addition and subtraction</li>
+                            <li>Scalar multiplication</li>
+                            <li>Dot and cross products</li>
+                            <li>Applications in wind correction and flight path calculations</li>
+                        </ul>
+                        
+                        <h4>Calculus Basics</h4>
+                        <ul class="resource-list">
+                            <li>Differentiation and rates of change</li>
+                            <li>Integration and area calculations</li>
+                            <li>Applications in performance and fuel consumption</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="resource-category">
+                        <h3>Practice Problems</h3>
+                        <p>Test your understanding with these practice problems:</p>
+                        
+                        <div class="simulation-container">
+                            <h4>Sample Problem 1: Heading Calculation</h4>
+                            <p>An aircraft is flying with a true airspeed of 240 knots. The wind is from 045° at 30 knots. If the pilot wants to maintain a ground track of 090°, what heading should be flown?</p>
+                            
+                            <div class="math-formula">
+                                <p>Step 1: Calculate the wind correction angle using the formula:</p>
+                                <p>WCA = arcsin((wind speed × sin(wind angle - track)) / TAS)</p>
+                                <p>Step 2: Apply the wind correction angle to the desired track to find the heading.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="simulation-container">
+                            <h4>Sample Problem 2: Fuel Consumption</h4>
+                            <p>An aircraft burns fuel at a rate of 65 gallons per hour. If the aircraft has 210 gallons of usable fuel, how long can it fly with a 45-minute reserve?</p>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-category">
+                        <h3>Additional Math Resources</h3>
+                        <ul class="resource-list">
+                            <li><a href="#">Downloadable Math Formula Sheet</a></li>
+                            <li><a href="#">Interactive Math Practice Test</a></li>
+                            <li><a href="#">Video Tutorials on Aviation Mathematics</a></li>
+                        </ul>
+
+```html file="index-complete.html"
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadet Pilot Hub - Your Complete Aviation Resource</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f7fa;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-top: 20px;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+            margin-top: 30px;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+        
+        a {
+            color: #3498db;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        a:hover {
+            color: #2980b9;
+            text-decoration: underline;
+        }
+        
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin: 15px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: #3498db;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+        }
+        
+        nav ul li {
+            margin: 0 15px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+        
+        nav ul li a:hover {
+            color: #3498db;
+            text-decoration: none;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center;
+            background-size: cover;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            color: white;
+            text-align: center;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #3498db;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            margin: 5px;
+        }
+        
+        .btn:hover {
+            background-color: #2980b9;
+            text-decoration: none;
+            color: white;
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid white;
+        }
+        
+        .btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Section Styles */
+        section {
+            padding: 60px 0;
+            background-color: white;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .section-header h2 {
+            display: inline-block;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        
+        /* Card Styles */
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 20px;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            flex: 1 1 300px;
+            margin-bottom: 20px;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .card-content {
+            padding: 20px;
+        }
+        
+        .card h3 {
+            margin-top: 0;
+        }
+        
+        /* Features Section */
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
+        }
+        
+        .feature {
+            flex: 1 1 300px;
+            text-align: center;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            transition: transform 0.3s;
+        }
+        
+        .feature:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature i {
+            font-size: 3rem;
+            color: #3498db;
+            margin-bottom: 15px;
+        }
+        
+        /* Testimonials */
+        .testimonial {
+            background-color: #f8f9fa;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .testimonial::before {
+            content: '"';
+            font-size: 5rem;
+            color: rgba(52, 152, 219, 0.1);
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            line-height: 1;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            margin-top: 15px;
+        }
+        
+        .testimonial-author img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+        
+        /* Contact Form */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        
+        .footer-section {
+            flex: 1 1 300px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section h3 {
+            color: white;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+        
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ecf0f1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: #3498db;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            color: white;
+            transition: background-color 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: #3498db;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 30px;
+        }
+        
+        /* Table Styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: white;
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+        
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        
+        /* Accordion Styles */
+        .accordion {
+            margin-bottom: 20px;
+        }
+        
+        .accordion-item {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+        
+        .accordion-header {
+            background-color: #f8f9fa;
+            padding: 15px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .accordion-header:hover {
+            background-color: #e9ecef;
+        }
+        
+        .accordion-content {
+            padding: 0 15px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background-color: white;
+        }
+        
+        .accordion-content.active {
+            max-height: 1000px;
+            padding: 15px;
+        }
+        
+        /* Simulation Styles */
+        .simulation-container {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .simulation-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .simulation-canvas {
+            width: 100%;
+            height: 400px;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .logo {
+                margin-bottom: 15px;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                display: none;
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                top: 20px;
+                right: 20px;
+            }
+            
+            .hero {
+                height: 400px;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .card-container, .features, .footer-container {
+                flex-direction: column;
+            }
+            
+            .feature, .card {
+                flex: 1 1 100%;
+            }
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #3498db;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 50px;
+            font-size: 20px;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 999;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+        }
+
+        /* Print Styles */
+        @media print {
+            header, footer, .hero, .btn, .back-to-top {
+                display: none;
+            }
+            
+            body, .container {
+                width: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            
+            section {
+                page-break-inside: avoid;
+                box-shadow: none;
+                margin: 0;
+                padding: 20px 0;
+            }
+            
+            h1, h2, h3 {
+                page-break-after: avoid;
+            }
+            
+            p, li {
+                page-break-inside: avoid;
+            }
+            
+            img {
+                max-width: 500px;
+            }
+        }
+
+        /* Tabs Styles */
+        .tabs {
+            margin-bottom: 30px;
+        }
+        
+        .tab-nav {
+            display: flex;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            border-bottom: 2px solid #ddd;
+        }
+        
+        .tab-nav li {
+            margin: 0;
+        }
+        
+        .tab-nav li a {
+            display: block;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            border-bottom: 3px solid transparent;
+            margin-bottom: -2px;
+        }
+        
+        .tab-nav li a.active {
+            border-bottom-color: #3498db;
+            color: #3498db;
+        }
+        
+        .tab-content {
+            padding: 20px 0;
+        }
+        
+        .tab-pane {
+            display: none;
+        }
+        
+        .tab-pane.active {
+            display: block;
+        }
+
+        /* Math and Physics Specific Styles */
+        .formula {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-left: 4px solid #3498db;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .example {
+            background-color: #e8f4f8;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        
+        .example h4 {
+            color: #3498db;
+            margin-top: 0;
+        }
+        
+        .note {
+            background-color: #fff8e1;
+            padding: 15px;
+            border-left: 4px solid #ffc107;
+            margin: 20px 0;
+        }
+        
+        .warning {
+            background-color: #ffebee;
+            padding: 15px;
+            border-left: 4px solid #f44336;
+            margin: 20px 0;
+        }
+        
+        /* Progress Tracker */
+        .progress-container {
+            width: 100%;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        
+        .progress-bar {
+            height: 30px;
+            background-color: #3498db;
+            border-radius: 5px;
+            width: 0;
+            transition: width 0.5s;
+            position: relative;
+        }
+        
+        .progress-text {
+            position: absolute;
+            right: 10px;
+            color: white;
+            font-weight: bold;
+            line-height: 30px;
+        }
+
+        /* Quiz Styles */
+        .quiz-container {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 30px 0;
+        }
+        
+        .quiz-question {
+            margin-bottom: 20px;
+        }
+        
+        .quiz-options {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        .quiz-option {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px 15px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .quiz-option:hover {
+            background-color: #e9ecef;
+        }
+        
+        .quiz-option.selected {
+            background-color: #d4edff;
+            border-color: #3498db;
+        }
+        
+        .quiz-option.correct {
+            background-color: #d4edda;
+            border-color: #28a745;
+        }
+        
+        .quiz-option.incorrect {
+            background-color: #f8d7da;
+            border-color: #dc3545;
+        }
+        
+        .quiz-feedback {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            display: none;
+        }
+        
+        .quiz-feedback.correct {
+            background-color: #d4edda;
+            color: #155724;
+            display: block;
+        }
+        
+        .quiz-feedback.incorrect {
+            background-color: #f8d7da;
+            color: #721c24;
+            display: block;
+        }
+        
+        .quiz-result {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #e8f4f8;
+            border-radius: 8px;
+            display: none;
+        }
+        
+        .quiz-score {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #3498db;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <a href="#" class="logo">Cadet<span>Pilot</span>Hub</a>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul id="nav-menu">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#math">Math Preparation</a></li>
+                    <li><a href="#physics">Physics</a></li>
+                    <li><a href="#english">Aviation English</a></li>
+                    <li><a href="#uae-programs">UAE Programs</a></li>
+                    <li><a href="#interview">Interview Prep</a></li>
+                    <li><a href="#flight-training">Flight Training</a></li>
+                    <li><a href="#simulations">Simulations</a></li>
+                    <li><a href="#products">Pilot Products</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Your Journey to Becoming a Pilot Starts Here</h1>
+            <p>Comprehensive resources, training materials, and support for aspiring cadet pilots</p>
+            <div>
+                <a href="#about" class="btn">Learn More</a>
+                <a href="#contact" class="btn btn-secondary">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <!-- About Section -->
+        <section id="about">
+            <div class="section-header">
+                <h2>About Us</h2>
+            </div>
+            <div class="card-container">
+                <div class="card">
+                    <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                    <div class="card-content">
+                        <h3>Our Mission</h3>
+                        <p>At Cadet Pilot Hub, our mission is to provide aspiring pilots with comprehensive resources, guidance, and support to help them achieve their dreams of becoming professional aviators. We believe in making quality aviation education accessible to everyone.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1521464302861-ce943915d1c3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                    <div class="card-content">
+                        <h3>Our Team</h3>
+                        <p>Our team consists of experienced pilots, aviation educators, and industry professionals who are passionate about helping the next generation of pilots succeed. With decades of combined experience, we provide insights that go beyond textbooks.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1559066653-edfd1e4d3b37?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                    <div class="card-content">
+                        <h3>Our Approach</h3>
+                        <p>We take a holistic approach to pilot training, covering everything from academic preparation to practical flight skills and career development. Our resources are designed to be engaging, interactive, and aligned with industry standards.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="features">
+                <div class="feature">
+                    <i class="fas fa-book"></i>
+                    <h3>Comprehensive Study Materials</h3>
+                    <p>Access detailed study guides, practice tests, and reference materials for all aspects of cadet pilot training.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-plane"></i>
+                    <h3>Flight Training Resources</h3>
+                    <p>Learn about flight maneuvers, procedures, and techniques with our detailed guides and visual aids.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-users"></i>
+                    <h3>Community Support</h3>
+                    <p>Connect with fellow aspiring pilots, share experiences, and learn from those who have successfully completed cadet programs.</p>
+                </div>
+            </div>
+            
+            <h3>Success Stories</h3>
+            <div class="testimonial">
+                <p>"The resources and guidance provided by Cadet Pilot Hub were instrumental in helping me prepare for and pass the Emirates cadet pilot selection process. The practice tests and interview tips were spot on!"</p>
+                <div class="testimonial-author">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Ahmed K.">
+                    <div>
+                        <strong>Ahmed K.</strong><br>
+                        Emirates Cadet Pilot
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial">
+                <p>"I was struggling with the physics concepts required for the aptitude tests until I found this website. The interactive simulations and clear explanations made complex topics much easier to understand."</p>
+                <div class="testimonial-author">
+                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah M.">
+                    <div>
+                        <strong>Sarah M.</strong><br>
+                        Etihad Airways Cadet
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial">
+                <p>"The interview preparation section was a lifesaver! The mock questions and detailed answers helped me feel confident and prepared. I'm now in my second phase of flight training with flydubai."</p>
+                <div class="testimonial-author">
+                    <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Omar J.">
+                    <div>
+                        <strong>Omar J.</strong><br>
+                        flydubai Cadet Pilot
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Math Preparation Section -->
+        <section id="math">
+            <div class="section-header">
+                <h2>Mathematics Preparation</h2>
+            </div>
+            <p>Strong mathematical skills are essential for pilot aptitude tests and flight training. Our comprehensive math resources cover all the topics you need to master.</p>
+            
+            <h3>Core Mathematical Concepts for Pilots</h3>
+            <div class="tabs">
+                <ul class="tab-nav">
+                    <li><a href="#algebra" class="active">Algebra</a></li>
+                    <li><a href="#trigonometry">Trigonometry</a></li>
+                    <li><a href="#calculus">Calculus</a></li>
+                    <li><a href="#vectors">Vectors</a></li>
+                    <li><a href="#statistics">Statistics</a></li>
+                </ul>
+                
+                <div class="tab-content">
+                    <div id="algebra" class="tab-pane active">
+                        <h4>Algebraic Equations and Functions</h4>
+                        <p>Understanding algebraic equations is crucial for solving aviation-related problems, from fuel calculations to weight and balance computations.</p>
+                        
+                        <div class="formula">
+                            <p>Quadratic Formula: x = (-b ± √(b² - 4ac)) / 2a</p>
+                        </div>
+                        
+                        <h4>Key Topics:</h4>
+                        <ul>
+                            <li>Linear equations and inequalities</li>
+                            <li>Quadratic equations and functions</li>
+                            <li>Systems of equations</li>
+                            <li>Exponential and logarithmic functions</li>
+                            <li>Polynomial functions</li>
+                        </ul>
+                        
+                        <div class="example">
+                            <h4>Example Problem:</h4>
+                            <p>An aircraft is flying at a speed of 240 knots. If the distance to the destination is 960 nautical miles, how long will the flight take?</p>
+                            <p><strong>Solution:</strong></p>
+                            <p>Time = Distance ÷ Speed</p>
+                            <p>Time = 960 nm ÷ 240 knots</p>
+                            <p>Time = 4 hours</p>
+                        </div>
+                    </div>
+                    
+                    <div id="trigonometry" class="tab-pane">
+                        <h4>Trigonometric Functions and Applications</h4>
+                        <p>Trigonometry is essential for understanding navigation, headings, and wind correction angles in aviation.</p>
+                        
+                        <div class="formula">
+                            <p>Sine Law: a/sin(A) = b/sin(B) = c/sin(C)</p>
+                            <p>Cosine Law: c² = a² + b² - 2ab·cos(C)</p>
+                        </div>
+                        
+                        <h4>Key Topics:</h4>
+                        <ul>
+                            <li>Trigonometric ratios (sine, cosine, tangent)</li>
