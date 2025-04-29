@@ -1,0 +1,1035 @@
+&lt;!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interview Preparation - Cadet Pilot Hub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #003366;
+            --secondary-color: #0066cc;
+            --accent-color: #ff9900;
+            --light-bg: #f5f7fa;
+            --dark-text: #333;
+            --light-text: #fff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 1rem 0;
+            text-align: center;
+            position: relative;
+        }
+        
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        nav {
+            background-color: var(--secondary-color);
+            padding: 0.5rem 0;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        nav ul li {
+            margin: 0 1rem;
+        }
+        
+        nav ul li a {
+            color: var(--light-text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        .section {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        h1, h2, h3 {
+            color: var(--primary-color);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 0.5rem;
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+            margin: 1.5rem 0 1rem;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        ul, ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .qa-item {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .qa-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .question {
+            font-weight: bold;
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .answer {
+            padding-left: 1rem;
+            border-left: 3px solid var(--accent-color);
+        }
+        
+        .tip-box {
+            background-color: #e6f7ff;
+            border-left: 4px solid #1890ff;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .warning-box {
+            background-color: #fff7e6;
+            border-left: 4px solid #fa8c16;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .success-box {
+            background-color: #f6ffed;
+            border-left: 4px solid #52c41a;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .interview-stages {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin: 2rem 0;
+        }
+        
+        .stage-card {
+            flex-basis: calc(50% - 1rem);
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        
+        .stage-card h4 {
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s;
+            margin-top: 1rem;
+        }
+        
+        .btn:hover {
+            background-color: var(--primary-color);
+        }
+        
+        .practice-interview {
+            background-color: #f0f5ff;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        footer {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+        
+        .social-links {
+            margin: 1rem 0;
+        }
+        
+        .social-links a {
+            color: var(--light-text);
+            font-size: 1.5rem;
+            margin: 0 0.5rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--accent-color);
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+            
+            .stage-card {
+                flex-basis: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Cadet Pilot Hub</div>
+
+```html file="flight-training.html"
+&lt;!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Training - Cadet Pilot Hub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #003366;
+            --secondary-color: #0066cc;
+            --accent-color: #ff9900;
+            --light-bg: #f5f7fa;
+            --dark-text: #333;
+            --light-text: #fff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 1rem 0;
+            text-align: center;
+            position: relative;
+        }
+        
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        nav {
+            background-color: var(--secondary-color);
+            padding: 0.5rem 0;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        nav ul li {
+            margin: 0 1rem;
+        }
+        
+        nav ul li a {
+            color: var(--light-text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        .section {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        h1, h2, h3 {
+            color: var(--primary-color);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 0.5rem;
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+            margin: 1.5rem 0 1rem;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        ul, ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .training-phase {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .training-phase:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .phase-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .phase-duration {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 0.3rem 0.7rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+        
+        .tip-box {
+            background-color: #e6f7ff;
+            border-left: 4px solid #1890ff;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .warning-box {
+            background-color: #fff7e6;
+            border-left: 4px solid #fa8c16;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .success-box {
+            background-color: #f6ffed;
+            border-left: 4px solid #52c41a;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 2rem auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: var(--secondary-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -12px;
+            background-color: white;
+            border: 4px solid var(--accent-color);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        .left {
+            left: 0;
+        }
+        
+        .right {
+            left: 50%;
+        }
+        
+        .right::after {
+            left: -12px;
+        }
+        
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: white;
+            position: relative;
+            border-radius: 6px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s;
+            margin-top: 1rem;
+        }
+        
+        .btn:hover {
+            background-color: var(--primary-color);
+        }
+        
+        .image-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin: 2rem 0;
+        }
+        
+        .gallery-item {
+            flex-basis: calc(33.33% - 1rem);
+            margin-bottom: 1.5rem;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+            transition: transform 0.3s;
+        }
+        
+        .gallery-item img:hover {
+            transform: scale(1.05);
+        }
+        
+        .gallery-caption {
+            text-align: center;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        footer {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+        
+        .social-links {
+            margin: 1rem 0;
+        }
+        
+        .social-links a {
+            color: var(--light-text);
+            font-size: 1.5rem;
+            margin: 0 0.5rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--accent-color);
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+            
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item::after {
+                left: 18px;
+            }
+            
+            .left::after, .right::after {
+                left: 18px;
+            }
+            
+            .right {
+                left: 0%;
+            }
+            
+            .gallery-item {
+                flex-basis: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Cadet Pilot Hub</div>
+        <p>Your Gateway to a Flying Career</p>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="math-preparation.html">Math Preparation</a></li>
+            <li><a href="physics-preparation.html">Physics Preparation</a></li>
+            <li><a href="english-terminology.html">Aviation English</a></li>
+            <li><a href="uae-cadet-programs.html">UAE Cadet Programs</a></li>
+            <li><a href="interview-qa.html">Interview Preparation</a></li>
+            <li><a href="flight-training.html">Flight Training</a></li>
+            <li><a href="simulations.html">Simulations</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+    
+    <div class="container">
+        <h1>Flight Training Journey</h1>
+        
+        <div class="section">
+            <h2>Overview of Cadet Pilot Training</h2>
+            <p>Cadet pilot training is a comprehensive program designed to transform individuals with little to no flying experience into qualified commercial pilots. The journey is challenging but incredibly rewarding, combining theoretical knowledge with practical flying skills.</p>
+            
+            <p>This guide will walk you through what to expect during your flight training journey, from ground school to your first commercial flight as a First Officer.</p>
+            
+            <div class="tip-box">
+                <h4>Did You Know?</h4>
+                <p>Most airline cadet programs have a success rate of 85-90%. With proper preparation and dedication, your chances of successfully completing the program are excellent!</p>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Training Phases</h2>
+            
+            <div class="training-phase">
+                <div class="phase-header">
+                    <h3>Phase 1: Ground School</h3>
+                    <span class="phase-duration">4-6 months</span>
+                </div>
+                <p>Ground school is the foundation of your pilot training. During this phase, you'll learn the theoretical knowledge required to understand aircraft operations and aviation principles.</p>
+                
+                <h4>What You'll Learn:</h4>
+                <ul>
+                    <li><strong>Principles of Flight:</strong> Aerodynamics, aircraft systems, and performance</li>
+                    <li><strong>Navigation:</strong> Charts, instruments, and flight planning</li>
+                    <li><strong>Meteorology:</strong> Weather patterns, forecasting, and their impact on flight</li>
+                    <li><strong>Air Law:</strong> Aviation regulations and procedures</li>
+                    <li><strong>Human Performance:</strong> Physiology, psychology, and crew resource management</li>
+                    <li><strong>Communications:</strong> Radio procedures and phraseology</li>
+                </ul>
+                
+                <h4>Assessment Methods:</h4>
+                <ul>
+                    <li>Written examinations</li>
+                    <li>Progress tests</li>
+                    <li>Practical exercises</li>
+                </ul>
+                
+                <div class="tip-box">
+                    <h4>Study Tip:</h4>
+                    <p>Create study groups with fellow cadets. Teaching concepts to others is one of the most effective ways to solidify your own understanding.</p>
+                </div>
+            </div>
+            
+            <div class="training-phase">
+                <div class="phase-header">
+                    <h3>Phase 2: Basic Flight Training</h3>
+                    <span class="phase-duration">3-4 months</span>
+                </div>
+                <p>This is where you'll first take to the skies! Basic flight training introduces you to the fundamentals of flying, typically in a single-engine aircraft.</p>
+                
+                <h4>What You'll Learn:</h4>
+                <ul>
+                    <li><strong>Aircraft Handling:</strong> Basic maneuvers, takeoffs, and landings</li>
+                    <li><strong>Navigation:</strong> Visual flight rules (VFR) navigation</li>
+                    <li><strong>Emergency Procedures:</strong> Handling simulated emergencies</li>
+                    <li><strong>Solo Flight:</strong> Your first flights without an instructor</li>
+                </ul>
+                
+                <h4>Key Milestones:</h4>
+                <ul>
+                    <li>First solo flight (typically after 15-20 hours of instruction)</li>
+                    <li>First cross-country flight</li>
+                    <li>Night flying qualification</li>
+                </ul>
+                
+                <div class="warning-box">
+                    <h4>Important:</h4>
+                    <p>The transition from theory to practical flying can be challenging. Don't be discouraged if you find certain maneuvers difficult at first. Consistent practice and patience are key.</p>
+                </div>
+            </div>
+            
+            <div class="training-phase">
+                <div class="phase-header">
+                    <h3>Phase 3: Advanced Flight Training</h3>
+                    <span class="phase-duration">4-6 months</span>
+                </div>
+                <p>Advanced flight training builds on your basic skills and introduces more complex flying techniques and scenarios.</p>
+                
+                <h4>What You'll Learn:</h4>
+                <ul>
+                    <li><strong>Instrument Flying:</strong> Flying solely by reference to instruments</li>
+                    <li><strong>Advanced Navigation:</strong> Instrument flight rules (IFR) navigation</li>
+                    <li><strong>Multi-Engine Operations:</strong> Flying aircraft with multiple engines</li>
+                    <li><strong>Complex Scenarios:</strong> Handling challenging weather and situations</li>
+                </ul>
+                
+                <h4>Key Milestones:</h4>
+                <ul>
+                    <li>Instrument Rating</li>
+                    <li>Multi-Engine Rating</li>
+                    <li>Commercial Pilot License (CPL)</li>
+                </ul>
+                
+                <div class="success-box">
+                    <h4>Achievement:</h4>
+                    <p>By the end of this phase, you'll be a licensed commercial pilot! While you're not yet qualified to fly for an airline, this is a major milestone in your journey.</p>
+                </div>
+            </div>
+            
+            <div class="training-phase">
+                <div class="phase-header">
+                    <h3>Phase 4: Airline-Specific Training</h3>
+                    <span class="phase-duration">2-3 months</span>
+                </div>
+                <p>This phase prepares you specifically for flying commercial airliners and operating within an airline environment.</p>
+                
+                <h4>What You'll Learn:</h4>
+                <ul>
+                    <li><strong>Multi-Crew Cooperation (MCC):</strong> Working effectively in a multi-pilot cockpit</li>
+                    <li><strong>Jet Orientation Course (JOC):</strong> Introduction to jet aircraft handling</li>
+                    <li><strong>Airline Procedures:</strong> Standard operating procedures specific to your airline</li>
+                    <li><strong>Crew Resource Management (CRM):</strong> Advanced teamwork and communication skills</li>
+                </ul>
+                
+                <h4>Training Environment:</h4>
+                <ul>
+                    <li>Advanced flight simulators</li>
+                    <li>Mock-up cockpits</li>
+                    <li>Classroom instruction</li>
+                </ul>
+            </div>
+            
+            <div class="training-phase">
+                <div class="phase-header">
+                    <h3>Phase 5: Type Rating</h3>
+                    <span class="phase-duration">1-2 months</span>
+                </div>
+                <p>Type rating qualifies you to fly a specific aircraft type, such as the Boeing 737 or Airbus A320.</p>
+                
+                <h4>What You'll Learn:</h4>
+                <ul>
+                    <li><strong>Aircraft Systems:</strong> In-depth knowledge of all systems on your specific aircraft</li>
+                    <li><strong>Normal Procedures:</strong> Standard operating procedures for routine operations</li>
+                    <li><strong>Abnormal Procedures:</strong> Handling system malfunctions and emergencies</li>
+                    <li><strong>Performance:</strong> Aircraft performance calculations and limitations</li>
+                </ul>
+                
+                <h4>Training Methods:</h4>
+                <ul>
+                    <li>Full-flight simulators</li>
+                    <li>Computer-based training</li>
+                    <li>Technical manuals and documentation</li>
+                </ul>
+                
+                <div class="tip-box">
+                    <h4>Simulator Tip:</h4>
+                    <p>Simulator sessions can be intense and challenging. Prepare thoroughly before each session by reviewing procedures and mentally rehearsing scenarios.</p>
+                </div>
+            </div>
+            
+            <div class="training-phase">
+                <div class="phase-header">
+                    <h3>Phase 6: Line Training</h3>
+                    <span class="phase-duration">2-3 months</span>
+                </div>
+                <p>The final phase of your training takes place on actual commercial flights with passengers, under the supervision of a training captain.</p>
+                
+                <h4>What You'll Learn:</h4>
+                <ul>
+                    <li><strong>Real-World Operations:</strong> Applying your training in actual airline operations</li>
+                    <li><strong>Route Familiarization:</strong> Learning specific routes and airports</li>
+                    <li><strong>Time Management:</strong> Operating efficiently within airline schedules</li>
+                    <li><strong>Customer Service:</strong> Understanding the passenger experience aspect of flying</li>
+                </ul>
+                
+                <h4>Key Milestones:</h4>
+                <ul>
+                    <li>First commercial flight as operating crew</li>
+                    <li>Line check (final assessment)</li>
+                    <li>Release to line as a fully qualified First Officer</li>
+                </ul>
+                
+                <div class="success-box">
+                    <h4>Congratulations!</h4>
+                    <p>Upon successful completion of line training, you'll be a fully qualified airline pilot ready to begin your career!</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Training Timeline</h2>
+            
+            <p>Below is a typical timeline for cadet pilot training. The actual duration may vary depending on the airline, training organization, and individual progress.</p>
+            
+            <div class="timeline">
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <h3>Months 1-6</h3>
+                        <p>Ground School</p>
+                        <ul>
+                            <li>Theoretical knowledge instruction</li>
+                            <li>ATPL theory examinations</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <h3>Months 7-10</h3>
+                        <p>Basic Flight Training</p>
+                        <ul>
+                            <li>First solo flight</li>
+                            <li>VFR navigation</li>
+                            <li>Night flying</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <h3>Months 11-16</h3>
+                        <p>Advanced Flight Training</p>
+                        <ul>
+                            <li>Instrument Rating</li>
+                            <li>Multi-Engine Rating</li>
+                            <li>Commercial Pilot License</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <h3>Months 17-19</h3>
+                        <p>Airline-Specific Training</p>
+                        <ul>
+                            <li>Multi-Crew Cooperation</li>
+                            <li>Jet Orientation Course</li>
+                            <li>Airline Procedures</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <h3>Months 20-21</h3>
+                        <p>Type Rating</p>
+                        <ul>
+                            <li>Aircraft Systems</li>
+                            <li>Simulator Training</li>
+                            <li>Type Rating Examination</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <h3>Months 22-24</h3>
+                        <p>Line Training</p>
+                        <ul>
+                            <li>Supervised Commercial Flights</li>
+                            <li>Line Check</li>
+                            <li>Release to Line</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Challenges and How to Overcome Them</h2>
+            
+            <h3>Academic Challenges</h3>
+            <p>The theoretical component of pilot training is extensive and demanding.</p>
+            <ul>
+                <li><strong>Challenge:</strong> Large volume of technical information to learn</li>
+                <li><strong>Solution:</strong> Develop effective study habits, create a study schedule, use memory techniques, and form study groups</li>
+            </ul>
+            
+            <h3>Practical Flying Challenges</h3>
+            <p>Learning to fly requires developing new motor skills and multitasking abilities.</p>
+            <ul>
+                <li><strong>Challenge:</strong> Coordination of multiple tasks simultaneously</li>
+                <li><strong>Solution:</strong> Practice "chair flying" (mentally rehearsing procedures), use flight simulator apps, and request additional training if needed</li>
+            </ul>
+            
+            <h3>Psychological Challenges</h3>
+            <p>The pressure to perform and the high stakes can create stress and anxiety.</p>
+            <ul>
+                <li><strong>Challenge:</strong> Test anxiety and performance pressure</li>
+                <li><strong>Solution:</strong> Practice stress management techniques, maintain physical fitness, ensure adequate rest, and seek support when needed</li>
+            </ul>
+            
+            <h3>Lifestyle Challenges</h3>
+            <p>The intensive nature of training can impact your personal life.</p>
+            <ul>
+                <li><strong>Challenge:</strong> Balancing training demands with personal life</li>
+                <li><strong>Solution:</strong> Communicate expectations with family and friends, schedule regular breaks, and practice self-care</li>
+            </ul>
+            
+            <div class="tip-box">
+                <h4>Remember:</h4>
+                <p>Every pilot, including the most experienced captains, faced challenges during their training. Persistence and resilience are key qualities of successful pilots.</p>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Life as a Cadet</h2>
+            
+            <h3>Daily Routine</h3>
+            <p>A typical day during flight training might look like this:</p>
+            <ul>
+                <li><strong>6:00 AM:</strong> Wake up and prepare for the day</li>
+                <li><strong>7:00 AM:</strong> Breakfast and review of study materials</li>
+                <li><strong>8:00 AM - 12:00 PM:</strong> Ground school classes or flight training</li>
+                <li><strong>12:00 PM - 1:00 PM:</strong> Lunch break</li>
+                <li><strong>1:00 PM - 5:00 PM:</strong> More classes or flight training</li>
+                <li><strong>5:00 PM - 7:00 PM:</strong> Personal study time</li>
+                <li><strong>7:00 PM - 8:00 PM:</strong> Dinner</li>
+                <li><strong>8:00 PM - 10:00 PM:</strong> Preparation for the next day, additional study</li>
+                <li><strong>10:00 PM:</strong> Rest</li>
+            </ul>
+            
+            <h3>Accommodation</h3>
+            <p>Most cadet programs provide accommodation options:</p>
+            <ul>
+                <li><strong>Training Academy Accommodation:</strong> Shared or single rooms within the training facility</li>
+                <li><strong>Off-Campus Housing:</strong> Apartments or shared houses near the training location</li>
+                <li><strong>Host Families:</strong> Some international training locations offer homestay options</li>
+            </ul>
+            
+            <h3>Social Life</h3>
+            <p>While training is intensive, maintaining a social life is important for mental well-being:</p>
+            <ul>
+                <li>Form bonds with fellow cadets who understand your journey</li>
+                <li>Participate in organized social activities at the training academy</li>
+                <li>Schedule regular video calls with family and friends back home</li>
+                <li>Join aviation clubs or organizations</li>
+            </ul>
+            
+            <div class="image-gallery">
+                <div class="gallery-item">
+                    <img src="/placeholder.svg?height=200&width=300" alt="Cadets in Ground School">
+                    <div class="gallery-caption">Cadets during a ground school session</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="/placeholder.svg?height=200&width=300" alt="Flight Training">
+                    <div class="gallery-caption">Basic flight training in a single-engine aircraft</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="/placeholder.svg?height=200&width=300" alt="Simulator Training">
+                    <div class="gallery-caption">Advanced simulator training session</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Tips for Success</h2>
+            
+            <h3>Before Training Begins</h3>
+            <ul>
+                <li>Brush up on mathematics and physics fundamentals</li>
+                <li>Start learning aviation terminology</li>
+                <li>Improve your English language skills if needed</li>
+                <li>Establish good study habits</li>
+                <li>Get physically fit to handle the demands of training</li>
+            </ul>
+            
+            <h3>During Ground School</h3>
+            <ul>
+                <li>Stay organized with digital or physical study materials</li>
+                <li>Create summary notes for each subject</li>
+                <li>Use memory techniques like mnemonics for complex information</li>
+                <li>Practice past exam questions regularly</li>
+                <li>Don't hesitate to ask instructors for clarification</li>
+            </ul>
+            
+            <h3>During Flight Training</h3>
+            <ul>
+                <li>Prepare thoroughly before each flight lesson</li>
+                <li>Debrief after each flight to identify areas for improvement</li>
+                <li>Practice procedures mentally when not flying</li>
+                <li>Record your progress and celebrate small victories</li>
+                <li>Learn from mistakes rather than dwelling on them</li>
+            </ul>
+            
+            <h3>Throughout Your Training</h3>
+            <ul>
+                <li>Maintain a healthy work-life balance</li>
+                <li>Stay physically active to manage stress</li>
+                <li>Get adequate sleep to optimize learning</li>
+                <li>Connect with mentors who can provide guidance</li>
+                <li>Remember your motivation for becoming a pilot</li>
+            </ul>
+            
+            <div class="success-box">
+                <h4>Success Story:</h4>
+                <p>"The most challenging part of my training was the instrument rating phase. I struggled with maintaining situational awareness while flying solely by reference to instruments. What helped me was extra simulator practice and mentally rehearsing procedures before bed each night. Don't be afraid to put in extra work in areas where you struggle – it pays off!" – Ahmed, Emirates First Officer</p>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Frequently Asked Questions</h2>
+            
+            <h3>What happens if I fail a test or check?</h3>
+            <p>Most training programs allow for remedial training and retests. The specific policy varies by airline and training organization, but typically you'll be given additional training in the areas where you're struggling, followed by another opportunity to pass. However, there is usually a limit to the number of retests allowed.</p>
+            
+            <h3>How much free time will I have during training?</h3>
+            <p>Training is intensive, especially during ground school and the early phases of flight training. You can expect to have some evenings and occasional weekends free, but much of this time will be spent studying. As you progress through the program, the schedule may become more predictable.</p>
+            
+            <h3>Can I visit family during training?</h3>
+            <p>Most programs have scheduled breaks during which you can visit family. The frequency and duration of these breaks vary by program. Some airlines may also allow short visits home during longer training periods, provided it doesn't interfere with your training schedule.</p>
+            
+            <h3>What items should I bring to training?</h3>
+            <p>Essential items include:</p>
+            <ul>
+                <li>Professional clothing for ground school and simulator sessions</li>
+                <li>Casual clothing for flight training</li>
+                <li>Laptop or tablet for studying</li>
+                <li>Stationery supplies</li>
+                <li>Personal items and toiletries</li>
+                <li>Any prescribed medications</li>
+                <li>Appropriate identification documents</li>
+            </ul>
+            
+            <h3>How are cadets evaluated throughout the program?</h3>
+            <p>Evaluation methods include:</p>
+            <ul>
+                <li>Written examinations for theoretical knowledge</li>
+                <li>Practical flight tests</li>
+                <li>Simulator checks</li>
+                <li>Continuous assessment by instructors</li>
+                <li>Peer evaluations during multi-crew training</li>
+                <li>Line checks during the final phase of training</li>
+            </ul>
+        </div>

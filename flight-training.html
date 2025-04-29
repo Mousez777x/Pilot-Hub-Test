@@ -1,0 +1,1833 @@
+&lt;!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flight Training - Cadet Pilot Hub</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #0c3b6b;
+      --secondary-color: #a0aec0;
+      --accent-color: #3182ce;
+      --text-color: #2d3748;
+      --light-bg: #f7fafc;
+    }
+
+    body {
+      font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: var(--light-bg);
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+    }
+    
+    .mobile-menu {
+      display: none;
+    }
+    
+    @media (max-width: 768px) {
+      .desktop-menu {
+        display: none;
+      }
+      
+      .mobile-menu-button {
+        display: block;
+      }
+    }
+
+    .section-header {
+      background-image: linear-gradient(rgba(12, 59, 107, 0.9), rgba(12, 59, 107, 0.85)), url('https://images.unsplash.com/photo-1569629743817-70d8db6c323b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--primary-color);
+    }
+
+    .logo-icon {
+      margin-right: 0.5rem;
+    }
+
+    .nav-link {
+      position: relative;
+      padding: 0.5rem 1rem;
+      color: var(--text-color);
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--primary-color);
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background-color: var(--primary-color);
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+
+    .nav-link:hover::after {
+      width: 80%;
+    }
+
+    .nav-link.active {
+      color: var(--primary-color);
+    }
+
+    .nav-link.active::after {
+      width: 80%;
+    }
+
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background-color: var(--accent-color);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 2rem;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -2rem;
+      top: 0.5rem;
+      width: 1rem;
+      height: 1rem;
+      border-radius: 50%;
+      background-color: var(--accent-color);
+    }
+
+    .timeline-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .quote-card {
+      background-color: #f0f9ff;
+      border-left: 4px solid var(--accent-color);
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      border-radius: 0 0.5rem 0.5rem 0;
+      font-style: italic;
+    }
+
+    .quote-author {
+      font-style: normal;
+      font-weight: 600;
+      margin-top: 1rem;
+      text-align: right;
+    }
+
+    .tip-box {
+      background-color: #f0f9ff;
+      border-radius: 0.5rem;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      border: 1px solid #e5e7eb;
+    }
+
+    .tip-box h3 {
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .tip-box h3 i {
+      margin-right: 0.5rem;
+    }
+
+    .challenge-card {
+      background-color: white;
+      border-radius: 0.5rem;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .challenge-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    }
+
+    .challenge-card h3 {
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .challenge-card h3 i {
+      margin-right: 0.5rem;
+    }
+
+    .tab-container {
+      margin: 2rem 0;
+    }
+
+    .tab-buttons {
+      display: flex;
+      border-bottom: 1px solid #e5e7eb;
+      margin-bottom: 1rem;
+    }
+
+    .tab-button {
+      padding: 0.75rem 1.5rem;
+      font-weight: 600;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: all 0.3s ease;
+    }
+
+    .tab-button.active {
+      color: var(--primary-color);
+      border-bottom-color: var(--primary-color);
+    }
+
+    .tab-content {
+      display: none;
+      padding: 1rem;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    .faq-item {
+      margin-bottom: 1rem;
+      border: 1px solid #e5e7eb;
+      border-radius: 0.5rem;
+      overflow: hidden;
+    }
+
+    .faq-question {
+      padding: 1rem;
+      background-color: white;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .faq-question:hover {
+      background-color: #f8fafc;
+    }
+
+    .faq-answer {
+      padding: 0 1rem;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+    }
+
+    .faq-item.active .faq-question {
+      background-color: #f0f9ff;
+    }
+
+    .faq-item.active .faq-answer {
+      padding: 1rem;
+      max-height: 500px;
+    }
+  </style>
+</head>
+<body>
+  &lt;!-- Header -->
+  <header class="bg-white shadow sticky top-0 z-10">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="index.html" class="logo">
+        <span class="logo-icon"><i class="fas fa-plane"></i></span>
+        Cadet Pilot Hub
+      </a>
+      
+      &lt;!-- Mobile menu button -->
+      <button class="md:hidden mobile-menu-button" onclick="toggleMobileMenu()">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+      
+      &lt;!-- Desktop navigation -->
+      <nav class="hidden md:flex space-x-6 desktop-menu">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="index.html#about" class="nav-link">About Us</a>
+        <a href="index.html#shop" class="nav-link">Shop</a>
+        <a href="index.html#resources" class="nav-link active">Cadet Resources</a>
+        <a href="index.html#contact" class="nav-link">Contact Us</a>
+        <button onclick="toggleLoginModal()" class="bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 transition duration-300 shadow-md">Login</button>
+      </nav>
+    </div>
+    
+    &lt;!-- Mobile navigation -->
+    <nav id="mobile-menu" class="md:hidden bg-white px-4 py-2 flex-col space-y-4 pb-4 mobile-menu hidden">
+      <a href="index.html" class="hover:text-blue-600">Home</a>
+      <a href="index.html#about" class="hover:text-blue-600">About Us</a>
+      <a href="index.html#shop" class="hover:text-blue-600">Shop</a>
+      <a href="index.html#resources" class="hover:text-blue-600">Cadet Resources</a>
+      <a href="index.html#contact" class="hover:text-blue-600">Contact Us</a>
+      <button onclick="toggleLoginModal()" class="bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 transition duration-300 w-full shadow-md">Login</button>
+    </nav>
+  </header>
+
+  <main>
+    &lt;!-- Flight Training Section -->
+    <section id="flight-training" class="pt-16">
+      <div class="section-header text-white py-16 px-6 text-center">
+        <h1 class="text-4xl font-bold mb-4">What to Expect in Your First Year of Flight Training</h1>
+        <p class="text-xl max-w-3xl mx-auto">
+          A realistic look at the challenges and rewards of your cadet pilot journey
+        </p>
+      </div>
+
+      <div class="py-16 px-6 max-w-6xl mx-auto">
+        <div class="bg-white p-8 rounded-lg shadow-lg mb-12">
+          <h2 class="text-3xl font-bold mb-6">Introduction to Flight Training</h2>
+          <div class="flex flex-col md:flex-row gap-8 items-center mb-6">
+            <div class="md:w-2/3">
+              <p class="mb-4">
+                The first year of flight training as a cadet pilot is both exhilarating and demanding. It marks the beginning of your transformation from an aviation enthusiast to a professional pilot, and it will challenge you intellectually, physically, and emotionally.
+              </p>
+              <p class="mb-4">
+                This guide provides a realistic overview of what to expect during your first year of cadet pilot training, with insights from those who have successfully navigated this journey. We'll cover the typical training structure, academic challenges, practical flight training, lifestyle adjustments, and strategies for success.
+              </p>
+              <p>
+                Whether you're preparing to join a cadet program or are in the early stages of your training, this information will help you set realistic expectations and develop the mindset needed to thrive in this demanding but rewarding environment.
+              </p>
+            </div>
+            <div class="md:w-1/3">
+              <img src="https://images.unsplash.com/photo-1559060017-445fb9722f2a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Flight Training" class="rounded-lg shadow-md">
+            </div>
+          </div>
+        </div>
+
+        &lt;!-- Typical Training Structure -->
+        <div class="bg-white p-8 rounded-lg shadow-lg mb-12">
+          <h2 class="text-2xl font-bold mb-6">Typical First-Year Training Structure</h2>
+          
+          <p class="mb-6">
+            While the specific structure varies between airlines and flight schools, most cadet programs follow a similar progression during the first year:
+          </p>
+          
+          <div class="timeline mb-8">
+            <div class="timeline-item">
+              <h3 class="text-xl font-semibold">Orientation Phase (1-2 weeks)</h3>
+              <p>Introduction to the training facility, instructors, and fellow cadets. Overview of the program structure, expectations, and rules. Initial assessments and paperwork.</p>
+            </div>
+            
+            <div class="timeline-item">
+              <h3 class="text-xl font-semibold">Ground School (3-6 months)</h3>
+              <p>Intensive theoretical training covering subjects like principles of flight, aircraft systems, meteorology, navigation, air law, human performance, and more. Regular assessments and progress checks.</p>
+            </div>
+            
+            <div class="timeline-item">
+              <h3 class="text-xl font-semibold">Basic Flight Training (2-3 months)</h3>
+              <p>Introduction to flying in single-engine training aircraft. Learning fundamental maneuvers, takeoffs, landings, and basic navigation. First solo flight typically occurs during this phase.</p>
+            </div>
+            
+            <div class="timeline-item">
+              <h3 class="text-xl font-semibold">Intermediate Flight Training (3-4 months)</h3>
+              <p>More advanced flying techniques, including instrument flying, night flying, and cross-country navigation. Building flight hours and experience in various conditions.</p>
+            </div>
+            
+            <div class="timeline-item">
+              <h3 class="text-xl font-semibold">Progress Assessments</h3>
+              <p>Throughout the first year, you'll undergo regular progress checks, both theoretical and practical, to ensure you're meeting the required standards.</p>
+            </div>
+          </div>
+          
+          <div class="quote-card">
+            "The first year is designed to build your foundation as a pilot. It's like learning a new language and a new way of thinking simultaneously. The pace is intense, but seeing your progress from struggling with basic maneuvers to confidently flying solo is incredibly rewarding."
+            <div class="quote-author">— Captain Khalid, Emirates Training Captain</div>
+          </div>
+          
+          <div class="tab-container">
+            <div class="tab-buttons">
+              <div class="tab-button active" onclick="switchTab('ground-school')">Ground School</div>
+              <div class="tab-button" onclick="switchTab('basic-flight')">Basic Flight</div>
+              <div class="tab-button" onclick="switchTab('intermediate-flight')">Intermediate Flight</div>
+            </div>
+            
+            <div id="ground-school" class="tab-content active">
+              <h3 class="text-xl font-semibold mb-4">Ground School Deep Dive</h3>
+              <p class="mb-4">
+                Ground school is the academic foundation of your pilot training. You'll typically spend 6-8 hours per day in the classroom, with additional hours of self-study expected in the evenings.
+              </p>
+              <p class="mb-4">
+                Key subjects include:
+              </p>
+              <ul class="list-disc pl-5 space-y-2 mb-4">
+                <li><strong>Principles of Flight:</strong> Aerodynamics, aircraft performance, and stability</li>
+                <li><strong>Aircraft General Knowledge:</strong> Systems, engines, instruments, and electronics</li>
+                <li><strong>Flight Planning:</strong> Navigation, mass and balance, and performance calculations</li>
+                <li><strong>Meteorology:</strong> Weather patterns, forecasting, and hazardous conditions</li>
+                <li><strong>Human Performance:</strong> Physiology, psychology, and human factors in aviation</li>
+                <li><strong>Air Law:</strong> Regulations, procedures, and air traffic control</li>
+                <li><strong>Operational Procedures:</strong> Standard and emergency procedures</li>
+                <li><strong>Communications:</strong> Radio telephony and standard phraseology</li>
+              </ul>
+              <p>
+                Expect regular tests and assessments, with minimum passing grades typically set at 75-80%. Most programs require you to pass all ground school subjects before progressing to flight training.
+              </p>
+            </div>
+            
+            <div id="basic-flight" class="tab-content">
+              <h3 class="text-xl font-semibold mb-4">Basic Flight Training Deep Dive</h3>
+              <p class="mb-4">
+                Basic flight training is where theory meets practice. You'll typically fly 3-4 times per week, with each session lasting 1-2 hours, followed by comprehensive briefings and debriefings.
+              </p>
+              <p class="mb-4">
+                Key milestones include:
+              </p>
+              <ul class="list-disc pl-5 space-y-2 mb-4">
+                <li><strong>First Flight:</strong> Introduction to the aircraft and basic controls</li>
+                <li><strong>Basic Maneuvers:</strong> Straight and level flight, climbing, descending, and turning</li>
+                <li><strong>Stall Recognition and Recovery:</strong> Understanding and managing aircraft at low speeds</li>
+                <li><strong>Circuit Training:</strong> Practicing takeoffs and landings in a pattern around the airport</li>
+                <li><strong>Emergency Procedures:</strong> Handling simulated emergencies and abnormal situations</li>
+                <li><strong>First Solo Flight:</strong> A momentous occasion when you fly the aircraft alone for the first time</li>
+                <li><strong>Solo Circuits:</strong> Building confidence with multiple takeoffs and landings</li>
+              </ul>
+              <p>
+                The first solo flight typically occurs after 15-20 hours of dual instruction, depending on your progress and the training program. This is a significant milestone that marks your transition from student to pilot.
+              </p>
+            </div>
+            
+            <div id="intermediate-flight" class="tab-content">
+              <h3 class="text-xl font-semibold mb-4">Intermediate Flight Training Deep Dive</h3>
+              <p class="mb-4">
+                Intermediate flight training builds on your basic skills and introduces more complex operations. You'll continue to fly 3-4 times per week, with flights becoming longer and more challenging.
+              </p>
+              <p class="mb-4">
+                Key components include:
+              </p>
+              <ul class="list-disc pl-5 space-y-2 mb-4">
+                <li><strong>Navigation Exercises:</strong> Planning and executing flights between different airports</li>
+                <li><strong>Instrument Flying:</strong> Learning to fly solely by reference to instruments</li>
+                <li><strong>Night Flying:</strong> Operating the aircraft in darkness with different visual references</li>
+                <li><strong>Advanced Maneuvers:</strong> Steep turns, advanced stalls, and precision approaches</li>
+                <li><strong>Solo Cross-Country:</strong> Navigating between multiple airports on your own</li>
+                <li><strong>Radio Navigation:</strong> Using VOR, NDB, and other navigation aids</li>
+                <li><strong>Introduction to Multi-Engine Operations:</strong> For some programs, transition to more complex aircraft</li>
+              </ul>
+              <p>
+                This phase builds your confidence and competence as a pilot, preparing you for the more advanced training that will follow in your second year.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        &lt;!-- Academic Challenges -->
+        <div class="bg-white p-8 rounded-lg shadow-lg mb-12">
+          <h2 class="text-2xl font-bold mb-6">Academic Challenges and How to Overcome Them</h2>
+          
+          <p class="mb-6">
+            The academic component of flight training is often more demanding than many cadets anticipate. Here are the common challenges and strategies to overcome them:
+          </p>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+            <div class="challenge-card">
+              <h3 class="text-xl font-semibold"><i class="fas fa-brain"></i> Volume of Information</h3>
+              <p class="mb-4">
+                You'll need to absorb and retain a vast amount of technical information in a short time frame.
+              </p>
+              <h4 class="font-semibold mb-2">Strategies:</h4>
+              <ul class="list-disc pl-5 space-y-1">
+                <li>Develop a consistent study schedule with dedicated time blocks</li>
+                <li>Use active learning techniques like teaching concepts to others</li>
+                <li>Create concise summary notes and flashcards for key concepts</li>
+                <li>Form study groups to divide topics and teach each other</li>
+                <li>Use spaced repetition to review material regularly</li>
+
+
+```html file="simulations.html"
+&lt;!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aviation Simulations | Cadet Pilot Hub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #003366;
+            --secondary-color: #0066cc;
+            --accent-color: #ff9900;
+            --text-color: #333;
+            --light-bg: #f5f7fa;
+            --white: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            color: var(--text-color);
+            background-color: var(--light-bg);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--white);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: var(--accent-color);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 20px;
+        }
+        
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+        
+        .main-content {
+            padding: 40px 0;
+        }
+        
+        h1, h2, h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+        }
+        
+        .simulation-container {
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .simulation-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .simulation-title {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin: 0;
+        }
+        
+        .simulation-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            min-width: 150px;
+        }
+        
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        input[type="range"], input[type="number"], select {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        button {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: var(--primary-color);
+        }
+        
+        .simulation-canvas {
+            width: 100%;
+            height: 300px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            background-color: #f9f9f9;
+        }
+        
+        .simulation-info {
+            background-color: #f0f8ff;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 15px;
+        }
+        
+        .simulation-info h4 {
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+        
+        footer {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-section h3 {
+            color: var(--white);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .footer-section p, .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        
+        .footer-section a:hover {
+            color: var(--accent-color);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        
+        .social-links a {
+            color: var(--white);
+            font-size: 1.5rem;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin-top: 1.5rem;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.7rem;
+            }
+            
+            .simulation-controls {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">
+                    <i class="fas fa-plane"></i>
+                    Cadet Pilot Hub
+                </a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="math-preparation.html">Math</a></li>
+                    <li><a href="physics-preparation.html">Physics</a></li>
+                    <li><a href="english-terminology.html">English</a></li>
+                    <li><a href="uae-cadet-programs.html">UAE Programs</a></li>
+                    <li><a href="interview-qa.html">Interview</a></li>
+                    <li><a href="flight-training.html">Training</a></li>
+                    <li><a href="simulations.html">Simulations</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="main-content container">
+        <h1>Interactive Aviation Simulations</h1>
+        <p>Explore key aviation physics concepts through these interactive simulations. Adjust parameters to see how different factors affect flight dynamics and aerodynamics.</p>
+        
+        &lt;!-- Airfoil Lift Simulation -->
+        <div class="simulation-container">
+            <div class="simulation-header">
+                <h2 class="simulation-title">Airfoil Lift Simulation</h2>
+            </div>
+            <p>Explore how airfoil shape and angle of attack affect lift generation.</p>
+            
+            <div class="simulation-controls">
+                <div class="control-group">
+                    <label for="aoa">Angle of Attack (°)</label>
+                    <input type="range" id="aoa" min="-5" max="20" value="5" step="0.5">
+                    <span id="aoa-value">5°</span>
+                </div>
+                
+                <div class="control-group">
+                    <label for="airspeed">Airspeed (knots)</label>
+                    <input type="range" id="airspeed" min="50" max="300" value="150" step="10">
+                    <span id="airspeed-value">150 knots</span>
+                </div>
+                
+                <div class="control-group">
+                    <label for="airfoil-type">Airfoil Type</label>
+                    <select id="airfoil-type">
+                        <option value="symmetric">Symmetric</option>
+                        <option value="cambered" selected>Cambered</option>
+                        <option value="supercritical">Supercritical</option>
+                    </select>
+                </div>
+                
+                <button id="reset-airfoil">Reset</button>
+            </div>
+            
+            <canvas id="airfoil-canvas" class="simulation-canvas" width="800" height="400"></canvas>
+            
+            <div class="simulation-info">
+                <h4>Simulation Data</h4>
+                <p>Lift Coefficient (CL): <span id="lift-coefficient">0.00</span></p>
+                <p>Lift Force: <span id="lift-force">0.00</span> N</p>
+                <p>Pressure Differential: <span id="pressure-diff">0.00</span> Pa</p>
+            </div>
+        </div>
+        
+        &lt;!-- Forces in Flight Simulation -->
+        <div class="simulation-container">
+            <div class="simulation-header">
+                <h2 class="simulation-title">Forces in Flight Simulation</h2>
+            </div>
+            <p>Visualize the four fundamental forces acting on an aircraft during different phases of flight.</p>
+            
+            <div class="simulation-controls">
+                <div class="control-group">
+                    <label for="flight-phase">Flight Phase</label>
+                    <select id="flight-phase">
+                        <option value="takeoff">Takeoff</option>
+                        <option value="climb">Climb</option>
+                        <option value="cruise" selected>Cruise</option>
+                        <option value="descent">Descent</option>
+                        <option value="landing">Landing</option>
+                    </select>
+                </div>
+                
+                <div class="control-group">
+                    <label for="thrust-setting">Thrust Setting (%)</label>
+                    <input type="range" id="thrust-setting" min="0" max="100" value="70" step="5">
+                    <span id="thrust-value">70%</span>
+                </div>
+                
+                <div class="control-group">
+                    <label for="aircraft-weight">Aircraft Weight (tons)</label>
+                    <input type="range" id="aircraft-weight" min="10" max="100" value="50" step="5">
+                    <span id="weight-value">50 tons</span>
+                </div>
+                
+                <button id="reset-forces">Reset</button>
+            </div>
+            
+            <canvas id="forces-canvas" class="simulation-canvas" width="800" height="400"></canvas>
+            
+            <div class="simulation-info">
+                <h4>Force Magnitudes</h4>
+                <p>Lift: <span id="lift-value">0.00</span> kN</p>
+                <p>Weight: <span id="weight-display">0.00</span> kN</p>
+                <p>Thrust: <span id="thrust-display">0.00</span> kN</p>
+                <p>Drag: <span id="drag-value">0.00</span> kN</p>
+            </div>
+        </div>
+        
+        &lt;!-- Bernoulli's Principle Demonstration -->
+        <div class="simulation-container">
+            <div class="simulation-header">
+                <h2 class="simulation-title">Bernoulli's Principle Demonstration</h2>
+            </div>
+            <p>See how fluid velocity affects pressure in a pipe with varying cross-sectional areas.</p>
+            
+            <div class="simulation-controls">
+                <div class="control-group">
+                    <label for="flow-rate">Flow Rate</label>
+                    <input type="range" id="flow-rate" min="1" max="10" value="5" step="0.5">
+                    <span id="flow-rate-value">5</span>
+                </div>
+                
+                <div class="control-group">
+                    <label for="constriction">Constriction Ratio</label>
+                    <input type="range" id="constriction" min="0.2" max="0.9" value="0.5" step="0.05">
+                    <span id="constriction-value">0.5</span>
+                </div>
+                
+                <button id="reset-bernoulli">Reset</button>
+                <button id="toggle-particles">Toggle Particles</button>
+            </div>
+            
+            <canvas id="bernoulli-canvas" class="simulation-canvas" width="800" height="400"></canvas>
+            
+            <div class="simulation-info">
+                <h4>Bernoulli's Equation</h4>
+                <p>P₁ + ½ρv₁² + ρgh₁ = P₂ + ½ρv₂² + ρgh₂</p>
+                <p>Pressure at Wide Section: <span id="pressure-wide">0.00</span> Pa</p>
+                <p>Pressure at Narrow Section: <span id="pressure-narrow">0.00</span> Pa</p>
+                <p>Velocity at Wide Section: <span id="velocity-wide">0.00</span> m/s</p>
+                <p>Velocity at Narrow Section: <span id="velocity-narrow">0.00</span> m/s</p>
+            </div>
+        </div>
+        
+        &lt;!-- Density Altitude Calculator -->
+        <div class="simulation-container">
+            <div class="simulation-header">
+                <h2 class="simulation-title">Density Altitude Calculator</h2>
+            </div>
+            <p>Calculate density altitude based on pressure altitude, temperature, and humidity.</p>
+            
+            <div class="simulation-controls">
+                <div class="control-group">
+                    <label for="pressure-altitude">Pressure Altitude (ft)</label>
+                    <input type="number" id="pressure-altitude" min="0" max="40000" value="5000">
+                </div>
+                
+                <div class="control-group">
+                    <label for="temperature">Temperature (°C)</label>
+                    <input type="number" id="temperature" min="-50" max="50" value="15">
+                </div>
+                
+                <div class="control-group">
+                    <label for="humidity">Relative Humidity (%)</label>
+                    <input type="number" id="humidity" min="0" max="100" value="50">
+                </div>
+                
+                <div class="control-group">
+                    <label for="altimeter">Altimeter Setting (inHg)</label>
+                    <input type="number" id="altimeter" min="28" max="31" step="0.01" value="29.92">
+                </div>
+                
+                <button id="calculate-density">Calculate</button>
+                <button id="reset-density">Reset</button>
+            </div>
+            
+            <div class="simulation-info">
+                <h4>Results</h4>
+                <p>Density Altitude: <span id="density-altitude">0</span> ft</p>
+                <p>Air Density: <span id="air-density">0.00</span> kg/m³</p>
+                <p>Performance Impact: <span id="performance-impact">Calculating...</span></p>
+            </div>
+            
+            <canvas id="density-canvas" class="simulation-canvas" width="800" height="400"></canvas>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Cadet Pilot Hub</h3>
+                    <p>Your comprehensive resource for cadet pilot preparation and aviation knowledge.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="index.html">Home</a>
+                    <a href="math-preparation.html">Math Preparation</a>
+                    <a href="physics-preparation.html">Physics Preparation</a>
+                    <a href="english-terminology.html">Aviation English</a>
+                    <a href="about.html">About Us</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-envelope"></i> info@cadetpilothub.com</p>
+                    <p><i class="fas fa-phone"></i> +971 50 123 4567</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Dubai, United Arab Emirates</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Cadet Pilot Hub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Airfoil Lift Simulation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Airfoil Lift Simulation
+            const airfoilCanvas = document.getElementById('airfoil-canvas');
+            const aoaInput = document.getElementById('aoa');
+            const airspeedInput = document.getElementById('airspeed');
+            const airfoilTypeSelect = document.getElementById('airfoil-type');
+            const aoaValue = document.getElementById('aoa-value');
+            const airspeedValue = document.getElementById('airspeed-value');
+            const liftCoefficient = document.getElementById('lift-coefficient');
+            const liftForce = document.getElementById('lift-force');
+            const pressureDiff = document.getElementById('pressure-diff');
+            const resetAirfoilBtn = document.getElementById('reset-airfoil');
+            
+            const airfoilCtx = airfoilCanvas.getContext('2d');
+            
+            // Update display values
+            aoaInput.addEventListener('input', function() {
+                aoaValue.textContent = this.value + '°';
+                drawAirfoil();
+            });
+            
+            airspeedInput.addEventListener('input', function() {
+                airspeedValue.textContent = this.value + ' knots';
+                drawAirfoil();
+            });
+            
+            airfoilTypeSelect.addEventListener('change', drawAirfoil);
+            
+            resetAirfoilBtn.addEventListener('click', function() {
+                aoaInput.value = 5;
+                airspeedInput.value = 150;
+                airfoilTypeSelect.value = 'cambered';
+                aoaValue.textContent = '5°';
+                airspeedValue.textContent = '150 knots';
+                drawAirfoil();
+            });
+            
+            function drawAirfoil() {
+                const aoa = parseFloat(aoaInput.value);
+                const airspeed = parseFloat(airspeedInput.value);
+                const airfoilType = airfoilTypeSelect.value;
+                
+                // Clear canvas
+                airfoilCtx.clearRect(0, 0, airfoilCanvas.width, airfoilCanvas.height);
+                
+                // Draw background grid
+                drawGrid(airfoilCtx, airfoilCanvas.width, airfoilCanvas.height);
+                
+                // Draw airflow
+                drawAirflow(airfoilCtx, airfoilCanvas.width, airfoilCanvas.height, airspeed);
+                
+                // Draw airfoil
+                const centerX = airfoilCanvas.width / 2;
+                const centerY = airfoilCanvas.height / 2;
+                const chordLength = airfoilCanvas.width * 0.4;
+                
+                airfoilCtx.save();
+                airfoilCtx.translate(centerX - chordLength / 2, centerY);
+                airfoilCtx.rotate((aoa * Math.PI) / 180);
+                
+                // Draw the airfoil shape based on type
+                airfoilCtx.beginPath();
+                
+                if (airfoilType === 'symmetric') {
+                    // Symmetric airfoil
+                    airfoilCtx.moveTo(0, 0);
+                    airfoilCtx.bezierCurveTo(
+                        chordLength * 0.2, -chordLength * 0.06,
+                        chordLength * 0.8, -chordLength * 0.06,
+                        chordLength, 0
+                    );
+                    airfoilCtx.bezierCurveTo(
+                        chordLength * 0.8, chordLength * 0.06,
+                        chordLength * 0.2, chordLength * 0.06,
+                        0, 0
+                    );
+                } else if (airfoilType === 'cambered') {
+                    // Cambered airfoil
+                    airfoilCtx.moveTo(0, 0);
+                    airfoilCtx.bezierCurveTo(
+                        chordLength * 0.2, -chordLength * 0.08,
+                        chordLength * 0.8, -chordLength * 0.1,
+                        chordLength, -chordLength * 0.02
+                    );
+                    airfoilCtx.bezierCurveTo(
+                        chordLength * 0.8, chordLength * 0.04,
+                        chordLength * 0.2, chordLength * 0.05,
+                        0, 0
+                    );
+                } else if (airfoilType === 'supercritical') {
+                    // Supercritical airfoil
+                    airfoilCtx.moveTo(0, 0);
+                    airfoilCtx.bezierCurveTo(
+                        chordLength * 0.2, -chordLength * 0.05,
+                        chordLength * 0.5, -chordLength * 0.08,
+                        chordLength, -chordLength * 0.01
+                    );
+                    airfoilCtx.bezierCurveTo(
+                        chordLength * 0.8, chordLength * 0.06,
+                        chordLength * 0.2, chordLength * 0.04,
+                        0, 0
+                    );
+                }
+                
+                airfoilCtx.fillStyle = '#3366cc';
+                airfoilCtx.fill();
+                airfoilCtx.strokeStyle = '#000';
+                airfoilCtx.lineWidth = 1;
+                airfoilCtx.stroke();
+                
+                // Draw lift vector
+                const liftMagnitude = calculateLift(aoa, airspeed, airfoilType);
+                const liftVectorLength = Math.min(liftMagnitude * 2, airfoilCanvas.height * 0.3);
+                
+                airfoilCtx.beginPath();
+                airfoilCtx.moveTo(chordLength / 2, 0);
+                airfoilCtx.lineTo(chordLength / 2, -liftVectorLength);
+                airfoilCtx.strokeStyle = '#00cc00';
+                airfoilCtx.lineWidth = 3;
+                airfoilCtx.stroke();
+                
+                // Draw arrowhead
+                airfoilCtx.beginPath();
+                airfoilCtx.moveTo(chordLength / 2, -liftVectorLength);
+                airfoilCtx.lineTo(chordLength / 2 - 10, -liftVectorLength + 15);
+                airfoilCtx.lineTo(chordLength / 2 + 10, -liftVectorLength + 15);
+                airfoilCtx.closePath();
+                airfoilCtx.fillStyle = '#00cc00';
+                airfoilCtx.fill();
+                
+                // Draw "LIFT" label
+                airfoilCtx.fillStyle = '#00cc00';
+                airfoilCtx.font = 'bold 16px Arial';
+                airfoilCtx.textAlign = 'center';
+                airfoilCtx.fillText('LIFT', chordLength / 2, -liftVectorLength - 10);
+                
+                airfoilCtx.restore();
+                
+                // Update simulation data
+                const cl = calculateLiftCoefficient(aoa, airfoilType);
+                const lift = calculateLift(aoa, airspeed, airfoilType);
+                const pressure = calculatePressureDifferential(airspeed, cl);
+                
+                liftCoefficient.textContent = cl.toFixed(2);
+                liftForce.textContent = lift.toFixed(2);
+                pressureDiff.textContent = pressure.toFixed(2);
+            }
+            
+            function calculateLiftCoefficient(aoa, airfoilType) {
+                // Simplified lift coefficient calculation
+                let baseCoefficient = 0;
+                
+                if (airfoilType === 'symmetric') {
+                    baseCoefficient = 0.1;
+                } else if (airfoilType === 'cambered') {
+                    baseCoefficient = 0.2;
+                } else if (airfoilType === 'supercritical') {
+                    baseCoefficient = 0.25;
+                }
+                
+                // Add angle of attack contribution (simplified)
+                let aoaContribution = 0.1 * aoa;
+                
+                // Stall behavior (simplified)
+                if (aoa > 15) {
+                    aoaContribution = 0.1 * 15 - 0.05 * (aoa - 15);
+                }
+                
+                return baseCoefficient + aoaContribution;
+            }
+            
+            function calculateLift(aoa, airspeed, airfoilType) {
+                // Convert knots to m/s
+                const velocity = airspeed * 0.5144;
+                
+                // Air density at sea level (kg/m³)
+                const rho = 1.225;
+                
+                // Wing area (m²) - arbitrary value for simulation
+                const wingArea = 30;
+                
+                // Calculate lift coefficient
+                const cl = calculateLiftCoefficient(aoa, airfoilType);
+                
+                // Lift equation: L = 0.5 * rho * v² * S * CL
+                return 0.5 * rho * velocity * velocity * wingArea * cl;
+            }
+            
+            function calculatePressureDifferential(airspeed, cl) {
+                // Convert knots to m/s
+                const velocity = airspeed * 0.5144;
+                
+                // Air density at sea level (kg/m³)
+                const rho = 1.225;
+                
+                // Simplified pressure differential calculation
+                return 0.5 * rho * velocity * velocity * cl;
+            }
+            
+            function drawGrid(ctx, width, height) {
+                ctx.strokeStyle = '#e0e0e0';
+                ctx.lineWidth = 0.5;
+                
+                // Draw vertical grid lines
+                for (let x = 0; x &lt;= width; x += 50) {
+                    ctx.beginPath();
+                    ctx.moveTo(x, 0);
+                    ctx.lineTo(x, height);
+                    ctx.stroke();
+                }
+                
+                // Draw horizontal grid lines
+                for (let y = 0; y &lt;= height; y += 50) {
+                    ctx.beginPath();
+                    ctx.moveTo(0, y);
+                    ctx.lineTo(width, y);
+                    ctx.stroke();
+                }
+            }
+            
+            function drawAirflow(ctx, width, height, airspeed) {
+                const arrowSpacing = 50;
+                const arrowLength = Math.min(30 + airspeed / 10, 60);
+                
+                ctx.strokeStyle = '#99ccff';
+                ctx.lineWidth = 1;
+                
+                for (let y = 50; y &lt; height; y += arrowSpacing) {
+                    for (let x = 50; x &lt; width; x += arrowSpacing) {
+                        // Skip arrows in the center where the airfoil will be
+                        const centerX = width / 2;
+                        const centerY = height / 2;
+                        const chordLength = width * 0.4;
+                        
+                        if (
+                            x > centerX - chordLength / 2 - 20 &&
+                            x &lt; centerX + chordLength / 2 + 20 &&
+                            y > centerY - 30 &&
+                            y &lt; centerY + 30
+                        ) {
+                            continue;
+                        }
+                        
+                        ctx.beginPath();
+                        ctx.moveTo(x, y);
+                        ctx.lineTo(x + arrowLength, y);
+                        ctx.stroke();
+                        
+                        // Draw arrowhead
+                        ctx.beginPath();
+                        ctx.moveTo(x + arrowLength, y);
+                        ctx.lineTo(x + arrowLength - 10, y - 5);
+                        ctx.lineTo(x + arrowLength - 10, y + 5);
+                        ctx.closePath();
+                        ctx.fillStyle = '#99ccff';
+                        ctx.fill();
+                    }
+                }
+            }
+            
+            // Initial draw
+            drawAirfoil();
+            
+            // Forces in Flight Simulation
+            const forcesCanvas = document.getElementById('forces-canvas');
+            const flightPhaseSelect = document.getElementById('flight-phase');
+            const thrustSettingInput = document.getElementById('thrust-setting');
+            const aircraftWeightInput = document.getElementById('aircraft-weight');
+            const thrustValue = document.getElementById('thrust-value');
+            const weightValue = document.getElementById('weight-value');
+            const liftValueDisplay = document.getElementById('lift-value');
+            const weightDisplay = document.getElementById('weight-display');
+
+
+```html file="uae-cadet-programs.html"
+&lt;!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UAE Cadet Programs - Cadet Pilot Hub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #003366;
+            --secondary-color: #0066cc;
+            --accent-color: #ff9900;
+            --light-bg: #f5f7fa;
+            --text-color: #333;
+            --light-text: #fff;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 1rem 0;
+            text-align: center;
+            box-shadow: var(--box-shadow);
+        }
+
+        nav {
+            background-color: var(--secondary-color);
+            padding: 1rem 0;
+            text-align: center;
+        }
+
+        nav a {
+            color: var(--light-text);
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 20px;
+        }
+
+        .program-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-bottom: 2rem;
+            padding: 2rem;
+            transition: transform 0.3s;
+        }
+
+        .program-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .program-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .program-logo {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            margin-right: 1.5rem;
+        }
+
+        .program-title {
+            color: var(--primary-color);
+        }
+
+        .program-details {
+            margin-bottom: 1.5rem;
+        }
+
+        .detail-item {
+            display: flex;
+            margin-bottom: 0.5rem;
+        }
+
+        .detail-label {
+            font-weight: bold;
+            width: 150px;
+            color: var(--secondary-color);
+        }
+
+        .application-steps {
+            background-color: var(--light-bg);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 1.5rem;
+        }
+
+        .step {
+            margin-bottom: 1rem;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .step-number {
+            position: absolute;
+            left: 0;
+            width: 24px;
+            height: 24px;
+            background-color: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 10px 20px;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .cta-button:hover {
+            background-color: #e68a00;
+        }
+
+        .requirements-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .requirements-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .requirements-list li:last-child {
+            border-bottom: none;
+        }
+
+        .requirements-list li::before {
+            content: "✓";
+            color: var(--accent-color);
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        footer {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        .social-links {
+            margin: 1rem 0;
+        }
+
+        .social-links a {
+            color: var(--light-text);
+            margin: 0 10px;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-color);
+        }
+
+        @media (max-width: 768px) {
+            .program-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .program-logo {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+
+            .detail-item {
+                flex-direction: column;
+            }
+
+            .detail-label {
+                width: 100%;
+                margin-bottom: 0.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>UAE Cadet Programs</h1>
+        <p>Your comprehensive guide to cadet pilot programs in the UAE</p>
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="math-preparation.html">Math Prep</a>
+        <a href="physics-preparation.html">Physics Prep</a>
+        <a href="english-terminology.html">Aviation English</a>
+        <a href="uae-cadet-programs.html">UAE Programs</a>
+        <a href="interview-qa.html">Interview Prep</a>
+        <a href="flight-training.html">Flight Training</a>
+        <a href="simulations.html">Simulations</a>
+    </nav>
+
+    <div class="container">
+        <h2>UAE Airline Cadet Pilot Programs</h2>
+        <p>The UAE is home to some of the world's most prestigious airlines, each offering excellent cadet pilot programs. Below you'll find detailed information about each program, including requirements, application processes, and tips for success.</p>
+
+        &lt;!-- Emirates Airline -->
+        <div class="program-card">
+            <div class="program-header">
+                <img src="/placeholder.svg?height=100&width=100" alt="Emirates Logo" class="program-logo">
+                <div>
+                    <h3 class="program-title">Emirates Airline National Cadet Pilot Programme</h3>
+                    <p>One of the most prestigious cadet programs in the Middle East</p>
+                </div>
+            </div>
+
+            <div class="program-details">
+                <div class="detail-item">
+                    <span class="detail-label">Duration:</span>
+                    <span>Approximately 3.5 years</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Training Location:</span>
+                    <span>Emirates Flight Training Academy (EFTA), Dubai</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Eligibility:</span>
+                    <span>UAE Nationals only</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Minimum Age:</span>
+                    <span>17 years</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Education:</span>
+                    <span>High school diploma with strong grades in Math, Physics, and English</span>
+                </div>
+            </div>
+
+            <div class="requirements">
+                <h4>Requirements:</h4>
+                <ul class="requirements-list">
+                    <li>UAE National</li>
+                    <li>High school certificate with minimum 80% in Math, Physics, and English</li>
+                    <li>Excellent command of written and spoken English</li>
+                    <li>Pass medical examination (Class 1 Medical Certificate)</li>
+                    <li>Pass aptitude tests and assessments</li>
+                    <li>Pass interview stages</li>
+                </ul>
+            </div>
+
+            <div class="application-steps">
+                <h4>Application Process:</h4>
+                <div class="step">
+                    <span class="step-number">1</span>
+                    <p><strong>Online Application:</strong> Submit your application through the Emirates careers website.</p>
+                </div>
+                <div class="step">
+                    <span class="step-number">2</span>
+                    <p><strong>Initial Screening:</strong> Review of academic qualifications and basic requirements.</p>
+                </div>
+                <div class="step">
+                    <span class="step-number">3</span>
+                    <p><strong>Aptitude Testing:</strong> Computer-based tests to assess your cognitive abilities, spatial awareness, and coordination.</p>
+                </div>
+                <div class="step">
+                    <span class="step-number">4</span>
+                    <p><strong>Assessment Day:</strong> Group exercises and preliminary interviews.</p>
+                </div>
+                <div class="step">
+                    <span class="step-number">5</span>
+                    <p><strong>Final Interview:</strong> In-depth interview with senior pilots and HR representatives.</p>
+                </div>
+                <div class="step">
+                    <span class="step-number">6</span>
+                    <p><strong>Medical Examination:</strong> Comprehensive medical check to ensure you meet GCAA Class 1 Medical requirements.</p>
+                </div>
+                <div class="step">
+                    <span class="step-number">7</span>
+                    <p><strong>Final Selection:</strong> Successful candidates are offered a place in the program.</p>
+                </div>
+            </div>
+
+            <a href="https://www.emiratesgroupcareers.com/pilots/" class="cta-button" target="_blank">Visit Official Website</a>
+        </div>
+
+        &lt;!-- Etihad Airways -->
+        <div class="program-card">
+            <div class="program-header">
+                <img src="/placeholder.svg?height=100&width=100" alt="Etihad Logo" class="program-logo">
+                <div>
+                    <h3 class="program-title">Etihad Airways Cadet Pilot Programme</h3>
+                    <p>A comprehensive training program for future Etihad pilots</p>
+                </div>
+            </div>
+
+            <div class="program-details">
+                <div class="detail-item">
+                    <span class="detail-label">Duration:</span>
+                    <span>Approximately 18-24 months</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Training Location:</span>
+                    <span>Etihad Flight College, Al Ain</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Eligibility:</span>
+                    <span>UAE Nationals and International applicants</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Minimum Age:</span>
+                    <span>18 years</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Education:</span>
+                    <span>High school diploma with strong grades in Math and Physics</span>
+                </div>
+            </div>
+
+            <div class="requirements">
+                <h4>Requirements:</h4>
+                <ul class="requirements-list">
+                    <li>High school certificate with minimum 75% in Math and Physics</li>
+                    <li>IELTS score of 5.5 or equivalent</li>
+                    <li>Pass medical examination (Class 1 Medical Certificate)</li>
+                    <li>Pass aptitude tests and assessments</li>
+                    <li>Pass interview stages</li>
+                </ul>
+            </div>
+
+            <div class="application-steps">
+                <h4>Application Process:</h4>
+                <div class="step">
+                    <span class="step-number">1</span>
+                    <p><strong>Online Application:</strong> Submit your application through the Etihad careers website.</p>
+                </div>
+                <div class="step">
+                    <span class="step-number">2</span>
+                    <p><strong>Initial Screening:</strong> Review of academic qualifications and basic requirements.</p>
+                </div>
+                <div class="step">
+                    <span class="step-number">3</span>
+                    <p><strong>Aptitude Testing:</strong> Computer-based tests to assess your cognitive abilities and coordination.</p>
+                </div>
+                <div class="step">
+                    <span class="step-number">4</span>
+                    <p><strong>Assessment Day:</strong> Group exercises and preliminary interviews.</p>
+                </div>
+                <div class="step">
+                    <span class="step-number">5</span>
+                    <p><strong>Final Interview:</strong> In-depth interview with senior pilots and HR representatives.</p>
+                </div>
+                <div class="step">
+                    <span class="step-number">6</span>
+                    <p><strong>Medical Examination:</strong> Comprehensive medical check to ensure you meet GCAA Class 1 Medical requirements.</p>
+                </div>
+                <div class="step">
+                    <span class="step-number">7</span>
+                    <p><strong>Final Selection:</strong> Successful candidates are offered a place in the program.</p>
+                </div>
+            </div>
+
+            <a href="https://careers.etihad.com/content/Pilot-Careers/?locale=en_GB" class="cta-button" target="_blank">Visit Official Website</a>
+        </div>
+
+        &lt;!-- flydubai -->
+        <div class="program-card">
+            <div class="program-header">
+                <img src="/placeholder.svg?height=100&width=100" alt="flydubai Logo" class="program-logo">
+                <div>
+                    <h3 class="program-title">flydubai Cadet Pilot Programme</h3>
+                    <p>Training the next generation of flydubai pilots</p>
+                </div>
+            </div>
+
+            <div class="program-details">
+                <div class="detail-item">
+                    <span class="detail-label">Duration:</span>
+                    <span>Approximately 18 months</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Training Location:</span>
+                    <span>Various partner flight schools</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Eligibility:</span>
+                    <span>UAE Nationals and International applicants</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Minimum Age:</span>
+                    <span>18 years</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Education:</span>
+                    <span>High school diploma with strong grades in Math, Physics, and English</span>
+                </div>
+            </div>
+
+            <div class="requirements">
+                <h4>Requirements:</h4>
+                <ul class="requirements-list">
+                    <li>High school certificate with minimum 70% in Math, Physics, and English</li>
+                    <li>Good command of written and spoken English</li>
+                    <li>Pass medical examination (Class 1 Medical Certificate)</li>
+                    <li>Pass aptitude tests and assessments</li>
+                    <li>Pass interview stages</li>
+                </ul>
+            </div>
+
+            <div class="application-steps">
+                <h4>Application Process:</h4>
+                <div class="step">
+                    <span class="step-number">1</span>
+                    <p><strong>Online Application:</strong> Submit your application through the flydubai careers website.</p>
+                </div>
+                <div class="step">
+                    <span class="step-number">2</span>
+                    <p><strong>Initial Screening:</strong> Review of academic qualifications and basic requirements.</p>
+                </div>
+                <div class="step">
+                    <span class="step-number">3</span>
+                    <p><strong>Aptitude Testing:</strong> Computer-based tests to assess your cognitive abilities.</p>
+                </div>
+                <div class="step">
+                    <span class="step-number">4</span>
+                    <p><strong>Assessment Day:</strong> Group exercises and preliminary interviews.</p>
+                </div>
+                <div class="step">
+                    <span class="step-number">5</span>
+                    <p><strong>Final Interview:</strong> In-depth interview with senior pilots and HR representatives.</p>
+                </div>
+                <div class="step">
+                    <span class="step-number">6</span>
+                    <p><strong>Medical Examination:</strong> Comprehensive medical check to ensure you meet GCAA Class 1 Medical requirements.</p>
+                </div>
+                <div class="step">
+                    <span class="step-number">7</span>
+                    <p><strong>Final Selection:</strong> Successful candidates are offered a place in the program.</p>
+                </div>
+            </div>
+
+            <a href="https://careers.flydubai.com/en/job-categories/pilots/" class="cta-button" target="_blank">Visit Official Website</a>
+        </div>
+
+        &lt;!-- Air Arabia -->
+        <div class="program-card">
+            <div class="program-header">
+                <img src="/placeholder.svg?height=100&width=100" alt="Air Arabia Logo" class="program-logo">
+                <div>
+                    <h3 class="program-title">Air Arabia Cadet Pilot Programme</h3>
+                    <p>Building the future of Air Arabia's flight deck</p>
+                </div>
+            </div>
+
+            <div class="program-details">
+                <div class="detail-item">
+                    <span class="detail-label">Duration:</span>
+                    <span>Approximately 18-24 months</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Training Location:</span>
+                    <span>Alpha Aviation Academy, Sharjah</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Eligibility:</span>
+                    <span>UAE Nationals and International applicants</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Minimum Age:</span>
+                    <span>18 years</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Education:</span>
+                    <span>High school diploma with strong grades in Math and Science</span>
+                </div>
+            </div>
+
+            <div class="requirements">
+                <h4>Requirements:</h4>
+                <ul class="requirements-list">
+                    <li>High school certificate with minimum 70% in Math and Science</li>
+                    <li>Good command of written and spoken English</li>
+                    <li>Pass medical examination (Class 1 Medical Certificate)</li>
+                    <li>Pass aptitude tests and assessments</li>
+                    <li>Pass interview stages</li>
+                </ul>
+            </div>
+
+            <div class="application-steps">
+                <h4>Application Process:</h4>
+                <div class="step">
+                    <span class="step-number">1</span>
+                    <p><strong>Online Application:</strong> Submit your application through the Air Arabia careers website.</p>
+                </div>
+                <div class="step">
+                    <span class="step-number">2</span>
+                    <p><strong>Initial Screening:</strong> Review of academic qualifications and basic requirements.</p>
+                </div>
+                <div class="step">
+                    <span class="step-number">3</span>
+                    <p><strong>Aptitude Testing:</strong> Computer-based tests to assess your cognitive abilities.</p>
+                </div>
+                <div class="step">
+                    <span class="step-number">4</span>
+                    <p><strong>Assessment Day:</strong> Group exercises and preliminary interviews.</p>
+                </div>
+                <div class="step">
+                    <span class="step-number">5</span>
+                    <p><strong>Final Interview:</strong> In-depth interview with senior pilots and HR representatives.</p>
+                </div>
+                <div class="step">
+                    <span class="step-number">6</span>
+                    <p><strong>Medical Examination:</strong> Comprehensive medical check to ensure you meet GCAA Class 1 Medical requirements.</p>
+                </div>
+                <div class="step">
+                    <span class="step-number">7</span>
+                    <p><strong>Final Selection:</strong> Successful candidates are offered a place in the program.</p>
+                </div>
+            </div>
+
+            <a href="https://careers.airarabia.com/" class="cta-button" target="_blank">Visit Official Website</a>
+        </div>
+
+        <h2>Tips for Success</h2>
+        <div class="program-card">
+            <h3>Preparing for UAE Cadet Pilot Programs</h3>
+            <p>Here are some tips to help you succeed in your application:</p>
+            <ul class="requirements-list">
+                <li><strong>Academic Excellence:</strong> Focus on achieving high grades in Math, Physics, and English.</li>
+                <li><strong>English Proficiency:</strong> Work on improving your English language skills, both written and spoken.</li>
+                <li><strong>Physical Fitness:</strong> Maintain good physical health to pass the medical examination.</li>
+                <li><strong>Aptitude Test Preparation:</strong> Practice spatial awareness, coordination, and cognitive ability tests.</li>
+                <li><strong>Aviation Knowledge:</strong> Develop a basic understanding of aviation principles and current affairs.</li>
+                <li><strong>Interview Skills:</strong> Prepare for common interview questions and practice your communication skills.</li>
+                <li><strong>Research:</strong> Learn about the airline you're applying to, including its fleet, routes, and company values.</li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <h3>Cadet Pilot Hub</h3>
+        <p>Your comprehensive resource for cadet pilot preparation</p>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+        <p>&copy; 2023 Cadet Pilot Hub. All rights reserved.</p>
+    </footer>
+</body>
+</html>

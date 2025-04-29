@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Math Preparation - Cadet Pilot Hub</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #0c3b6b;
+      --secondary-color: #a0aec0;
+      --accent-color: #3182ce;
+      --text-color: #2d3748;
+      --light-bg: #f7fafc;
+    }
+
+    body {
+      font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: var(--light-bg);
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+    }
+    
+    .mobile-menu {
+      display: none;
+    }
+    
+    @media (max-width: 768px) {
+      .desktop-menu {
+        display: none;
+      }
+      
+      .mobile-menu-button {
+        display: block;
+      }
+    }
+
+    .math-formula {
+      font-family: 'Times New Roman', Times, serif;
+      font-style: italic;
+      padding: 0.5rem;
+      background-color: #f0f9ff;
+      border-radius: 0.25rem;
+      display: inline-block;
+      margin: 0.5rem 0;
+    }
+
+    .example-box {
+      border-left: 4px solid var(--accent-color);
+      padding: 1rem;
+      margin: 1rem 0;
+      background-color: #f0f9ff;
+    }
+
+    .practice-question {
+      border: 1px solid #e5e7eb;
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 0.5rem;
+      background-color: white;
+    }
+
+    .answer-reveal {
+      color: transparent;
+      background-color: #e5e7eb;
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.25rem;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .answer-reveal:hover {
+      color: var(--text-color);
+    }
+
+    .section-header {
+      background-image: linear-gradient(rgba(12, 59, 107, 0.9), rgba(12, 59, 107, 0.85)), url('https://images.unsplash.com/photo-1569629743817-70d8db6c323b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--primary-color);
+    }
+
+    .logo-icon {
+      margin-right: 0.5rem;
+    }
+
+    .nav-link {
+      position: relative;
+      padding: 0.5rem 1rem;
+      color: var(--text-color);
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--primary-color);
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background-color: var(--primary-color);
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+
+    .nav-link:hover::after {
+      width: 80%;
+    }
+
+    .nav-link.active {
+      color: var(--primary-color);
+    }
+
+    .nav-link.active::after {
+      width: 80%;
+    }
+
+    .test-container {
+      background-color: white;
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .test-question {
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #e5e7eb;
+    }
+    
+    .test-option {
+      display: block;
+      padding: 0.75rem;
+      margin-bottom: 0.5rem;
+      border: 1px solid #e5e7eb;
+      border-radius: 0.25rem;
+      cursor: pointer;
+    }
+    
+    .test-option:hover {
+      background-color: #f3f4f6;
+    }
+    
+    .test-button {
+      background-color: var(--primary-color);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.25rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    
+    .test-button:hover {
+      background-color: #0a2d52;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="bg-white shadow sticky top-0 z-10">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="index.html" class="logo">
+        <span class="logo-icon"><i class="fas fa-plane"></i></span>
+        Cadet Pilot Hub
+      </a>
+      
+      <!-- Mobile menu button -->
+      <button class="md:hidden mobile-menu-button" onclick="toggleMobileMenu()">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+      
+      <!-- Desktop navigation -->
+      <nav class="hidden md:flex space-x-6 desktop-menu">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="index.html#about" class="nav-link">About Us</a>
+        <a href="index.html#shop" class="nav-link">Shop</a>
+        <a href="index.html#resources" class="nav-link active">Cadet Resources</a>
+        <a href="index.html#contact" class="nav-link">Contact Us</a>
+        <button onclick="toggleLoginModal()" class="bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 transition duration-300 shadow-md">Login</button>
+      </nav>
+    </div>
+    
+    <!-- Mobile navigation -->
+    <nav id="mobile-menu" class="md:hidden bg-white px-4 py-2 flex-col space-y-4 pb-4 mobile-menu hidden">
+      <a href="index.html" class="hover:text-blue-600">Home</a>
+      <a href="index.html#about" class="hover:text-blue-600">About Us</a>
+      <a href="index.html#shop" class="hover:text-blue-600">Shop</a>
+      <a href="index.html#resources" class="hover:text-blue-600">Cadet Resources</a>
+      <a href="index.html#contact" class="hover:text-blue-600">Contact Us</a>
+      <button onclick="toggleLoginModal()" class="bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 transition duration-300 w-full shadow-md">Login</button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Math Preparation Section -->
+    <section id="math-preparation" class="pt-16">
+      <div class="section-header text-white py-16 px-6 text-center">
+        <h1 class="text-4xl font-bold mb-4">Math Preparation</h1>
+        <p class="text-xl max-w-3xl mx-auto">
+          Master the mathematical concepts essential for cadet pilot assessments
+        </p>
+      </div>
+
+      <div class="py-16 px-6 max-w-6xl mx-auto">
+        <div class="bg-white p-8 rounded-lg shadow-lg mb-12">
+          <h2 class="text-3xl font-bold mb-6">Introduction to Math for Pilot Assessments</h2>
+          <div class="flex flex-col md:flex-row gap-8 items-center mb-6">
+            <div class="md:w-2/3">
+              <p class="mb-4">
+                Mathematical aptitude is a critical component of pilot assessments. Airlines test these skills because pilots must perform calculations related to fuel consumption, weight and balance, navigation, and more. The math tested in cadet assessments typically focuses on:
+              </p>
+              <ul class="list-disc pl-5 space-y-2 mb-6">
+                <li>Mental arithmetic (without calculators)</li>
+                <li>Problem-solving under time pressure</li>
+                <li>Application of formulas in practical scenarios</li>
+                <li>Logical reasoning and spatial awareness</li>
+              </ul>
+              <p>
+                This section provides comprehensive preparation for all mathematical concepts commonly tested in cadet pilot assessments. We'll cover key topics, provide example problems, and offer practice questions to help you build confidence and speed.
+              </p>
+            </div>
+            <div class="md:w-1/3">
+              <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Math Preparation" class="rounded-lg shadow-md">
+            </div>
+          </div>
+        </div>
+
+        <!-- Algebra and Equations -->
+        <div class="bg-white p-8 rounded-lg shadow-lg mb-12">
+          <h2 class="text-2xl font-bold mb-6">1. Algebra and Equations</h2>
+          
+          <h3 class="text-xl font-semibold mb-4">Linear Equations</h3>
+          <p class="mb-4">
+            Linear equations are frequently used in aviation for calculations involving speed, distance, and time. The standard form is:
+          </p>
+          <div class="math-formula">ax + b = c</div>
+          <p class="mb-4">Where:</p>
+          <ul class="list-disc pl-5 space-y-1 mb-6">
+            <li>a, b, and c are constants</li>
+            <li>x is the variable we're solving for</li>
+          </ul>
+          
+          <div class="example-box">
+            <h4 class="font-semibold mb-2">Example:</h4>
+            <p class="mb-2">An aircraft burns 2,500 kg of fuel per hour. If the flight is scheduled for 3.5 hours and the aircraft needs to land with at least 2,000 kg of reserve fuel, what is the minimum amount of fuel needed before takeoff?</p>
+            <p class="mb-2"><strong>Solution:</strong></p>
+            <p class="mb-2">Let's set up the equation:</p>
+            <p class="mb-2">Fuel needed = Fuel consumption × Flight time + Reserve fuel</p>
+            <p class="mb-2">Fuel needed = 2,500 kg/hr × 3.5 hr + 2,000 kg</p>
+            <p class="mb-2">Fuel needed = 8,750 kg + 2,000 kg</p>
+            <p class="mb-2">Fuel needed = 10,750 kg</p>
+          </div>
+          
+          <h3 class="text-xl font-semibold mb-4 mt-8">Quadratic Equations</h3>
+          <p class="mb-4">
+            Quadratic equations appear in problems involving acceleration, deceleration, and curved flight paths. The standard form is:
+          </p>
+          <div class="math-formula">ax² + bx + c = 0</div>
+          <p class="mb-4">
+            These can be solved using the quadratic formula:
+          </p>
+          <div class="math-formula">x = (-b ± √(b² - 4ac)) / 2a</div>
+          
+          <div class="example-box">
+            <h4 class="font-semibold mb-2">Example:</h4>
+            <p class="mb-2">An aircraft accelerates at a rate of 2 m/s². If it starts from rest, how long will it take to reach a takeoff speed of 80 m/s?</p>
+            <p class="mb-2"><strong>Solution:</strong></p>
+            <p class="mb-2">Using the equation: v = u + at</p>
+            <p class="mb-2">Where v is final velocity, u is initial velocity, a is acceleration, and t is time.</p>
+            <p class="mb-2">80 m/s = 0 m/s + 2 m/s² × t</p>
+            <p class="mb-2">80 = 2t</p>
+            <p class="mb-2">t = 40 seconds</p>
+          </div>
+          
+          <h3 class="text-xl font-semibold mb-4 mt-8">Practice Questions</h3>
+          
+          <div class="practice-question">
+            <p class="mb-2"><strong>Question 1:</strong> An aircraft flies at 450 knots for 2 hours, then increases its speed by 50 knots for the next 1.5 hours. What is the total distance covered?</p>
+            <p class="mt-4"><strong>Answer:</strong> <span class="answer-reveal">1,575 nautical miles</span></p>
+          </div>
+          
+          <div class="practice-question">
+            <p class="mb-2"><strong>Question 2:</strong> If an aircraft descends from 30,000 feet to 10,000 feet at a constant rate of 1,500 feet per minute, how long will the descent take?</p>
+            <p class="mt-4"><strong>Answer:</strong> <span class="answer-reveal">13.33 minutes (or 13 minutes and 20 seconds)</span></p>
+          </div>
+          
+          <div class="practice-question">
+            <p class="mb-2"><strong>Question 3:</strong> An aircraft has a fuel capacity of 5,000 kg. If it burns fuel at a rate of 800 kg per hour during cruise and 1,200 kg per hour during climb and descent, how long can it cruise if climb and descent together take 45 minutes?</p>
+            <p class="mt-4"><strong>Answer:</strong> <span class="answer-reveal">5.375 hours (5 hours and 22.5 minutes)</span></p>
+          </div>
+        </div>
+
+        <!-- Speed, Distance, and Time -->
+        <div class="bg-white p-8 rounded-lg shadow-lg mb-12">
+          <h2 class="text-2xl font-bold mb-6">2. Speed, Distance, and Time Calculations</h2>
+          
+          <p class="mb-4">
+            Speed, distance, and time calculations are fundamental to aviation. Pilots must constantly calculate these values for navigation, fuel planning, and arrival estimates.
+          </p>
+          
+          <h3 class="text-xl font-semibold mb-4">Key Formulas</h3>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+            <div class="p-4 bg-blue-50 rounded-lg">
+              <div class="math-formula">Speed = Distance ÷ Time</div>
+            </div>
+            <div class="p-4 bg-blue-50 rounded-lg">
+              <div class="math-formula">Distance = Speed × Time</div>
+            </div>
+            <div class="p-4 bg-blue-50 rounded-lg">
+              <div class="math-formula">Time = Distance ÷ Speed</div>
+            </div>
+          </div>
+          
+          <h3 class="text-xl font-semibold mb-4">Aviation-Specific Units</h3>
+          <ul class="list-disc pl-5 space-y-2 mb-6">
+            <li><strong>Speed:</strong> Knots (nautical miles per hour)</li>
+            <li><strong>Distance:</strong> Nautical miles (NM)</li>
+            <li><strong>Time:</strong> Hours, minutes</li>
+          </ul>
+          
+          <div class="example-box">
+            <h4 class="font-semibold mb-2">Example:</h4>
+            <p class="mb-2">An aircraft is flying at a ground speed of 420 knots. How long will it take to cover a distance of 1,050 nautical miles?</p>
+            <p class="mb-2"><strong>Solution:</strong></p>
+            <p class="mb-2">Time = Distance ÷ Speed</p>
+            <p class="mb-2">Time = 1,050 NM ÷ 420 knots</p>
+            <p class="mb-2">Time = 2.5 hours (2 hours and 30 minutes)</p>
+          </div>
+          
+          <h3 class="text-xl font-semibold mb-4 mt-8">Headwind and Tailwind Calculations</h3>
+          <p class="mb-4">
+            Wind significantly affects an aircraft's ground speed. With a headwind, ground speed decreases; with a tailwind, it increases.
+          </p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+            <div class="p-4 bg-blue-50 rounded-lg">
+              <div class="math-formula">Ground Speed = Air Speed - Headwind</div>
+            </div>
+            <div class="p-4 bg-blue-50 rounded-lg">
+              <div class="math-formula">Ground Speed = Air Speed + Tailwind</div>
+            </div>
+          </div>
+          
+          <div class="example-box">
+            <h4 class="font-semibold mb-2">Example:</h4>
+            <p class="mb-2">An aircraft has a true airspeed of 480 knots. If it encounters a 40-knot headwind, what will be its ground speed? How long will it take to cover 960 nautical miles?</p>
+            <p class="mb-2"><strong>Solution:</strong></p>
+            <p class="mb-2">Ground Speed = Air Speed - Headwind</p>
+            <p class="mb-2">Ground Speed = 480 knots - 40 knots = 440 knots</p>
+            <p class="mb-2">Time = Distance ÷ Ground Speed</p>
+            <p class="mb-2">Time = 960 NM ÷ 440 knots = 2.18 hours (2 hours and 11 minutes)</p>
+          </div>
+          
+          <h3 class="text-xl font-semibold mb-4 mt-8">Practice Questions</h3>
+          
+          <div class="practice-question">
+            <p class="mb-2"><strong>Question 1:</strong> An aircraft flies from Dubai to Riyadh, a distance of 540 NM, at a ground speed of 360 knots. It then flies from Riyadh to Jeddah, a distance of 620 NM, at a ground speed of 400 knots. What is the total flight time?</p>
+            <p class="mt-4"><strong>Answer:</strong> <span class="answer-reveal">3.05 hours (3 hours and 3 minutes)</span></p>
+          </div>
+          
+          <div class="practice-question">
+            <p class="mb-2"><strong>Question 2:</strong> An aircraft has a true airspeed of 500 knots. If the flight from Abu Dhabi to Muscat (a distance of 220 NM) takes 30 minutes, what is the wind component (headwind or tailwind)?</p>
+            <p class="mt-4"><strong>Answer:</strong> <span class="answer-reveal">60-knot tailwind</span></p>
+          </div>
+          
+          <div class="practice-question">
+            <p class="mb-2"><strong>Question 3:</strong> An aircraft needs to arrive at its destination in exactly 2 hours. The distance is 900 NM, and there's a 50-knot headwind. What true airspeed must the pilot maintain?</p>
+            <p class="mt-4"><strong>Answer:</strong> <span class="answer-reveal">500 knots</span></p>
+          </div>
+        </div>
+
+        <!-- Additional Resources with Practice Test (Removed Video Tutorials) -->
+        <div class="bg-blue-50 p-8 rounded-lg shadow-lg">
+          <h2 class="text-2xl font-bold mb-6">Additional Math Resources</h2>
+          
+          <div class="test-container">
+            <h3 class="text-xl font-semibold mb-6">Practice Test</h3>
+            <p class="mb-6">Test your knowledge with our comprehensive practice test, designed to simulate the math section of cadet pilot assessments.</p>
+            
+            <div class="test-question">
+              <p class="font-semibold mb-3">Question 1: An aircraft is flying at a true airspeed of 480 knots with a 30-knot tailwind. If the distance to the destination is 1,275 nautical miles, how long will the flight take?</p>
+              <label class="test-option">
+                <input type="radio" name="q1" value="a"> a) 2 hours 30 minutes
+              </label>
+              <label class="test-option">
+                <input type="radio" name="q1" value="b"> b) 2 hours 40 minutes
+              </label>
+              <label class="test-option">
+                <input type="radio" name="q1" value="c"> c) 2 hours 45 minutes
+              </label>
+              <label class="test-option">
+                <input type="radio" name="q1" value="d"> d) 2 hours 50 minutes
+              </label>
+            </div>
+            
+            <div class="test-question">
+              <p class="font-semibold mb-3">Question 2: An aircraft has a fuel capacity of 6,800 kg. If it burns fuel at a rate of 1,700 kg per hour, what percentage of its fuel capacity will it use during a 3-hour flight?</p>
+              <label class="test-option">
+                <input type="radio" name="q2" value="a"> a) 65%
+              </label>
+              <label class="test-option">
+                <input type="radio" name="q2" value="b"> b) 70%
+              </label>
+              <label class="test-option">
+                <input type="radio" name="q2" value="c"> c) 75%
+              </label>
+              <label class="test-option">
+                <input type="radio" name="q2" value="d"> d) 80%
+              </label>
+            </div>
+            
+            <div class="test-question">
+              <p class="font-semibold mb-3">Question 3: An aircraft climbs at a rate of 1,200 feet per minute. How long will it take to climb from 5,000 feet to 28,000 feet?</p>
+              <label class="test-option">
+                <input type="radio" name="q3" value="a"> a) 19 minutes 10 seconds
+              </label>
+              <label class="test-option">
+                <input type="radio" name="q3" value="b"> b) 19 minutes 30 seconds
+              </label>
+              <label class="test-option">
+                <input type="radio" name="q3" value="c"> c) 20 minutes
+              </label>
+              <label class="test-option">
+                <input type="radio" name="q3" value="d"> d) 23 minutes
+              </label>
+            </div>
+            
+            <div class="test-question">
+              <p class="font-semibold mb-3">Question 4: The ratio of passengers to crew on a flight is 32:4. If there are 256 passengers, how many crew members are on board?</p>
+              <label class="test-option">
+                <input type="radio" name="q4" value="a"> a) 28
+              </label>
+              <label class="test-option">
+                <input type="radio" name="q4" value="b"> b) 30
+              </label>
+              <label class="test-option">
+                <input type="radio" name="q4" value="c"> c) 32
+              </label>
+              <label class="test-option">
+                <input type="radio" name="q4" value="d"> d) 36
+              </label>
+            </div>
+            
+            <div class="test-question">
+              <p class="font-semibold mb-3">Question 5: An aircraft flies from point A to point B at 400 knots, then returns from B to A at 350 knots. If the distance between A and B is 700 nautical miles, what is the total flight time?</p>
+              <label class="test-option">
+                <input type="radio" name="q5" value="a"> a) 3 hours 30 minutes
+              </label>
+              <label class="test-option">
+                <input type="radio" name="q5" value="b"> b) 3 hours 45 minutes
+              </label>
+              <label class="test-option">
+                <input type="radio" name="q5" value="c"> c) 4 hours
+              </label>
+              <label class="test-option">
+                <input type="radio" name="q5" value="d"> d) 4 hours 15 minutes
+              </label>
+            </div>
+            
+            <button class="test-button mt-6" onclick="alert('Correct answers: 1-c, 2-c, 3-a, 4-c, 5-b')">
+              Check Answers
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-12 px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+        <div>
+          <h3 class="text-xl font-bold mb-4">Cadet Pilot Hub</h3>
+          <p class="text-gray-300 mb-4">Turning Cadet Dreams into Captain Realities.</p>
+          <div class="social-icons flex space-x-2">
+            <a href="#" class="text-white bg-blue-600 w-8 h-8 rounded-full flex items-center justify-center hover:bg-blue-700"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="text-white bg-blue-600 w-8 h-8 rounded-full flex items-center justify-center hover:bg-blue-700"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="text-white bg-blue-600 w-8 h-8 rounded-full flex items-center justify-center hover:bg-blue-700"><i class="fab fa-youtube"></i></a>
+            <a href="#" class="text-white bg-blue-600 w-8 h-8 rounded-full flex items-center justify-center hover:bg-blue-700"><i class="fab fa-facebook-f"></i></a>
+          </div>
+        </div>
+        
+        <div>
+          <h4 class="font-bold mb-4">Quick Links</h4>
+          <ul class="space-y-2">
+            <li><a href="index.html" class="text-gray-300 hover:text-white">Home</a></li>
+            <li><a href="index.html#about" class="text-gray-300 hover:text-white">About Us</a></li>
+            <li><a href="index.html#shop" class="text-gray-300 hover:text-white">Shop</a></li>
+            <li><a href="index.html#resources" class="text-gray-300 hover:text-white">Resources</a></li>
+            <li><a href="index.html#contact" class="text-gray-300 hover:text-white">Contact</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="font-bold mb-4">Resources</h4>
+          <ul class="space-y-2">
+            <li><a href="math-preparation.html" class="text-gray-300 hover:text-white">Math Preparation</a></li>
+            <li><a href="physics-preparation.html" class="text-gray-300 hover:text-white">Physics Preparation</a></li>
+            <li><a href="english-terminology.html" class="text-gray-300 hover:text-white">Aviation English</a></li>
+            <li><a href="interview-qa.html" class="text-gray-300 hover:text-white">Interview Preparation</a></li>
+            <li><a href="blog.html" class="text-gray-300 hover:text-white">Blog & Articles</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="font-bold mb-4">Contact</h4>
+          <ul class="space-y-2">
+            <li class="flex items-center"><i class="fas fa-envelope mr-2"></i> info@cadetpilothub.com</li>
+            <li class="flex items-center"><i class="fas fa-phone mr-2"></i> +971 50 123 4567</li>
+            <li class="flex items-center"><i class="fas fa-map-marker-alt mr-2"></i> Dubai, UAE</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="border-t border-gray-700 pt-8 text-center">
+        <p class="mb-4">© 2025 Cadet Pilot Hub. All rights reserved.</p>
+        <div class="flex justify-center space-x-4">
+          <a href="#terms" class="hover:text-gray-300">Terms of Service</a>
+          <a href="#privacy" class="hover:text-gray-300">Privacy Policy</a>
+          <a href="#contact" class="hover:text-gray-300">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMobileMenu() {
+      const mobileMenu = document.getElementById('mobile-menu');
+      mobileMenu.classList.toggle('hidden');
+    }
+
+    function toggleLoginModal() {
+      alert("Login functionality coming soon!");
+    }
+  </script>
+</body>
+</html>

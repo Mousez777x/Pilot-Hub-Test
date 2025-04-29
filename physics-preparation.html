@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Physics Preparation - Cadet Pilot Hub</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #0c3b6b;
+      --secondary-color: #a0aec0;
+      --accent-color: #3182ce;
+      --text-color: #2d3748;
+      --light-bg: #f7fafc;
+    }
+
+    body {
+      font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: var(--light-bg);
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+    }
+    
+    .mobile-menu {
+      display: none;
+    }
+    
+    @media (max-width: 768px) {
+      .desktop-menu {
+        display: none;
+      }
+      
+      .mobile-menu-button {
+        display: block;
+      }
+    }
+
+    .math-formula {
+      font-family: 'Times New Roman', Times, serif;
+      font-style: italic;
+      padding: 0.5rem;
+      background-color: #f0f9ff;
+      border-radius: 0.25rem;
+      display: inline-block;
+      margin: 0.5rem 0;
+    }
+
+    .example-box {
+      border-left: 4px solid var(--accent-color);
+      padding: 1rem;
+      margin: 1rem 0;
+      background-color: #f0f9ff;
+    }
+
+    .section-header {
+      background-image: linear-gradient(rgba(12, 59, 107, 0.9), rgba(12, 59, 107, 0.85)), url('https://images.unsplash.com/photo-1569629743817-70d8db6c323b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--primary-color);
+    }
+
+    .logo-icon {
+      margin-right: 0.5rem;
+    }
+
+    .nav-link {
+      position: relative;
+      padding: 0.5rem 1rem;
+      color: var(--text-color);
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--primary-color);
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background-color: var(--primary-color);
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+
+    .nav-link:hover::after {
+      width: 80%;
+    }
+
+    .nav-link.active {
+      color: var(--primary-color);
+    }
+
+    .nav-link.active::after {
+      width: 80%;
+    }
+
+    .formula-sheet {
+      background-color: white;
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .formula-category {
+      border-bottom: 2px solid #e5e7eb;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1rem;
+      font-weight: bold;
+      color: var(--accent-color);
+    }
+    
+    .simulation-box {
+      background-color: white;
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    
+    .simulation-image {
+      max-width: 100%;
+      height: auto;
+      border-radius: 0.25rem;
+      margin-bottom: 1rem;
+    }
+    
+    .simulation-container {
+      display: none;
+      background-color: #f0f9ff;
+      border-radius: 0.5rem;
+      padding: 1.5rem;
+      margin-top: 1.5rem;
+      text-align: left;
+    }
+    
+    .simulation-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    
+    .simulation-control {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .simulation-canvas {
+      width: 100%;
+      height: 300px;
+      background-color: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 0.25rem;
+    }
+    
+    .test-button {
+      background-color: var(--primary-color);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.25rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    
+    .test-button:hover {
+      background-color: #0a2d52;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="bg-white shadow sticky top-0 z-10">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="index.html" class="logo">
+        <span class="logo-icon"><i class="fas fa-plane"></i></span>
+        Cadet Pilot Hub
+      </a>
+      
+      <!-- Mobile menu button -->
+      <button class="md:hidden mobile-menu-button" onclick="toggleMobileMenu()">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+      
+      <!-- Desktop navigation -->
+      <nav class="hidden md:flex space-x-6 desktop-menu">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="index.html#about" class="nav-link">About Us</a>
+        <a href="index.html#shop" class="nav-link">Shop</a>
+        <a href="index.html#resources" class="nav-link active">Cadet Resources</a>
+        <a href="index.html#contact" class="nav-link">Contact Us</a>
+        <button onclick="toggleLoginModal()" class="bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 transition duration-300 shadow-md">Login</button>
+      </nav>
+    </div>
+    
+    <!-- Mobile navigation -->
+    <nav id="mobile-menu" class="md:hidden bg-white px-4 py-2 flex-col space-y-4 pb-4 mobile-menu hidden">
+      <a href="index.html" class="hover:text-blue-600">Home</a>
+      <a href="index.html#about" class="hover:text-blue-600">About Us</a>
+      <a href="index.html#shop" class="hover:text-blue-600">Shop</a>
+      <a href="index.html#resources" class="hover:text-blue-600">Cadet Resources</a>
+      <a href="index.html#contact" class="hover:text-blue-600">Contact Us</a>
+      <button onclick="toggleLoginModal()" class="bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 transition duration-300 w-full shadow-md">Login</button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Physics Preparation Section -->
+    <section id="physics-preparation" class="pt-16">
+      <div class="section-header text-white py-16 px-6 text-center">
+        <h1 class="text-4xl font-bold mb-4">Physics Preparation</h1>
+        <p class="text-xl max-w-3xl mx-auto">
+          Understanding the physics principles that make flight possible
+        </p>
+      </div>
+
+      <div class="py-16 px-6 max-w-6xl mx-auto">
+        <div class="bg-white p-8 rounded-lg shadow-lg mb-12">
+          <h2 class="text-3xl font-bold mb-6">Introduction to Aviation Physics</h2>
+          <div class="flex flex-col md:flex-row gap-8 items-center mb-6">
+            <div class="md:w-2/3">
+              <p class="mb-4">
+                Physics is fundamental to understanding how aircraft fly and operate. Cadet pilot assessments test your knowledge of basic physics principles and their application to aviation. This section covers the key physics concepts you need to master for your assessments.
+              </p>
+              <p>
+                We'll explore forces and motion, energy and power, basic aerodynamics, pressure and atmosphere, and practical applications in flight. Each topic includes explanations, formulas, examples, and practice questions to help you prepare thoroughly.
+              </p>
+            </div>
+            <div class="md:w-1/3">
+              <img src="https://images.unsplash.com/photo-1544016768-982d1554f0b9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Physics Preparation" class="rounded-lg shadow-md">
+            </div>
+          </div>
+        </div>
+
+        <!-- Physics Formula Sheet for Student Pilot Pre-assessment -->
+        <div class="bg-white p-8 rounded-lg shadow-lg mb-12">
+          <h2 class="text-2xl font-bold mb-6">Physics Formula Sheet for Cadet Pilot Pre-assessment</h2>
+          
+          <div class="formula-sheet">
+            <p class="formula-category">Forces and Motion</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <p class="font-semibold">Newton's Second Law:</p>
+                <div class="math-formula">F = ma</div>
+                <p class="text-sm mt-1">Force (N) = mass (kg) × acceleration (m/s²)</p>
+              </div>
+              <div>
+                <p class="font-semibold">Weight:</p>
+                <div class="math-formula">W = mg</div>
+                <p class="text-sm mt-1">Weight (N) = mass (kg) × gravitational acceleration (9.8 m/s²)</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="formula-sheet">
+            <p class="formula-category">Aerodynamics</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <p class="font-semibold">Lift Equation:</p>
+                <div class="math-formula">L = CL × ½ × ρ × V² × S</div>
+                <p class="text-sm mt-1">L = lift (N), CL = lift coefficient, ρ = air density (kg/m³), V = velocity (m/s), S = wing area (m²)</p>
+              </div>
+              <div>
+                <p class="font-semibold">Drag Equation:</p>
+                <div class="math-formula">D = CD × ½ × ρ × V² × S</div>
+                <p class="text-sm mt-1">D = drag (N), CD = drag coefficient, ρ = air density (kg/m³), V = velocity (m/s), S = wing area (m²)</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="formula-sheet">
+            <p class="formula-category">Energy and Power</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <p class="font-semibold">Kinetic Energy:</p>
+                <div class="math-formula">KE = ½ × m × v²</div>
+                <p class="text-sm mt-1">KE = kinetic energy (J), m = mass (kg), v = velocity (m/s)</p>
+              </div>
+              <div>
+                <p class="font-semibold">Potential Energy:</p>
+                <div class="math-formula">PE = m × g × h</div>
+                <p class="text-sm mt-1">PE = potential energy (J), m = mass (kg), g = 9.8 m/s², h = height (m)</p>
+              </div>
+              <div>
+                <p class="font-semibold">Power:</p>
+                <div class="math-formula">P = F × v</div>
+                <p class="text-sm mt-1">P = power (W), F = force (N), v = velocity (m/s)</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="formula-sheet">
+            <p class="formula-category">Pressure and Atmosphere</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <p class="font-semibold">Pressure:</p>
+                <div class="math-formula">P = F ÷ A</div>
+                <p class="text-sm mt-1">P = pressure (Pa), F = force (N), A = area (m²)</p>
+              </div>
+              <div>
+                <p class="font-semibold">Standard Atmospheric Pressure:</p>
+                <div class="math-formula">1013.25 hPa = 29.92 inHg</div>
+                <p class="text-sm mt-1">At sea level</p>
+              </div>
+              <div>
+                <p class="font-semibold">Pressure Decrease with Altitude:</p>
+                <div class="math-formula">~1 inHg per 1,000 ft</div>
+                <p class="text-sm mt-1">Approximate rule of thumb</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="formula-sheet">
+            <p class="formula-category">Speed, Distance, and Time</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div>
+                <p class="font-semibold">Speed:</p>
+                <div class="math-formula">v = d ÷ t</div>
+                <p class="text-sm mt-1">v = speed, d = distance, t = time</p>
+              </div>
+              <div>
+                <p class="font-semibold">Distance:</p>
+                <div class="math-formula">d = v × t</div>
+                <p class="text-sm mt-1">d = distance, v = speed, t = time</p>
+              </div>
+              <div>
+                <p class="font-semibold">Time:</p>
+                <div class="math-formula">t = d ÷ v</div>
+                <p class="text-sm mt-1">t = time, d = distance, v = speed</p>
+              </div>
+              <div>
+                <p class="font-semibold">Ground Speed with Wind:</p>
+                <div class="math-formula">GS = TAS ± Wind</div>
+                <p class="text-sm mt-1">GS = ground speed, TAS = true airspeed, + for tailwind, - for headwind</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Physics Simulations -->
+        <div class="bg-blue-50 p-8 rounded-lg shadow-lg">
+          <h2 class="text-2xl font-bold mb-6">Interactive Physics Simulations</h2>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="simulation-box">
+              <h3 class="text-xl font-semibold mb-4">Airfoil Lift Simulation</h3>
+              <img src="https://images.unsplash.com/photo-1534481016308-0fca71578ae5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Airfoil Simulation" class="simulation-image">
+              <p class="mb-4">This interactive simulation demonstrates how airflow around an airfoil generates lift. Adjust the angle of attack and airspeed to see how they affect lift production.</p>
+              <button class="test-button" onclick="toggleSimulation('airfoil-simulation')">Launch Simulation</button>
+              
+              <div id="airfoil-simulation" class="simulation-container">
+                <div class="simulation-controls">
+                  <div class="simulation-control">
+                    <label for="angle-of-attack">Angle of Attack (°)</label>
+                    <input type="range" id="angle-of-attack" min="0" max="20" value="5" oninput="updateAirfoilSimulation()">
+                    <span id="angle-value">5°</span>
+                  </div>
+                  <div class="simulation-control">
+                    <label for="airspeed">Airspeed (knots)</label>
+                    <input type="range" id="airspeed" min="100" max="500" value="250" step="10" oninput="updateAirfoilSimulation()">
+                    <span id="airspeed-value">250 knots</span>
+                  </div>
+                </div>
+                <canvas id="airfoil-canvas" class="simulation-canvas"></canvas>
+                <div class="mt-4">
+                  <p><strong>Lift Generated:</strong> <span id="lift-value">1,250 lbs</span></p>
+                  <p class="mt-2 text-sm text-gray-600">Note: This simulation is a simplified model for educational purposes. Actual lift calculations involve more complex factors.</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="simulation-box">
+              <h3 class="text-xl font-semibold mb-4">Forces in Flight Simulation</h3>
+              <img src="https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Forces in Flight" class="simulation-image">
+              <p class="mb-4">Explore how the four forces of flight (lift, weight, thrust, and drag) interact during different phases of flight. Modify aircraft parameters to see their effects on performance.</p>
+              <button class="test-button" onclick="toggleSimulation('forces-simulation')">Launch Simulation</button>
+              
+              <div id="forces-simulation" class="simulation-container">
+                <div class="simulation-controls">
+                  <div class="simulation-control">
+                    <label for="flight-phase">Flight Phase</label>
+                    <select id="flight-phase" onchange="updateForcesSimulation()">
+                      <option value="cruise">Cruise</option>
+                      <option value="climb">Climb</option>
+                      <option value="descent">Descent</option>
+                      <option value="takeoff">Takeoff</option>
+                      <option value="landing">Landing</option>
+                    </select>
+                  </div>
+                  <div class="simulation-control">
+                    <label for="aircraft-weight">Aircraft Weight (lbs)</label>
+                    <input type="range" id="aircraft-weight" min="10000" max="100000" value="50000" step="5000" oninput="updateForcesSimulation()">
+                    <span id="weight-value">50,000 lbs</span>
+                  </div>
+                </div>
+                <canvas id="forces-canvas" class="simulation-canvas"></canvas>
+                <div class="mt-4 grid grid-cols-2 gap-4">
+                  <p><strong>Lift:</strong> <span id="lift-force">50,000 lbs</span></p>
+                  <p><strong>Weight:</strong> <span id="weight-force">50,000 lbs</span></p>
+                  <p><strong>Thrust:</strong> <span id="thrust-force">10,000 lbs</span></p>
+                  <p><strong>Drag:</strong> <span id="drag-force">10,000 lbs</span></p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="simulation-box">
+              <h3 class="text-xl font-semibold mb-4">Bernoulli's Principle Demonstration</h3>
+              <img src="https://images.unsplash.com/photo-1579438791781-cb8ea4e35ba7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Bernoulli's Principle" class="simulation-image">
+              <p class="mb-4">This simulation visually demonstrates Bernoulli's principle, showing how fluid velocity affects pressure. See how this principle applies to aircraft wings and lift generation.</p>
+              <button class="test-button" onclick="toggleSimulation('bernoulli-simulation')">Launch Simulation</button>
+              
+              <div id="bernoulli-simulation" class="simulation-container">
+                <div class="simulation-controls">
+                  <div class="simulation-control">
+                    <label for="flow-speed">Flow Speed</label>
+                    <input type="range" id="flow-speed" min="1" max="10" value="5" oninput="updateBernoulliSimulation()">
+                    <span id="flow-speed-value">Medium</span>
+                  </div>
+                  <div class="simulation-control">
+                    <label for="tube-constriction">Tube Constriction</label>
+                    <input type="range" id="tube-constriction" min="1" max="5" value="3" oninput="updateBernoulliSimulation()">
+                    <span id="constriction-value">Medium</span>
+                  </div>
+                </div>
+                <canvas id="bernoulli-canvas" class="simulation-canvas"></canvas>
+                <div class="mt-4">
+                  <p><strong>Pressure at Point A:</strong> <span id="pressure-a">High</span></p>
+                  <p><strong>Velocity at Point A:</strong> <span id="velocity-a">Low</span></p>
+                  <p><strong>Pressure at Point B:</strong> <span id="pressure-b">Low</span></p>
+                  <p><strong>Velocity at Point B:</strong> <span id="velocity-b">High</span></p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="simulation-box">
+              <h3 class="text-xl font-semibold mb-4">Density Altitude Calculator</h3>
+              <img src="https://images.unsplash.com/photo-1530521954074-e64f6810b32d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Density Altitude" class="simulation-image">
+              <p class="mb-4">Calculate density altitude based on pressure altitude, temperature, and humidity. See how these factors affect aircraft performance during takeoff, climb, and landing.</p>
+              <button class="test-button" onclick="toggleSimulation('density-simulation')">Launch Simulation</button>
+              
+              <div id="density-simulation" class="simulation-container">
+                <div class="simulation-controls">
+                  <div class="simulation-control">
+                    <label for="pressure-altitude">Pressure Altitude (ft)</label>
+                    <input type="range" id="pressure-altitude" min="0" max="10000" value="5000" step="500" oninput="updateDensitySimulation()">
+                    <span id="pressure-alt-value">5,000 ft</span>
+                  </div>
+                  <div class="simulation-control">
+                    <label for="temperature">Temperature (°C)</label>
+                    <input type="range" id="temperature" min="0" max="40" value="15" oninput="updateDensitySimulation()">
+                    <span id="temp-value">15°C</span>
+                  </div>
+                  <div class="simulation-control">
+                    <label for="humidity">Relative Humidity (%)</label>
+                    <input type="range" id="humidity" min="0" max="100" value="50" oninput="updateDensitySimulation()">
+                    <span id="humidity-value">50%</span>
+                  </div>
+                </div>
+                <div class="bg-white p-4 rounded-lg">
+                  <h4 class="font-semibold mb-4">Calculation Results</h4>
+                  <p><strong>Density Altitude:</strong> <span id="density-altitude">6,500 ft</span></p>
+                  <p class="mt-2"><strong>Performance Impact:</strong></p>
+                  <ul class="list-disc pl-5 mt-2">
+                    <li>Takeoff Distance: <span id="takeoff-impact">Increased by 15%</span></li>
+                    <li>Climb Rate: <span id="climb-impact">Decreased by 12%</span></li>
+                    <li>Engine Power: <span id="power-impact">Decreased by 8%</span></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-12 px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+        <div>
+          <h3 class="text-xl font-bold mb-4">Cadet Pilot Hub</h3>
+          <p class="text-gray-300 mb-4">Turning Cadet Dreams into Captain Realities.</p>
+          <div class="social-icons flex space-x-2">
+            <a href="#" class="text-white bg-blue-600 w-8 h-8 rounded-full flex items-center justify-center hover:bg-blue-700"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="text-white bg-blue-600 w-8 h-8 rounded-full flex items-center justify-center hover:bg-blue-700"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="text-white bg-blue-600 w-8 h-8 rounded-full flex items-center justify-center hover:bg-blue-700"><i class="fab fa-youtube"></i></a>
+            <a href="#" class="text-white bg-blue-600 w-8 h-8 rounded-full flex items-center justify-center hover:bg-blue-700"><i class="fab fa-facebook-f"></i></a>
+          </div>
+        </div>
+        
+        <div>
+          <h4 class="font-bold mb-4">Quick Links</h4>
+          <ul class="space-y-2">
+            <li><a href="index.html" class="text-gray-300 hover:text-white">Home</a></li>
+            <li><a href="index.html#about" class="text-gray-300 hover:text-white">About Us</a></li>
+            <li><a href="index.html#shop" class="text-gray-300 hover:text-white">Shop</a></li>
+            <li><a href="index.html#resources" class="text-gray-300 hover:text-white">Resources</a></li>
+            <li><a href="index.html#contact" class="text-gray-300 hover:text-white">Contact</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="font-bold mb-4">Resources</h4>
+          <ul class="space-y-2">
+            <li><a href="math-preparation.html" class="text-gray-300 hover:text-white">Math Preparation</a></li>
+            <li><a href="physics-preparation.html" class="text-gray-300 hover:text-white">Physics Preparation</a></li>
+            <li><a href="english-terminology.html" class="text-gray-300 hover:text-white">Aviation English</a></li>
+            <li><a href="interview-qa.html" class="text-gray-300 hover:text-white">Interview Preparation</a></li>
+            <li><a href="blog.html" class="text-gray-300 hover:text-white">Blog & Articles</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="font-bold mb-4">Contact</h4>
+          <ul class="space-y-2">
+            <li class="flex items-center"><i class="fas fa-envelope mr-2"></i> info@cadetpilothub.com</li>
+            <li class="flex items-center"><i class="fas fa-phone mr-2"></i> +971 50 123 4567</li>
+            <li class="flex items-center"><i class="fas fa-map-marker-alt mr-2"></i> Dubai, UAE</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="border-t border-gray-700 pt-8 text-center">
+        <p class="mb-4">© 2025 Cadet Pilot Hub. All rights reserved.</p>
+        <div class="flex justify-center space-x-4">
+          <a href="#terms" class="hover:text-gray-300">Terms of Service</a>
+          <a href="#privacy" class="hover:text-gray-300">Privacy Policy</a>
+          <a href="#contact" class="hover:text-gray-300">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMobileMenu() {
+      const mobileMenu = document.getElementById('mobile-menu');
+      mobileMenu.classList.toggle('hidden');
+    }
+
+    function toggleLoginModal() {
+      alert("Login functionality coming soon!");
+    }
+
+    function toggleSimulation(simulationId) {
+      const simulationContainer = document.getElementById(simulationId);
+      simulationContainer.style.display = simulationContainer.style.display === 'none' ? 'block' : 'none';
+      
+      if (simulationContainer.style.display === 'block') {
+        if (simulationId === 'airfoil-simulation') {
+          updateAirfoilSimulation();
+        } else if (simulationId === 'forces-simulation') {
+          updateForcesSimulation();
+        } else if (simulationId === 'bernoulli-simulation') {
+          updateBernoulliSimulation();
+        } else if (simulationId === 'density-simulation') {
+          updateDensitySimulation();
+        }
+      }
+    }
+
+    function updateAirfoilSimulation() {
+      const angle = document.getElementById('angle-of-attack').value;
+      const airspeed = document.getElementById('airspeed').value;
+
+      document.getElementById('angle-value').textContent = angle + '°';
+      document.getElementById('airspeed-value').textContent = airspeed + ' knots';
+
+      // Simplified lift calculation
+      const lift = 0.5 * 1.225 * Math.pow(airspeed * 0.514444, 2) * 10 * Math.sin(angle * Math.PI / 180);
+      document.getElementById('lift-value').textContent = lift.toFixed(0) + ' lbs';
+
+      // Basic canvas drawing
+      const canvas = document.getElementById('airfoil-canvas');
+      const ctx = canvas.getContext('2d');
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.font = "16px Arial";
+      ctx.fillText("Angle: " + angle + "°, Airspeed: " + airspeed + " knots", 20, 30);
+      ctx.fillText("Lift: " + lift.toFixed(0) + " lbs", 20, 60);
+    }
+
+    function updateForcesSimulation() {
+      const flightPhase = document.getElementById('flight-phase').value;
+      const aircraftWeight = document.getElementById('aircraft-weight').value;
+
+      document.getElementById('weight-value').textContent = aircraftWeight + ' lbs';
+
+      let liftForce = aircraftWeight;
+      let thrustForce = 10000;
+      let dragForce = 10000;
+
+      if (flightPhase === 'climb') {
+        thrustForce = 15000;
+        dragForce = 8000;
+        liftForce = aircraftWeight * 0.8;
+      } else if (flightPhase === 'descent') {
+        thrustForce = 5000;
+        dragForce = 12000;
+        liftForce = aircraftWeight * 0.9;
+      } else if (flightPhase === 'takeoff') {
+        thrustForce = 20000;
+        dragForce = 15000;
+        liftForce = aircraftWeight * 1.1;
+      } else if (flightPhase === 'landing') {
+        thrustForce = 3000;
+        dragForce = 18000;
+        liftForce = aircraftWeight * 1.2;
+      }
+
+      document.getElementById('lift-force').textContent = liftForce + ' lbs';
+      document.getElementById('weight-force').textContent = aircraftWeight + ' lbs';
+      document.getElementById('thrust-force').textContent = thrustForce + ' lbs';
+      document.getElementById('drag-force').textContent = dragForce + ' lbs';
+
+      const canvas = document.getElementById('forces-canvas');
+      const ctx = canvas.getContext('2d');
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.font = "16px Arial";
+      ctx.fillText("Flight Phase: " + flightPhase, 20, 30);
+      ctx.fillText("Lift: " + liftForce + " lbs, Weight: " + aircraftWeight + " lbs", 20, 60);
+      ctx.fillText("Thrust: " + thrustForce + " lbs, Drag: " + dragForce + " lbs", 20, 90);
+    }
+
+    function updateBernoulliSimulation() {
+      const flowSpeed = document.getElementById('flow-speed').value;
+      const tubeConstriction = document.getElementById('tube-constriction').value;
+
+      let flowSpeedText = 'Low';
+      if (flowSpeed > 3 && flowSpeed <= 7) {
+        flowSpeedText = 'Medium';
+      } else if (flowSpeed > 7) {
+        flowSpeedText = 'High';
+      }
+
+      let constrictionText = 'Low';
+      if (tubeConstriction > 2 && tubeConstriction <= 4) {
+        constrictionText = 'Medium';
+      } else if (tubeConstriction > 4) {
+        constrictionText = 'High';
+      }
+
+      document.getElementById('flow-speed-value').textContent = flowSpeedText;
+      document.getElementById('constriction-value').textContent = constrictionText;
+
+      let pressureA = 'High';
+      let velocityA = 'Low';
+      let pressureB = 'Low';
+      let velocityB = 'High';
+
+      if (flowSpeed < 5) {
+        pressureA = 'Medium';
+        velocityB = 'Medium';
+      }
+
+      if (tubeConstriction > 3) {
+        pressureB = 'Very Low';
+        velocityB = 'Very High';
+      }
+
+      document.getElementById('pressure-a').textContent = pressureA;
+      document.getElementById('velocity-a').textContent = velocityA;
+      document.getElementById('pressure-b').textContent = pressureB;
+      document.getElementById('velocity-b').textContent = velocityB;
+
+      const canvas = document.getElementById('bernoulli-canvas');
+      const ctx = canvas.getContext('2d');
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.font = "16px Arial";
+      ctx.fillText("Flow Speed: " + flowSpeedText, 20, 30);
+      ctx.fillText("Constriction: " + constrictionText, 20, 60);
+      ctx.fillText("Pressure A: " + pressureA + ", Velocity A: " + velocityA, 20, 90);
+      ctx.fillText("Pressure B: " + pressureB + ", Velocity B: " + velocityB, 20, 120);
+    }
+
+    function updateDensitySimulation() {
+      const pressureAltitude = document.getElementById('pressure-altitude').value;
+      const temperature = document.getElementById('temperature').value;
+      const humidity = document.getElementById('humidity').value;
+
+      document.getElementById('pressure-alt-value').textContent = pressureAltitude + ' ft';
+      document.getElementById('temp-value').textContent = temperature + '°C';
+      document.getElementById('humidity-value').textContent = humidity + '%';
+
+      // Simplified density altitude calculation
+      const densityAltitude = parseInt(pressureAltitude) + (120 * (parseInt(temperature) - 15));
+
+      let takeoffImpact = 15;
+      let climbImpact = 12;
+      let powerImpact = 8;
+
+      if (temperature < 15) {
+        takeoffImpact = 8;
+        climbImpact = 5;
+        powerImpact = 3;
+      }
+
+      document.getElementById('density-altitude').textContent = densityAltitude + ' ft';
+      document.getElementById('takeoff-impact').textContent = 'Increased by ' + takeoffImpact + '%';
+      document.getElementById('climb-impact').textContent = 'Decreased by ' + climbImpact + '%';
+      document.getElementById('power-impact').textContent = 'Decreased by ' + powerImpact + '%';
+    }
+  </script>
+</body>
+</html>
