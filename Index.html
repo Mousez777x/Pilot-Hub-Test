@@ -3,17 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cadet Pilot Hub - Complete Aviation Resource</title>
+  <title>Cadet Pilot Hub - Your Aviation Career Resource</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary-color: #0c3b6b;
-      --secondary-color: #a0aec0;
-      --accent-color: #3182ce;
+      --primary-color: #003366; /* Deeper blue - more aviation-like */
+      --secondary-color: #FF9E1B; /* Aviation orange accent */
+      --accent-color: #0078D4; /* Bright blue for highlights */
       --text-color: #2d3748;
-      --light-bg: #f7fafc;
+      --light-bg: #f0f4f8; /* Slightly bluer light background */
+      --dark-bg: #1a2a3a; /* Dark blue for contrast sections */
     }
 
     body {
@@ -51,6 +52,7 @@
       border-radius: 0.25rem;
       display: inline-block;
       margin: 0.5rem 0;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
     }
 
     .example-box {
@@ -58,14 +60,22 @@
       padding: 1rem;
       margin: 1rem 0;
       background-color: #f0f9ff;
+      border-radius: 0 0.5rem 0.5rem 0;
     }
 
     .practice-question {
       border: 1px solid #e5e7eb;
-      padding: 1rem;
-      margin: 1rem 0;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
       border-radius: 0.5rem;
       background-color: white;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .practice-question:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 15px rgba(0,0,0,0.1);
     }
 
     .answer-reveal {
@@ -75,10 +85,12 @@
       border-radius: 0.25rem;
       cursor: pointer;
       user-select: none;
+      transition: all 0.3s ease;
     }
 
     .answer-reveal:hover {
       color: var(--text-color);
+      background-color: #d1d5db;
     }
 
     .vocabulary-term {
@@ -88,51 +100,88 @@
 
     .physics-diagram {
       text-align: center;
-      margin: 1rem 0;
-      padding: 1rem;
+      margin: 1.5rem 0;
+      padding: 1.5rem;
       background-color: white;
       border-radius: 0.5rem;
       border: 1px solid #e5e7eb;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
     }
     
     .hero-section {
-      background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1540396776447-c17b02a86309?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80');
+      background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80');
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
       color: white;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero-section::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 100px;
+      background: linear-gradient(to top, var(--light-bg), transparent);
+      z-index: 1;
     }
     
     .section-header {
-      background-image: linear-gradient(rgba(12, 59, 107, 0.9), rgba(12, 59, 107, 0.85)), url('https://images.unsplash.com/photo-1569629743817-70d8db6c323b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80');
+      background-image: linear-gradient(rgba(0, 51, 102, 0.9), rgba(0, 51, 102, 0.85)), url('https://images.unsplash.com/photo-1569629743817-70d8db6c323b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80');
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
+      position: relative;
+    }
+    
+    .section-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at center, transparent 0%, rgba(0, 51, 102, 0.7) 100%);
     }
     
     .formula-sheet {
       background-color: white;
       border-radius: 0.5rem;
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
       padding: 1.5rem;
       margin-bottom: 1.5rem;
+      transition: transform 0.3s ease;
+    }
+    
+    .formula-sheet:hover {
+      transform: translateY(-5px);
     }
     
     .formula-category {
-      border-bottom: 2px solid #e5e7eb;
+      border-bottom: 2px solid var(--secondary-color);
       padding-bottom: 0.5rem;
       margin-bottom: 1rem;
       font-weight: bold;
-      color: var(--accent-color);
+      color: var(--primary-color);
     }
     
     .simulation-box {
       background-color: white;
       border-radius: 0.5rem;
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
       padding: 1.5rem;
       margin-bottom: 1.5rem;
       text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-top: 4px solid var(--secondary-color);
+    }
+    
+    .simulation-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
     }
     
     .simulation-image {
@@ -140,6 +189,7 @@
       height: auto;
       border-radius: 0.25rem;
       margin-bottom: 1rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
     
     .simulation-container {
@@ -149,6 +199,7 @@
       padding: 1.5rem;
       margin-top: 1.5rem;
       text-align: left;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
     }
     
     .simulation-controls {
@@ -169,14 +220,16 @@
       background-color: white;
       border: 1px solid #e5e7eb;
       border-radius: 0.25rem;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
     }
     
     .test-container {
       background-color: white;
       border-radius: 0.5rem;
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
       padding: 1.5rem;
       margin-bottom: 1.5rem;
+      border-top: 4px solid var(--accent-color);
     }
     
     .test-question {
@@ -192,10 +245,12 @@
       border: 1px solid #e5e7eb;
       border-radius: 0.25rem;
       cursor: pointer;
+      transition: all 0.2s ease;
     }
     
     .test-option:hover {
       background-color: #f3f4f6;
+      border-color: var(--accent-color);
     }
     
     .test-button {
@@ -205,10 +260,14 @@
       border-radius: 0.25rem;
       font-weight: bold;
       cursor: pointer;
+      transition: all 0.3s ease;
+      border: none;
     }
     
     .test-button:hover {
-      background-color: #0a2d52;
+      background-color: #00264d;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
     
     .blog-content h2 {
@@ -216,6 +275,7 @@
       font-weight: 700;
       margin-top: 1.5rem;
       margin-bottom: 0.75rem;
+      color: var(--primary-color);
     }
     
     .blog-content h3 {
@@ -223,6 +283,7 @@
       font-weight: 600;
       margin-top: 1.25rem;
       margin-bottom: 0.5rem;
+      color: var(--primary-color);
     }
     
     .blog-content p {
@@ -251,17 +312,24 @@
       padding-left: 1rem;
       font-style: italic;
       margin: 1rem 0;
+      background-color: #f8fafc;
+      padding: 1rem;
+      border-radius: 0 0.25rem 0.25rem 0;
     }
     
     .blog-content img {
       border-radius: 0.5rem;
       margin: 1.5rem 0;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
     
     .blog-content table {
       width: 100%;
       border-collapse: collapse;
       margin: 1.5rem 0;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      border-radius: 0.5rem;
+      overflow: hidden;
     }
     
     .blog-content th, .blog-content td {
@@ -271,7 +339,8 @@
     }
     
     .blog-content th {
-      background-color: #f3f4f6;
+      background-color: var(--primary-color);
+      color: white;
       font-weight: 600;
     }
     
@@ -286,6 +355,7 @@
       z-index: 50;
       justify-content: center;
       align-items: center;
+      backdrop-filter: blur(5px);
     }
     
     .modal-content {
@@ -294,16 +364,19 @@
       border-radius: 0.5rem;
       max-width: 500px;
       width: 90%;
-      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      border-top: 4px solid var(--secondary-color);
     }
 
     .card-hover {
       transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-top: 3px solid transparent;
     }
 
     .card-hover:hover {
       transform: translateY(-5px);
       box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      border-top-color: var(--secondary-color);
     }
 
     .btn-primary {
@@ -313,10 +386,31 @@
       border-radius: 0.375rem;
       font-weight: 600;
       transition: all 0.3s ease;
+      border: none;
+      display: inline-block;
+      text-align: center;
     }
 
     .btn-primary:hover {
-      background-color: #0a2d52;
+      background-color: #00264d;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+    
+    .btn-secondary {
+      background-color: var(--secondary-color);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.375rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      border: none;
+      display: inline-block;
+      text-align: center;
+    }
+    
+    .btn-secondary:hover {
+      background-color: #e68a00;
       transform: translateY(-2px);
       box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     }
@@ -329,6 +423,24 @@
       padding: 4rem 2rem;
       border-radius: 0.5rem;
       margin-top: 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .success-story::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at center, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.8) 100%);
+      z-index: 1;
+    }
+    
+    .success-story > div {
+      position: relative;
+      z-index: 2;
     }
 
     /* Add smooth scrolling */
@@ -373,10 +485,16 @@
       font-weight: 700;
       font-size: 1.5rem;
       color: var(--primary-color);
+      transition: transform 0.3s ease;
+    }
+    
+    .logo:hover {
+      transform: scale(1.05);
     }
 
     .logo-icon {
       margin-right: 0.5rem;
+      color: var(--secondary-color);
     }
 
     .social-icons a {
@@ -393,19 +511,22 @@
     }
 
     .social-icons a:hover {
-      background-color: var(--accent-color);
-      transform: translateY(-3px);
+      background-color: var(--secondary-color);
+      transform: translateY(-3px) rotate(8deg);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
 
     .shop-category {
       transition: all 0.3s ease;
       border: 1px solid #e5e7eb;
+      border-radius: 0.5rem;
+      overflow: hidden;
     }
 
     .shop-category:hover {
       transform: translateY(-5px);
       box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-      border-color: var(--accent-color);
+      border-color: var(--secondary-color);
     }
 
     .contact-form input,
@@ -415,14 +536,14 @@
       border: 1px solid #e5e7eb;
       border-radius: 0.375rem;
       margin-bottom: 1rem;
-      transition: border-color 0.3s ease;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
     }
 
     .contact-form input:focus,
     .contact-form textarea:focus {
       outline: none;
       border-color: var(--accent-color);
-      box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.1);
+      box-shadow: 0 0 0 3px rgba(0, 120, 212, 0.1);
     }
 
     .contact-form button {
@@ -433,10 +554,14 @@
       font-weight: 600;
       cursor: pointer;
       transition: all 0.3s ease;
+      border: none;
+      width: 100%;
     }
 
     .contact-form button:hover {
-      background-color: #0a2d52;
+      background-color: #00264d;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
 
     .feature-card {
@@ -444,11 +569,13 @@
       overflow: hidden;
       box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
       transition: all 0.3s ease;
+      border-top: 3px solid transparent;
     }
 
     .feature-card:hover {
       transform: translateY(-5px);
       box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+      border-top-color: var(--secondary-color);
     }
 
     .feature-icon {
@@ -461,6 +588,12 @@
       background-color: var(--primary-color);
       color: white;
       margin-bottom: 1rem;
+      transition: all 0.3s ease;
+    }
+    
+    .feature-card:hover .feature-icon {
+      background-color: var(--secondary-color);
+      transform: scale(1.1);
     }
 
     .nav-link {
@@ -482,7 +615,7 @@
       left: 50%;
       width: 0;
       height: 2px;
-      background-color: var(--primary-color);
+      background-color: var(--secondary-color);
       transition: all 0.3s ease;
       transform: translateX(-50%);
     }
@@ -497,6 +630,7 @@
 
     .nav-link.active::after {
       width: 80%;
+      background-color: var(--secondary-color);
     }
 
     .timeline {
@@ -528,6 +662,7 @@
       height: 1rem;
       border-radius: 50%;
       background-color: var(--accent-color);
+      box-shadow: 0 0 0 3px rgba(0, 120, 212, 0.2);
     }
 
     .timeline-item:last-child {
@@ -541,6 +676,7 @@
       margin: 1.5rem 0;
       border-radius: 0 0.5rem 0.5rem 0;
       font-style: italic;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
     }
 
     .quote-author {
@@ -548,6 +684,7 @@
       font-weight: 600;
       margin-top: 1rem;
       text-align: right;
+      color: var(--primary-color);
     }
 
     .tip-box {
@@ -556,6 +693,8 @@
       padding: 1.5rem;
       margin: 1.5rem 0;
       border: 1px solid #e5e7eb;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      border-left: 4px solid var(--accent-color);
     }
 
     .tip-box h3 {
@@ -567,6 +706,7 @@
 
     .tip-box h3 i {
       margin-right: 0.5rem;
+      color: var(--secondary-color);
     }
 
     .challenge-card {
@@ -576,6 +716,7 @@
       margin-bottom: 1.5rem;
       box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
       transition: all 0.3s ease;
+      border-left: 4px solid var(--secondary-color);
     }
 
     .challenge-card:hover {
@@ -592,6 +733,7 @@
 
     .challenge-card h3 i {
       margin-right: 0.5rem;
+      color: var(--secondary-color);
     }
 
     .tab-container {
@@ -614,7 +756,7 @@
 
     .tab-button.active {
       color: var(--primary-color);
-      border-bottom-color: var(--primary-color);
+      border-bottom-color: var(--secondary-color);
     }
 
     .tab-content {
@@ -631,6 +773,12 @@
       border: 1px solid #e5e7eb;
       border-radius: 0.5rem;
       overflow: hidden;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+    }
+    
+    .faq-item:hover {
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
 
     .faq-question {
@@ -641,10 +789,12 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      transition: all 0.3s ease;
     }
 
     .faq-question:hover {
       background-color: #f8fafc;
+      color: var(--primary-color);
     }
 
     .faq-answer {
@@ -652,10 +802,12 @@
       max-height: 0;
       overflow: hidden;
       transition: max-height 0.3s ease, padding 0.3s ease;
+      background-color: #f8fafc;
     }
 
     .faq-item.active .faq-question {
       background-color: #f0f9ff;
+      color: var(--primary-color);
     }
 
     .faq-item.active .faq-answer {
@@ -669,12 +821,14 @@
       box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
       margin-bottom: 2rem;
       padding: 2rem;
-      transition: transform 0.3s;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-top: 4px solid var(--primary-color);
     }
 
     .program-card:hover {
       transform: translateY(-5px);
       box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      border-top-color: var(--secondary-color);
     }
 
     .program-header {
@@ -687,6 +841,8 @@
       width: 100px;
       height: auto;
       margin-right: 1.5rem;
+      border-radius: 0.25rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
 
     .requirements {
@@ -694,6 +850,7 @@
       border-left: 4px solid var(--accent-color);
       padding: 1rem;
       margin: 1rem 0;
+      border-radius: 0 0.25rem 0.25rem 0;
     }
 
     .application-steps {
@@ -719,6 +876,7 @@
       position: absolute;
       left: 0;
       top: 0;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
 
     .qa-item {
@@ -727,16 +885,18 @@
       padding: 1.5rem;
       margin-bottom: 1.5rem;
       transition: transform 0.3s, box-shadow 0.3s;
+      background-color: white;
     }
     
     .qa-item:hover {
       transform: translateY(-5px);
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      border-left: 3px solid var(--secondary-color);
     }
     
     .question {
       font-weight: bold;
-      color: var(--secondary-color);
+      color: var(--primary-color);
       font-size: 1.2rem;
       margin-bottom: 0.5rem;
     }
@@ -752,10 +912,11 @@
       top: 100px;
       background-color: white;
       border-radius: 0.5rem;
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
       padding: 1.5rem;
       max-height: 80vh;
       overflow-y: auto;
+      border-top: 3px solid var(--secondary-color);
     }
 
     .toc-list {
@@ -771,16 +932,20 @@
       color: var(--text-color);
       text-decoration: none;
       transition: color 0.3s;
+      display: block;
+      padding: 0.25rem 0;
     }
 
     .toc-list a:hover {
       color: var(--primary-color);
+      transform: translateX(3px);
     }
 
     .toc-list .toc-sublist {
       padding-left: 1.5rem;
       margin-top: 0.5rem;
       list-style-type: none;
+      border-left: 1px solid #e5e7eb;
     }
 
     .back-to-top {
@@ -797,12 +962,18 @@
       justify-content: center;
       text-decoration: none;
       opacity: 0;
-      transition: opacity 0.3s;
+      transition: all 0.3s ease;
       z-index: 20;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
 
     .back-to-top.visible {
       opacity: 1;
+    }
+    
+    .back-to-top:hover {
+      background-color: var(--secondary-color);
+      transform: translateY(-5px);
     }
 
     /* Training phases */
@@ -812,11 +983,13 @@
       padding: 1.5rem;
       margin-bottom: 1.5rem;
       transition: transform 0.3s, box-shadow 0.3s;
+      background-color: white;
     }
     
     .training-phase:hover {
       transform: translateY(-5px);
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      border-left: 3px solid var(--secondary-color);
     }
     
     .phase-header {
@@ -832,6 +1005,67 @@
       padding: 0.3rem 0.7rem;
       border-radius: 4px;
       font-size: 0.9rem;
+      font-weight: 500;
+    }
+    
+    /* Aircraft animation */
+    @keyframes fly {
+      0% {
+        transform: translateX(-100%) translateY(0);
+      }
+      50% {
+        transform: translateX(0) translateY(-20px);
+      }
+      100% {
+        transform: translateX(100%) translateY(0);
+      }
+    }
+    
+    .flying-plane {
+      position: absolute;
+      font-size: 2rem;
+      color: var(--secondary-color);
+      animation: fly 15s linear infinite;
+      z-index: 10;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    
+    /* Clouds animation */
+    @keyframes float {
+      0% {
+        transform: translateX(0) translateY(0);
+      }
+      50% {
+        transform: translateX(10px) translateY(-10px);
+      }
+      100% {
+        transform: translateX(0) translateY(0);
+      }
+    }
+    
+    .floating-cloud {
+      position: absolute;
+      font-size: 2.5rem;
+      color: rgba(255,255,255,0.7);
+      animation: float 8s ease-in-out infinite;
+      z-index: 5;
+    }
+    
+    /* Pulse animation for buttons */
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(255, 158, 27, 0.4);
+      }
+      70% {
+        box-shadow: 0 0 0 10px rgba(255, 158, 27, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(255, 158, 27, 0);
+      }
+    }
+    
+    .pulse-button {
+      animation: pulse 2s infinite;
     }
   </style>
 </head>
@@ -910,19 +1144,20 @@
       <!-- Desktop navigation -->
       <nav class="hidden md:flex space-x-6 desktop-menu">
         <a href="#home" class="nav-link active">Home</a>
-        <a href="#Product" class="nav-link">Product</a>
+        <a href="#resources" class="nav-link">Resources</a>
         <a href="#math-preparation" class="nav-link">Math Prep</a>
         <a href="#physics-preparation" class="nav-link">Physics Prep</a>
         <a href="#english-terminology" class="nav-link">Aviation English</a>
+        <a href="#uae-cadet-programs" class="nav-link">UAE Programs</a>
         <a href="#about" class="nav-link">About Us</a>
-        <button onclick="toggleLoginModal()" class="bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 transition duration-300 shadow-md">Login</button>
+        <button onclick="toggleLoginModal()" class="bg-gradient-to-r from-blue-600 to-blue-800 text-white px-4 py-2 rounded-full hover:from-blue-700 hover:to-blue-900 transition duration-300 shadow-md">Login</button>
       </nav>
     </div>
     
     <!-- Mobile navigation -->
     <nav id="mobile-menu" class="md:hidden bg-white px-4 py-2 flex-col space-y-4 pb-4 mobile-menu hidden">
       <a href="#home" class="hover:text-blue-600">Home</a>
-      <a href="#about" class="hover:text-blue-600">About Us</a>
+      <a href="#resources" class="hover:text-blue-600">Resources</a>
       <a href="#math-preparation" class="hover:text-blue-600">Math Prep</a>
       <a href="#physics-preparation" class="hover:text-blue-600">Physics Prep</a>
       <a href="#english-terminology" class="hover:text-blue-600">Aviation English</a>
@@ -930,8 +1165,9 @@
       <a href="#interview-qa" class="hover:text-blue-600">Interview Prep</a>
       <a href="#flight-training" class="hover:text-blue-600">Flight Training</a>
       <a href="#simulations" class="hover:text-blue-600">Simulations</a>
+      <a href="#about" class="hover:text-blue-600">About Us</a>
       <a href="#contact" class="hover:text-blue-600">Contact</a>
-      <button onclick="toggleLoginModal()" class="bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 transition duration-300 w-full shadow-md">Login</button>
+      <button onclick="toggleLoginModal()" class="bg-gradient-to-r from-blue-600 to-blue-800 text-white px-4 py-2 rounded-full hover:from-blue-700 hover:to-blue-900 transition duration-300 w-full shadow-md">Login</button>
     </nav>
   </header>
 
@@ -944,28 +1180,39 @@
     <!-- Home Section -->
     <section id="home">
       <!-- Hero Section with Professional Design -->
-      <div class="hero-section py-20 text-center px-4">
-        <div class="max-w-5xl mx-auto">
-          <div class="bg-black bg-opacity-50 p-8 rounded-lg inline-block">
+      <div class="hero-section py-20 text-center px-4 relative">
+        <!-- Animated elements -->
+        <div class="flying-plane absolute top-20 left-0">
+          <i class="fas fa-plane"></i>
+        </div>
+        <div class="floating-cloud absolute top-10 right-10">
+          <i class="fas fa-cloud"></i>
+        </div>
+        <div class="floating-cloud absolute bottom-20 left-20" style="animation-delay: 2s;">
+          <i class="fas fa-cloud"></i>
+        </div>
+        
+        <div class="max-w-5xl mx-auto relative z-10">
+          <div class="bg-black bg-opacity-50 p-8 rounded-lg inline-block backdrop-blur-sm">
             <h2 class="text-5xl font-bold mb-4">Turning Cadet Dreams into Captain Realities</h2>
             <p class="text-xl mb-8 max-w-3xl mx-auto">Your journey to the flight deck starts here. Comprehensive pilot assessments, guidance, and resources — built specifically for cadet pilots in the UAE & Middle East.</p>
             <div class="space-x-4">
-              <a href="#resources" class="bg-blue-600 text-white px-8 py-3 rounded-full hover:bg-blue-700 inline-block transition duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1">
-                Explore Resources
+              <a href="#resources" class="btn-primary inline-block pulse-button">
+                <i class="fas fa-book-open mr-2"></i> Explore Resources
               </a>
               <a href="#shop" class="bg-white text-blue-800 px-8 py-3 rounded-full hover:bg-gray-100 inline-block transition duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1">
-                Visit Shop
+                <i class="fas fa-shopping-bag mr-2"></i> Visit Shop
               </a>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Table of Contents -->
+      <!-- Welcome Section -->
       <div class="py-8 px-6 max-w-6xl mx-auto">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div class="md:col-span-3">
-            <h2 class="text-3xl font-bold mb-6">Welcome to Cadet Pilot Hub</h2>
+            <h2 class="text-3xl font-bold mb-6 text-primary-color">Welcome to Cadet Pilot Hub</h2>
             <p class="text-xl mb-8">
               Where cadets become captains! We provide the resources, gear, and support built specifically for future aviators. Whether you're preparing for assessments, looking for quality pilot equipment, or seeking guidance on your aviation journey, we've got you covered.
             </p>
@@ -1000,26 +1247,26 @@
           
           <div class="md:col-span-1">
             <div class="toc">
-              <h3 class="text-xl font-bold mb-4">Table of Contents</h3>
+              <h3 class="text-xl font-bold mb-4">Quick Navigation</h3>
               <ul class="toc-list">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About Us</a></li>
+                <li><a href="#home"><i class="fas fa-home mr-2 text-secondary-color"></i>Home</a></li>
+                <li><a href="#about"><i class="fas fa-info-circle mr-2 text-secondary-color"></i>About Us</a></li>
                 <li>
-                  <a href="#math-preparation">Math Preparation</a>
+                  <a href="#math-preparation"><i class="fas fa-calculator mr-2 text-secondary-color"></i>Math Preparation</a>
                   <ul class="toc-sublist">
                     <li><a href="#algebra-equations">Algebra & Equations</a></li>
                     <li><a href="#speed-distance-time">Speed, Distance & Time</a></li>
                   </ul>
                 </li>
                 <li>
-                  <a href="#physics-preparation">Physics Preparation</a>
+                  <a href="#physics-preparation"><i class="fas fa-atom mr-2 text-secondary-color"></i>Physics Preparation</a>
                   <ul class="toc-sublist">
                     <li><a href="#physics-formulas">Formula Sheet</a></li>
                     <li><a href="#physics-simulations">Interactive Simulations</a></li>
                   </ul>
                 </li>
                 <li>
-                  <a href="#english-terminology">Aviation English</a>
+                  <a href="#english-terminology"><i class="fas fa-language mr-2 text-secondary-color"></i>Aviation English</a>
                   <ul class="toc-sublist">
                     <li><a href="#aviation-vocabulary">Aviation Vocabulary</a></li>
                     <li><a href="#radio-communication">Radio Communication</a></li>
@@ -1027,7 +1274,7 @@
                   </ul>
                 </li>
                 <li>
-                  <a href="#uae-cadet-programs">UAE Cadet Programs</a>
+                  <a href="#uae-cadet-programs"><i class="fas fa-plane-departure mr-2 text-secondary-color"></i>UAE Cadet Programs</a>
                   <ul class="toc-sublist">
                     <li><a href="#emirates-program">Emirates</a></li>
                     <li><a href="#etihad-program">Etihad</a></li>
@@ -1035,49 +1282,40 @@
                     <li><a href="#airarabia-program">Air Arabia</a></li>
                   </ul>
                 </li>
-                <li>
-                  <a href="#interview-qa">Interview Preparation</a>
-                  <ul class="toc-sublist">
-                    <li><a href="#common-questions">Common Questions</a></li>
-                    <li><a href="#interview-tips">Interview Tips</a></li>
-                  </ul>
-                </li>
-                <li>
-                  <a href="#flight-training">Flight Training</a>
-                  <ul class="toc-sublist">
-                    <li><a href="#training-phases">Training Phases</a></li>
-                    <li><a href="#training-challenges">Challenges</a></li>
-                  </ul>
-                </li>
-                <li><a href="#simulations">Interactive Simulations</a></li>
-                <li><a href="#contact">Contact Us</a></li>
+                <li><a href="#contact"><i class="fas fa-envelope mr-2 text-secondary-color"></i>Contact Us</a></li>
               </ul>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Assessments Preview -->
+      <!-- Resources Preview -->
       <div id="resources" class="py-16 px-6 max-w-6xl mx-auto">
         <h3 class="text-3xl font-bold mb-8 text-center">Cadet Pilot Resources</h3>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div class="p-6 bg-white shadow-lg rounded-lg hover:shadow-xl transition duration-300 card-hover">
             <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Math Preparation" class="w-full h-48 object-cover rounded-t-lg mb-4">
-            <h4 class="font-semibold text-xl mb-3">Math Preparation</h4>
+            <h4 class="font-semibold text-xl mb-3 text-primary-color">Math Preparation</h4>
             <p class="text-gray-600 mb-4">Algebra, speed/distance/time, logic-based problems, and mental arithmetic techniques.</p>
-            <a href="#math-preparation" class="text-blue-600 hover:underline font-medium">Learn more →</a>
+            <a href="#math-preparation" class="text-accent-color hover:underline font-medium flex items-center">
+              Learn more <i class="fas fa-arrow-right ml-1"></i>
+            </a>
           </div>
           <div class="p-6 bg-white shadow-lg rounded-lg hover:shadow-xl transition duration-300 card-hover">
             <img src="https://images.unsplash.com/photo-1544016768-982d1554f0b9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Physics Preparation" class="w-full h-48 object-cover rounded-t-lg mb-4">
-            <h4 class="font-semibold text-xl mb-3">Physics Preparation</h4>
+            <h4 class="font-semibold text-xl mb-3 text-primary-color">Physics Preparation</h4>
             <p class="text-gray-600 mb-4">Forces, motion, energy, and aerodynamics — all relevant to aviation physics.</p>
-            <a href="#physics-preparation" class="text-blue-600 hover:underline font-medium">Learn more →</a>
+            <a href="#physics-preparation" class="text-accent-color hover:underline font-medium flex items-center">
+              Learn more <i class="fas fa-arrow-right ml-1"></i>
+            </a>
           </div>
           <div class="p-6 bg-white shadow-lg rounded-lg hover:shadow-xl transition duration-300 card-hover">
             <img src="https://images.unsplash.com/photo-1551651767-d5ffbdd04b83?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="English & Aviation Terminology" class="w-full h-48 object-cover rounded-t-lg mb-4">
-            <h4 class="font-semibold text-xl mb-3">English & Aviation Terminology</h4>
+            <h4 class="font-semibold text-xl mb-3 text-primary-color">Aviation English</h4>
             <p class="text-gray-600 mb-4">Improve ICAO-standard communication and essential aviation vocabulary.</p>
-            <a href="#english-terminology" class="text-blue-600 hover:underline font-medium">Learn more →</a>
+            <a href="#english-terminology" class="text-accent-color hover:underline font-medium flex items-center">
+              Learn more <i class="fas fa-arrow-right ml-1"></i>
+            </a>
           </div>
         </div>
       </div>
@@ -1090,27 +1328,43 @@
         <div class="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-6xl mx-auto mt-8">
           <div class="shop-category bg-white p-6 rounded-lg shadow-lg">
             <img src="https://i.etsystatic.com/35130867/r/il/1f4c60/4067280641/il_1140xN.4067280641_9tgv.jpg" alt="Logbooks" class="w-full h-60 object-cover rounded-lg mb-4">
-            <h4 class="font-semibold text-lg mb-2">Logbooks</h4>
+            <h4 class="font-semibold text-lg mb-2 text-primary-color">Logbooks</h4>
             <p class="text-sm text-gray-600 mb-3">Professional logbooks with durable covers and organized layouts.</p>
             <span class="inline-block bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Coming Soon</span>
           </div>
           
           <div class="shop-category bg-white p-6 rounded-lg shadow-lg">
             <img src="https://i.etsystatic.com/47138845/r/il/5d56db/5720752588/il_794xN.5720752588_6v43.jpg" alt="Accessories" class="w-full h-60 object-cover rounded-lg mb-4">
-            <h4 class="font-semibold text-lg mb-2">Accessories</h4>
+            <h4 class="font-semibold text-lg mb-2 text-primary-color">Accessories</h4>
             <p class="text-sm text-gray-600 mb-3">Essential pilot accessories including kneeboards and headset cases.</p>
+            <span class="inline-block bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Coming Soon</span>
+          </div>
+          
+          <div class="shop-category bg-white p-6 rounded-lg shadow-lg">
+            <img src="https://m.media-amazon.com/images/I/71Yk6GvRgpL._AC_UF1000,1000_QL80_.jpg" alt="Flight Bags" class="w-full h-60 object-cover rounded-lg mb-4">
+            <h4 class="font-semibold text-lg mb-2 text-primary-color">Flight Bags</h4>
+            <p class="text-sm text-gray-600 mb-3">Durable and practical flight bags for all your aviation needs.</p>
+            <span class="inline-block bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Coming Soon</span>
+          </div>
+          
+          <div class="shop-category bg-white p-6 rounded-lg shadow-lg">
+            <img src="https://m.media-amazon.com/images/I/71Yk6GvRgpL._AC_UF1000,1000_QL80_.jpg" alt="Flight Accessories" class="w-full h-60 object-cover rounded-lg mb-4">
+            <h4 class="font-semibold text-lg mb-2 text-primary-color">Pilot Accessories</h4>
+            <p class="text-sm text-gray-600 mb-3">Essential accessories for every pilot including headsets and sunglasses.</p>
             <span class="inline-block bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Coming Soon</span>
           </div>
         </div>
         
         <div class="mt-12">
-          <a href="#shop-all" class="btn-primary inline-block">View All Products</a>
+          <a href="#shop-all" class="btn-secondary inline-block">
+            <i class="fas fa-shopping-cart mr-2"></i> View All Products
+          </a>
         </div>
       </div>
 
       <!-- Success Stories -->
       <div class="success-story max-w-6xl mx-auto my-16">
-        <div class="max-w-4xl mx-auto text-center">
+        <div class="max-w-4xl mx-auto text-center relative z-10">
           <h2 class="text-3xl font-bold mb-8">Success Stories</h2>
           <div class="bg-white/10 backdrop-blur-sm p-8 rounded-lg shadow-lg">
             <blockquote class="italic text-lg mb-4">
@@ -1140,18 +1394,20 @@
 
     <!-- About Section -->
     <section id="about" class="pt-16">
-      <div class="section-header text-white py-16 px-6 text-center">
-        <h1 class="text-4xl font-bold mb-4">About Us</h1>
-        <p class="text-xl max-w-3xl mx-auto">
-          Learn more about Cadet Pilot Hub and our mission
-        </p>
+      <div class="section-header text-white py-16 px-6 text-center relative">
+        <div class="relative z-10">
+          <h1 class="text-4xl font-bold mb-4">About Us</h1>
+          <p class="text-xl max-w-3xl mx-auto">
+            Learn more about Cadet Pilot Hub and our mission
+          </p>
+        </div>
       </div>
 
       <div class="py-16 px-6 max-w-6xl mx-auto">
         <div class="bg-white p-8 rounded-lg shadow-lg mb-12">
           <div class="flex flex-col md:flex-row gap-8 items-center">
             <div class="md:w-2/3">
-              <h2 class="text-3xl font-bold mb-6">Our Story</h2>
+              <h2 class="text-3xl font-bold mb-6 text-primary-color">Our Story</h2>
               <p class="mb-4">
                 Cadet Pilot Hub was founded in 2023 by a group of passionate aviators who believe every cadet deserves support on their journey to the skies. Having gone through the cadet selection process themselves, our founders understand the challenges and requirements of becoming a pilot in this competitive industry.
               </p>
@@ -1163,13 +1419,13 @@
               </p>
             </div>
             <div class="md:w-1/3">
-              <img src="https://wallpapercave.com/wp/wp13815864.jpg" alt="Our Story" class="rounded-lg shadow-md">
+              <img src="https://images.unsplash.com/photo-1559310589-2673bfe16970?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Our Story" class="rounded-lg shadow-md">
             </div>
           </div>
         </div>
 
         <div class="bg-white p-8 rounded-lg shadow-lg mb-12">
-          <h2 class="text-3xl font-bold mb-6">Our Mission</h2>
+          <h2 class="text-3xl font-bold mb-6 text-primary-color">Our Mission</h2>
           <p class="mb-6">
             Our mission is to empower aspiring pilots with the knowledge, resources, and support they need to successfully navigate the cadet pilot selection process and build rewarding careers in aviation.
           </p>
@@ -1179,7 +1435,7 @@
         </div>
 
         <div class="bg-white p-8 rounded-lg shadow-lg mb-12">
-          <h2 class="text-3xl font-bold mb-6">Our Vision</h2>
+          <h2 class="text-3xl font-bold mb-6 text-primary-color">Our Vision</h2>
           <p class="mb-6">
             To be the premier resource hub for aspiring pilots in the Middle East and beyond, known for our comprehensive preparation materials, supportive community, and commitment to excellence in aviation education.
           </p>
@@ -1188,29 +1444,29 @@
           </p>
         </div>
 
-        <h2 class="text-3xl font-bold mb-8 text-center">Our Values</h2>
+        <h2 class="text-3xl font-bold mb-8 text-center text-primary-color">Our Values</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div class="bg-white p-8 rounded-lg shadow-lg">
-            <div class="text-4xl text-blue-600 mb-4">
+            <div class="text-4xl text-secondary-color mb-4">
               <i class="fas fa-graduation-cap"></i>
             </div>
-            <h3 class="text-xl font-bold mb-3">Excellence</h3>
+            <h3 class="text-xl font-bold mb-3 text-primary-color">Excellence</h3>
             <p>We are committed to providing the highest quality resources and guidance to help aspiring pilots excel in their assessments and training.</p>
           </div>
           
           <div class="bg-white p-8 rounded-lg shadow-lg">
-            <div class="text-4xl text-blue-600 mb-4">
+            <div class="text-4xl text-secondary-color mb-4">
               <i class="fas fa-users"></i>
             </div>
-            <h3 class="text-xl font-bold mb-3">Community</h3>
+            <h3 class="text-xl font-bold mb-3 text-primary-color">Community</h3>
             <p>We foster a supportive community where aspiring pilots can connect, share experiences, and learn from each other.</p>
           </div>
           
           <div class="bg-white p-8 rounded-lg shadow-lg">
-            <div class="text-4xl text-blue-600 mb-4">
+            <div class="text-4xl text-secondary-color mb-4">
               <i class="fas fa-chart-line"></i>
             </div>
-            <h3 class="text-xl font-bold mb-3">Innovation</h3>
+            <h3 class="text-xl font-bold mb-3 text-primary-color">Innovation</h3>
             <p>We continuously improve our resources and methods to stay at the forefront of aviation education and preparation.</p>
           </div>
         </div>
@@ -1219,16 +1475,18 @@
 
     <!-- Math Preparation Section -->
     <section id="math-preparation" class="pt-16">
-      <div class="section-header text-white py-16 px-6 text-center">
-        <h1 class="text-4xl font-bold mb-4">Math Preparation</h1>
-        <p class="text-xl max-w-3xl mx-auto">
-          Master the mathematical concepts essential for cadet pilot assessments
-        </p>
+      <div class="section-header text-white py-16 px-6 text-center relative">
+        <div class="relative z-10">
+          <h1 class="text-4xl font-bold mb-4">Math Preparation</h1>
+          <p class="text-xl max-w-3xl mx-auto">
+            Master the mathematical concepts essential for cadet pilot assessments
+          </p>
+        </div>
       </div>
 
       <div class="py-16 px-6 max-w-6xl mx-auto">
         <div class="bg-white p-8 rounded-lg shadow-lg mb-12">
-          <h2 class="text-3xl font-bold mb-6">Introduction to Math for Pilot Assessments</h2>
+          <h2 class="text-3xl font-bold mb-6 text-primary-color">Introduction to Math for Pilot Assessments</h2>
           <div class="flex flex-col md:flex-row gap-8 items-center mb-6">
             <div class="md:w-2/3">
               <p class="mb-4">
@@ -1252,9 +1510,9 @@
 
         <!-- Algebra and Equations -->
         <div id="algebra-equations" class="bg-white p-8 rounded-lg shadow-lg mb-12">
-          <h2 class="text-2xl font-bold mb-6">1. Algebra and Equations</h2>
+          <h2 class="text-2xl font-bold mb-6 text-primary-color">1. Algebra and Equations</h2>
           
-          <h3 class="text-xl font-semibold mb-4">Linear Equations</h3>
+          <h3 class="text-xl font-semibold mb-4 text-primary-color">Linear Equations</h3>
           <p class="mb-4">
             Linear equations are frequently used in aviation for calculations involving speed, distance, and time. The standard form is:
           </p>
@@ -1276,7 +1534,7 @@
             <p class="mb-2">Fuel needed = 10,750 kg</p>
           </div>
           
-          <h3 class="text-xl font-semibold mb-4 mt-8">Quadratic Equations</h3>
+          <h3 class="text-xl font-semibold mb-4 mt-8 text-primary-color">Quadratic Equations</h3>
           <p class="mb-4">
             Quadratic equations appear in problems involving acceleration, deceleration, and curved flight paths. The standard form is:
           </p>
@@ -1297,7 +1555,7 @@
             <p class="mb-2">t = 40 seconds</p>
           </div>
           
-          <h3 class="text-xl font-semibold mb-4 mt-8">Practice Questions</h3>
+          <h3 class="text-xl font-semibold mb-4 mt-8 text-primary-color">Practice Questions</h3>
           
           <div class="practice-question">
             <p class="mb-2"><strong>Question 1:</strong> An aircraft flies at 450 knots for 2 hours, then increases its speed by 50 knots for the next 1.5 hours. What is the total distance covered?</p>
@@ -1317,13 +1575,13 @@
 
         <!-- Speed, Distance, and Time -->
         <div id="speed-distance-time" class="bg-white p-8 rounded-lg shadow-lg mb-12">
-          <h2 class="text-2xl font-bold mb-6">2. Speed, Distance, and Time Calculations</h2>
+          <h2 class="text-2xl font-bold mb-6 text-primary-color">2. Speed, Distance, and Time Calculations</h2>
           
           <p class="mb-4">
             Speed, distance, and time calculations are fundamental to aviation. Pilots must constantly calculate these values for navigation, fuel planning, and arrival estimates.
           </p>
           
-          <h3 class="text-xl font-semibold mb-4">Key Formulas</h3>
+          <h3 class="text-xl font-semibold mb-4 text-primary-color">Key Formulas</h3>
           <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
             <div class="p-4 bg-blue-50 rounded-lg">
               <div class="math-formula">Speed = Distance ÷ Time</div>
@@ -1336,7 +1594,7 @@
             </div>
           </div>
           
-          <h3 class="text-xl font-semibold mb-4">Aviation-Specific Units</h3>
+          <h3 class="text-xl font-semibold mb-4 text-primary-color">Aviation-Specific Units</h3>
           <ul class="list-disc pl-5 space-y-2 mb-6">
             <li><strong>Speed:</strong> Knots (nautical miles per hour)</li>
             <li><strong>Distance:</strong> Nautical miles (NM)</li>
@@ -1352,7 +1610,7 @@
             <p class="mb-2">Time = 2.5 hours (2 hours and 30 minutes)</p>
           </div>
           
-          <h3 class="text-xl font-semibold mb-4 mt-8">Headwind and Tailwind Calculations</h3>
+          <h3 class="text-xl font-semibold mb-4 mt-8 text-primary-color">Headwind and Tailwind Calculations</h3>
           <p class="mb-4">
             Wind significantly affects an aircraft's ground speed. With a headwind, ground speed decreases; with a tailwind, it increases.
           </p>
@@ -1375,7 +1633,7 @@
             <p class="mb-2">Time = 960 NM ÷ 440 knots = 2.18 hours (2 hours and 11 minutes)</p>
           </div>
           
-          <h3 class="text-xl font-semibold mb-4 mt-8">Practice Questions</h3>
+          <h3 class="text-xl font-semibold mb-4 mt-8 text-primary-color">Practice Questions</h3>
           
           <div class="practice-question">
             <p class="mb-2"><strong>Question 1:</strong> An aircraft flies from Dubai to Riyadh, a distance of 540 NM, at a ground speed of 360 knots. It then flies from Riyadh to Jeddah, a distance of 620 NM, at a ground speed of 400 knots. What is the total flight time?</p>
@@ -1395,10 +1653,10 @@
 
         <!-- Additional Math Resources -->
         <div class="bg-blue-50 p-8 rounded-lg shadow-lg">
-          <h2 class="text-2xl font-bold mb-6">Additional Math Resources</h2>
+          <h2 class="text-2xl font-bold mb-6 text-primary-color">Additional Math Resources</h2>
           
           <div class="test-container">
-            <h3 class="text-xl font-semibold mb-6">Practice Test</h3>
+            <h3 class="text-xl font-semibold mb-6 text-primary-color">Practice Test</h3>
             <p class="mb-6">Test your knowledge with our comprehensive practice test, designed to simulate the math section of cadet pilot assessments.</p>
             
             <div class="test-question">
@@ -1489,699 +1747,17 @@
       </div>
     </section>
 
-    <!-- Physics Preparation Section -->
-    <section id="physics-preparation" class="pt-16">
-      <div class="section-header text-white py-16 px-6 text-center">
-        <h1 class="text-4xl font-bold mb-4">Physics Preparation</h1>
-        <p class="text-xl max-w-3xl mx-auto">
-          Understanding the physics principles that make flight possible
-        </p>
-      </div>
-
-      <div class="py-16 px-6 max-w-6xl mx-auto">
-        <div class="bg-white p-8 rounded-lg shadow-lg mb-12">
-          <h2 class="text-3xl font-bold mb-6">Introduction to Aviation Physics</h2>
-          <div class="flex flex-col md:flex-row gap-8 items-center mb-6">
-            <div class="md:w-2/3">
-              <p class="mb-4">
-                Physics is fundamental to understanding how aircraft fly and operate. Cadet pilot assessments test your knowledge of basic physics principles and their application to aviation. This section covers the key physics concepts you need to master for your assessments.
-              </p>
-              <p>
-                We'll explore forces and motion, energy and power, basic aerodynamics, pressure and atmosphere, and practical applications in flight. Each topic includes explanations, formulas, examples, and practice questions to help you prepare thoroughly.
-              </p>
-            </div>
-            <div class="md:w-1/3">
-              <img src="https://images.unsplash.com/photo-1544016768-982d1554f0b9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Physics Preparation" class="rounded-lg shadow-md">
-            </div>
-          </div>
-        </div>
-
-        <!-- Physics Formula Sheet for Student Pilot Pre-assessment -->
-        <div id="physics-formulas" class="bg-white p-8 rounded-lg shadow-lg mb-12">
-          <h2 class="text-2xl font-bold mb-6">Physics Formula Sheet for Cadet Pilot Pre-assessment</h2>
-          
-          <div class="formula-sheet">
-            <p class="formula-category">Forces and Motion</p>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <p class="font-semibold">Newton's Second Law:</p>
-                <div class="math-formula">F = ma</div>
-                <p class="text-sm mt-1">Force (N) = mass (kg) × acceleration (m/s²)</p>
-              </div>
-              <div>
-                <p class="font-semibold">Weight:</p>
-                <div class="math-formula">W = mg</div>
-                <p class="text-sm mt-1">Weight (N) = mass (kg) × gravitational acceleration (9.8 m/s²)</p>
-              </div>
-            </div>
-          </div>
-          
-          <div class="formula-sheet">
-            <p class="formula-category">Aerodynamics</p>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <p class="font-semibold">Lift Equation:</p>
-                <div class="math-formula">L = CL × ½ × ρ × V² × S</div>
-                <p class="text-sm mt-1">L = lift (N), CL = lift coefficient, ρ = air density (kg/m³), V = velocity (m/s), S = wing area (m²)</p>
-              </div>
-              <div>
-                <p class="font-semibold">Drag Equation:</p>
-                <div class="math-formula">D = CD × ½ × ρ × V² × S</div>
-                <p class="text-sm mt-1">D = drag (N), CD = drag coefficient, ρ = air density (kg/m³), V = velocity (m/s), S = wing area (m²)</p>
-              </div>
-            </div>
-          </div>
-          
-          <div class="formula-sheet">
-            <p class="formula-category">Energy and Power</p>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <p class="font-semibold">Kinetic Energy:</p>
-                <div class="math-formula">KE = ½ × m × v²</div>
-                <p class="text-sm mt-1">KE = kinetic energy (J), m = mass (kg), v = velocity (m/s)</p>
-              </div>
-              <div>
-                <p class="font-semibold">Potential Energy:</p>
-                <div class="math-formula">PE = m × g × h</div>
-                <p class="text-sm mt-1">PE = potential energy (J), m = mass (kg), g = 9.8 m/s², h = height (m)</p>
-              </div>
-              <div>
-                <p class="font-semibold">Power:</p>
-                <div class="math-formula">P = F × v</div>
-                <p class="text-sm mt-1">P = power (W), F = force (N), v = velocity (m/s)</p>
-              </div>
-            </div>
-          </div>
-          
-          <div class="formula-sheet">
-            <p class="formula-category">Pressure and Atmosphere</p>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <p class="font-semibold">Pressure:</p>
-                <div class="math-formula">P = F ÷ A</div>
-                <p class="text-sm mt-1">P = pressure (Pa), F = force (N), A = area (m²)</p>
-              </div>
-              <div>
-                <p class="font-semibold">Standard Atmospheric Pressure:</p>
-                <div class="math-formula">1013.25 hPa = 29.92 inHg</div>
-                <p class="text-sm mt-1">At sea level</p>
-              </div>
-              <div>
-                <p class="font-semibold">Pressure Decrease with Altitude:</p>
-                <div class="math-formula">~1 inHg per 1,000 ft</div>
-                <p class="text-sm mt-1">Approximate rule of thumb</p>
-              </div>
-            </div>
-          </div>
-          
-          <div class="formula-sheet">
-            <p class="formula-category">Speed, Distance, and Time</p>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div>
-                <p class="font-semibold">Speed:</p>
-                <div class="math-formula">v = d ÷ t</div>
-                <p class="text-sm mt-1">v = speed, d = distance, t = time</p>
-              </div>
-              <div>
-                <p class="font-semibold">Distance:</p>
-                <div class="math-formula">d = v × t</div>
-                <p class="text-sm mt-1">d = distance, v = speed, t = time</p>
-              </div>
-              <div>
-                <p class="font-semibold">Time:</p>
-                <div class="math-formula">t = d ÷ v</div>
-                <p class="text-sm mt-1">t = time, d = distance, v = speed</p>
-              </div>
-              <div>
-                <p class="font-semibold">Ground Speed with Wind:</p>
-                <div class="math-formula">GS = TAS ± Wind</div>
-                <p class="text-sm mt-1">GS = ground speed, TAS = true airspeed, + for tailwind, - for headwind</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Interactive Physics Simulations -->
-        <div id="physics-simulations" class="bg-blue-50 p-8 rounded-lg shadow-lg">
-          <h2 class="text-2xl font-bold mb-6">Interactive Physics Simulations</h2>
-          
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div class="simulation-box">
-              <h3 class="text-xl font-semibold mb-4">Airfoil Lift Simulation</h3>
-              <img src="https://images.unsplash.com/photo-1534481016308-0fca71578ae5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Airfoil Simulation" class="simulation-image">
-              <p class="mb-4">This interactive simulation demonstrates how airflow around an airfoil generates lift. Adjust the angle of attack and airspeed to see how they affect lift production.</p>
-              <button class="test-button" onclick="toggleSimulation('airfoil-simulation')">Launch Simulation</button>
-              
-              <div id="airfoil-simulation" class="simulation-container">
-                <div class="simulation-controls">
-                  <div class="simulation-control">
-                    <label for="angle-of-attack">Angle of Attack (°)</label>
-                    <input type="range" id="angle-of-attack" min="0" max="20" value="5" oninput="updateAirfoilSimulation()">
-                    <span id="angle-value">5°</span>
-                  </div>
-                  <div class="simulation-control">
-                    <label for="airspeed">Airspeed (knots)</label>
-                    <input type="range" id="airspeed" min="100" max="500" value="250" step="10" oninput="updateAirfoilSimulation()">
-                    <span id="airspeed-value">250 knots</span>
-                  </div>
-                </div>
-                <canvas id="airfoil-canvas" class="simulation-canvas"></canvas>
-                <div class="mt-4">
-                  <p><strong>Lift Generated:</strong> <span id="lift-value">1,250 lbs</span></p>
-                  <p class="mt-2 text-sm text-gray-600">Note: This simulation is a simplified model for educational purposes. Actual lift calculations involve more complex factors.</p>
-                </div>
-              </div>
-            </div>
-            
-            <div class="simulation-box">
-              <h3 class="text-xl font-semibold mb-4">Forces in Flight Simulation</h3>
-              <img src="https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Forces in Flight" class="simulation-image">
-              <p class="mb-4">Explore how the four forces of flight (lift, weight, thrust, and drag) interact during different phases of flight. Modify aircraft parameters to see their effects on performance.</p>
-              <button class="test-button" onclick="toggleSimulation('forces-simulation')">Launch Simulation</button>
-              
-              <div id="forces-simulation" class="simulation-container">
-                <div class="simulation-controls">
-                  <div class="simulation-control">
-                    <label for="flight-phase">Flight Phase</label>
-                    <select id="flight-phase" onchange="updateForcesSimulation()">
-                      <option value="cruise">Cruise</option>
-                      <option value="climb">Climb</option>
-                      <option value="descent">Descent</option>
-                      <option value="takeoff">Takeoff</option>
-                      <option value="landing">Landing</option>
-                    </select>
-                  </div>
-                  <div class="simulation-control">
-                    <label for="aircraft-weight">Aircraft Weight (lbs)</label>
-                    <input type="range" id="aircraft-weight" min="10000" max="100000" value="50000" step="5000" oninput="updateForcesSimulation()">
-                    <span id="weight-value">50,000 lbs</span>
-                  </div>
-                </div>
-                <canvas id="forces-canvas" class="simulation-canvas"></canvas>
-                <div class="mt-4 grid grid-cols-2 gap-4">
-                  <p><strong>Lift:</strong> <span id="lift-force">50,000 lbs</span></p>
-                  <p><strong>Weight:</strong> <span id="weight-force">50,000 lbs</span></p>
-                  <p><strong>Thrust:</strong> <span id="thrust-force">10,000 lbs</span></p>
-                  <p><strong>Drag:</strong> <span id="drag-force">10,000 lbs</span></p>
-                </div>
-              </div>
-            </div>
-            
-            <div class="simulation-box">
-              <h3 class="text-xl font-semibold mb-4">Bernoulli's Principle Demonstration</h3>
-              <img src="https://images.unsplash.com/photo-1579438791781-cb8ea4e35ba7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Bernoulli's Principle" class="simulation-image">
-              <p class="mb-4">This simulation visually demonstrates Bernoulli's principle, showing how fluid velocity affects pressure. See how this principle applies to aircraft wings and lift generation.</p>
-              <button class="test-button" onclick="toggleSimulation('bernoulli-simulation')">Launch Simulation</button>
-              
-              <div id="bernoulli-simulation" class="simulation-container">
-                <div class="simulation-controls">
-                  <div class="simulation-control">
-                    <label for="flow-speed">Flow Speed</label>
-                    <input type="range" id="flow-speed" min="1" max="10" value="5" oninput="updateBernoulliSimulation()">
-                    <span id="flow-speed-value">Medium</span>
-                  </div>
-                  <div class="simulation-control">
-                    <label for="tube-constriction">Tube Constriction</label>
-                    <input type="range" id="tube-constriction" min="1" max="5" value="3" oninput="updateBernoulliSimulation()">
-                    <span id="constriction-value">Medium</span>
-                  </div>
-                </div>
-                <canvas id="bernoulli-canvas" class="simulation-canvas"></canvas>
-                <div class="mt-4">
-                  <p><strong>Pressure at Point A:</strong> <span id="pressure-a">High</span></p>
-                  <p><strong>Velocity at Point A:</strong> <span id="velocity-a">Low</span></p>
-                  <p><strong>Pressure at Point B:</strong> <span id="pressure-b">Low</span></p>
-                  <p><strong>Velocity at Point B:</strong> <span id="velocity-b">High</span></p>
-                </div>
-              </div>
-            </div>
-            
-            <div class="simulation-box">
-              <h3 class="text-xl font-semibold mb-4">Density Altitude Calculator</h3>
-              <img src="https://images.unsplash.com/photo-1530521954074-e64f6810b32d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Density Altitude" class="simulation-image">
-              <p class="mb-4">Calculate density altitude based on pressure altitude, temperature, and humidity. See how these factors affect aircraft performance during takeoff, climb, and landing.</p>
-              <button class="test-button" onclick="toggleSimulation('density-simulation')">Launch Simulation</button>
-              
-              <div id="density-simulation" class="simulation-container">
-                <div class="simulation-controls">
-                  <div class="simulation-control">
-                    <label for="pressure-altitude">Pressure Altitude (ft)</label>
-                    <input type="range" id="pressure-altitude" min="0" max="10000" value="5000" step="500" oninput="updateDensitySimulation()">
-                    <span id="pressure-alt-value">5,000 ft</span>
-                  </div>
-                  <div class="simulation-control">
-                    <label for="temperature">Temperature (°C)</label>
-                    <input type="range" id="temperature" min="0" max="40" value="15" oninput="updateDensitySimulation()">
-                    <span id="temp-value">15°C</span>
-                  </div>
-                  <div class="simulation-control">
-                    <label for="humidity">Relative Humidity (%)</label>
-                    <input type="range" id="humidity" min="0" max="100" value="50" oninput="updateDensitySimulation()">
-                    <span id="humidity-value">50%</span>
-                  </div>
-                </div>
-                <div class="bg-white p-4 rounded-lg">
-                  <h4 class="font-semibold mb-4">Calculation Results</h4>
-                  <p><strong>Density Altitude:</strong> <span id="density-altitude">6,500 ft</span></p>
-                  <p class="mt-2"><strong>Performance Impact:</strong></p>
-                  <ul class="list-disc pl-5 mt-2">
-                    <li>Takeoff Distance: <span id="takeoff-impact">Increased by 15%</span></li>
-                    <li>Climb Rate: <span id="climb-impact">Decreased by 12%</span></li>
-                    <li>Engine Power: <span id="power-impact">Decreased by 8%</span></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- English & Aviation Terminology Section -->
-    <section id="english-terminology" class="pt-16">
-      <div class="section-header text-white py-16 px-6 text-center">
-        <h1 class="text-4xl font-bold mb-4">English & Aviation Terminology</h1>
-        <p class="text-xl max-w-3xl mx-auto">
-          Master the language of aviation and ICAO English requirements
-        </p>
-      </div>
-
-      <div class="py-16 px-6 max-w-6xl mx-auto">
-        <div class="bg-white p-8 rounded-lg shadow-lg mb-12">
-          <h2 class="text-3xl font-bold mb-6">Introduction to Aviation English</h2>
-          <div class="flex flex-col md:flex-row gap-8 items-center mb-6">
-            <div class="md:w-2/3">
-              <p class="mb-4">
-                English is the international language of aviation. All pilots operating internationally must demonstrate proficiency in aviation English according to the International Civil Aviation Organization (ICAO) standards. This section will help you prepare for the English language components of cadet pilot assessments.
-              </p>
-              <p>
-                We'll cover aviation-specific vocabulary, radio communication phrases, grammar and pronunciation, and ICAO language proficiency requirements. Each topic includes explanations, examples, and practice exercises.
-              </p>
-            </div>
-            <div class="md:w-1/3">
-              <img src="https://images.unsplash.com/photo-1551651767-d5ffbdd04b83?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Aviation English" class="rounded-lg shadow-md">
-            </div>
-          </div>
-        </div>
-
-        <!-- Aviation Vocabulary -->
-        <div id="aviation-vocabulary" class="bg-white p-8 rounded-lg shadow-lg mb-12">
-          <h2 class="text-2xl font-bold mb-6">1. Aviation-Specific Vocabulary</h2>
-          
-          <h3 class="text-xl font-semibold mb-4">Aircraft Components</h3>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-            <div>
-              <p class="mb-2"><span class="vocabulary-term">Fuselage:</span> The main body of the aircraft.</p>
-              <p class="mb-2"><span class="vocabulary-term">Empennage:</span> The tail section of an aircraft.</p>
-              <p class="mb-2"><span class="vocabulary-term">Aileron:</span> Control surface on the wing that controls roll.</p>
-              <p class="mb-2"><span class="vocabulary-term">Elevator:</span> Control surface on the horizontal stabilizer that controls pitch.</p>
-              <p class="mb-2"><span class="vocabulary-term">Rudder:</span> Control surface on the vertical stabilizer that controls yaw.</p>
-            </div>
-            <div>
-              <p class="mb-2"><span class="vocabulary-term">Flaps:</span> Movable surfaces on the wings that increase lift at low speeds.</p>
-              <p class="mb-2"><span class="vocabulary-term">Spoilers:</span> Surfaces that reduce lift and increase drag.</p>
-              <p class="mb-2"><span class="vocabulary-term">Landing gear:</span> The wheels and supporting structure (also called undercarriage).</p>
-            </div>
-          </div>
-          
-          <h3 class="text-xl font-semibold mb-4 mt-8">Navigation Terms</h3>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-            <div>
-              <p class="mb-2"><span class="vocabulary-term">Heading:</span> The direction the aircraft is pointing.</p>
-              <p class="mb-2"><span class="vocabulary-term">Track:</span> The actual path of the aircraft over the ground.</p>
-              <p class="mb-2"><span class="vocabulary-term">Waypoint:</span> A specified geographical location used for navigation.</p>
-            </div>
-            <div>
-              <p class="mb-2"><span class="vocabulary-term">VOR:</span> VHF Omnidirectional Range, a type of radio navigation system.</p>
-              <p class="mb-2"><span class="vocabulary-term">ILS:</span> Instrument Landing System, a precision approach system.</p>
-              <p class="mb-2"><span class="vocabulary-term">Flight level:</span> Altitude expressed in hundreds of feet, e.g., FL350 = 35,000 feet.</p>
-            </div>
-          </div>
-          
-          <h3 class="text-xl font-semibold mb-4 mt-8">Weather Terminology</h3>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-            <div>
-              <p class="mb-2"><span class="vocabulary-term">METAR:</span> Aviation routine weather report.</p>
-              <p class="mb-2"><span class="vocabulary-term">TAF:</span> Terminal Aerodrome Forecast.</p>
-              <p class="mb-2"><span class="vocabulary-term">Ceiling:</span> Height of the lowest layer of clouds.</p>
-            </div>
-            <div>
-              <p class="mb-2"><span class="vocabulary-term">Visibility:</span> The distance at which objects can be clearly seen.</p>
-              <p class="mb-2"><span class="vocabulary-term">Crosswind:</span> Wind component perpendicular to the runway.</p>
-              <p class="mb-2"><span class="vocabulary-term">Wind shear:</span> Sudden change in wind speed or direction.</p>
-            </div>
-          </div>
-          
-          <h3 class="text-xl font-semibold mb-4 mt-8">Practice Exercise</h3>
-          <p class="mb-4">Match the aviation terms with their correct definitions:</p>
-          
-          <div class="practice-question">
-            <p class="mb-2">1. Altimeter</p>
-            <p class="mb-2">2. Transponder</p>
-            <p class="mb-2">3. Pitot tube</p>
-            <p class="mb-2">4. Stall</p>
-            <p class="mb-2">5. Trim</p>
-            <p class="mb-4">Options:</p>
-            <p class="mb-2">a) Device that measures airspeed</p>
-            <p class="mb-2">b) Loss of lift due to excessive angle of attack</p>
-            <p class="mb-2">c) Instrument that measures altitude</p>
-            <p class="mb-2">d) Adjustment to control surfaces to maintain flight attitude</p>
-            <p class="mb-2">e) Device that transmits aircraft identification and altitude to ATC</p>
-            <p class="mt-4"><strong>Answers:</strong> <span class="answer-reveal">1-c, 2-e, 3-a, 4-b, 5-d</span></p>
-          </div>
-        </div>
-
-        <!-- Radio Communication -->
-        <div id="radio-communication" class="bg-white p-8 rounded-lg shadow-lg mb-12">
-          <h2 class="text-2xl font-bold mb-6">2. Radio Communication Phrases</h2>
-          
-          <h3 class="text-xl font-semibold mb-4">Standard Phraseology</h3>
-          <p class="mb-4">
-            Standard phraseology is essential for clear and unambiguous communication between pilots and air traffic controllers. Here are some common phrases:
-          </p>
-          
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-            <div class="bg-blue-50 p-4 rounded-lg">
-              <p class="font-semibold mb-2">Initial Contact:</p>
-              <p>"[Station] [Aircraft callsign] [Current position/altitude] [Request]"</p>
-              <p class="mt-2 italic text-sm">Example: "Dubai Tower, Emirates 503, holding point runway 30L, ready for departure."</p>
-            </div>
-            
-            <div class="bg-blue-50 p-4 rounded-lg">
-              <p class="font-semibold mb-2">Readback:</p>
-              <p>Repeat critical instructions to confirm understanding.</p>
-              <p class="mt-2 italic text-sm">Example: "Cleared to land runway 12R, Emirates 504."</p>
-            </div>
-            
-            <div class="bg-blue-50 p-4 rounded-lg">
-              <p class="font-semibold mb-2">Position Reporting:</p>
-              <p>"[Aircraft callsign] [Position] [Altitude] [Time] [Next position] [ETA next position]"</p>
-              <p class="mt-2 italic text-sm">Example: "Etihad 271, DESDI, FL350, 1415, EMERU, 1442."</p>
-            </div>
-            
-            <div class="bg-blue-50 p-4 rounded-lg">
-              <p class="font-semibold mb-2">Emergency Communications:</p>
-              <p>"MAYDAY, MAYDAY, MAYDAY" (for life-threatening emergencies)</p>
-              <p>"PAN-PAN, PAN-PAN, PAN-PAN" (for urgent situations)</p>
-            </div>
-          </div>
-          
-          <h3 class="text-xl font-semibold mb-4 mt-8">The Phonetic Alphabet</h3>
-          <p class="mb-4">
-            The NATO phonetic alphabet is used in aviation to ensure clear communication of letters and numbers:
-          </p>
-          
-          <div class="grid grid-cols-2 md:grid-cols-4 gap-2 mb-6">
-            <p>A - Alpha</p>
-            <p>B - Bravo</p>
-            <p>C - Charlie</p>
-            <p>D - Delta</p>
-            <p>E - Echo</p>
-            <p>F - Foxtrot</p>
-            <p>G - Golf</p>
-            <p>H - Hotel</p>
-            <p>I - India</p>
-            <p>J - Juliet</p>
-            <p>K - Kilo</p>
-            <p>L - Lima</p>
-            <p>M - Mike</p>
-            <p>N - November</p>
-            <p>O - Oscar</p>
-            <p>P - Papa</p>
-            <p>Q - Quebec</p>
-            <p>R - Romeo</p>
-            <p>S - Sierra</p>
-            <p>T - Tango</p>
-            <p>U - Uniform</p>
-            <p>V - Victor</p>
-            <p>W - Whiskey</p>
-            <p>X - X-ray</p>
-            <p>Y - Yankee</p>
-            <p>Z - Zulu</p>
-          </div>
-          
-          <h3 class="text-xl font-semibold mb-4 mt-8">Numbers Pronunciation</h3>
-          <p class="mb-4">
-            Numbers are pronounced differently in aviation to avoid confusion:
-          </p>
-          
-          <div class="grid grid-cols-2 md:grid-cols-5 gap-2 mb-6">
-            <p>0 - Zero</p>
-            <p>1 - One</p>
-            <p>2 - Two</p>
-            <p>3 - Three</p>
-            <p>4 - Four</p>
-            <p>5 - Five</p>
-            <p>6 - Six</p>
-            <p>7 - Seven</p>
-            <p>8 - Eight</p>
-            <p>9 - Niner</p>
-          </div>
-          
-          <h3 class="text-xl font-semibold mb-4 mt-8">Practice Exercise</h3>
-          <p class="mb-4">Convert the following into proper aviation radio communication:</p>
-          
-          <div class="practice-question">
-            <p class="mb-2">1. Flight EK123 requesting permission to climb to 35,000 feet.</p>
-            <p class="mt-4"><strong>Answer:</strong> <span class="answer-reveal">"Emirates One Two Three requesting climb to flight level three five zero."</span></p>
-          </div>
-          
-          <div class="practice-question">
-            <p class="mb-2">2. ATC instructing flight QR456 to turn right to heading 275 degrees.</p>
-            <p class="mt-4"><strong>Answer:</strong> <span class="answer-reveal">"Qatar Four Five Six, turn right heading two seven five."</span></p>
-          </div>
-          
-          <div class="practice-question">
-            <p class="mb-2">3. Spell "DUBAI" using the phonetic alphabet.</p>
-            <p class="mt-4"><strong>Answer:</strong> <span class="answer-reveal">Delta Uniform Bravo Alpha India</span></p>
-          </div>
-        </div>
-
-        <!-- ICAO Language Proficiency -->
-        <div id="icao-requirements" class="bg-white p-8 rounded-lg shadow-lg mb-12">
-          <h2 class="text-2xl font-bold mb-6">3. ICAO Language Proficiency Requirements</h2>
-          
-          <p class="mb-4">
-            The International Civil Aviation Organization (ICAO) has established language proficiency requirements for pilots operating internationally. Pilots must demonstrate proficiency in the following areas:
-          </p>
-          
-            </div>
-          </div>
-          
-          <h3 class="text-xl font-semibold mb-4">ICAO Language Proficiency Scale</h3>
-          <p class="mb-4">
-            ICAO rates language proficiency on a scale from 1 to 6:
-          </p>
-          <ul class="list-disc pl-5 space-y-2 mb-6">
-            <li><strong>Level 1:</strong> Pre-elementary</li>
-            <li><strong>Level 2:</strong> Elementary</li>
-            <li><strong>Level 3:</strong> Pre-operational</li>
-            <li><strong>Level 4:</strong> Operational (minimum required for licensing)</li>
-            <li><strong>Level 5:</strong> Extended</li>
-            <li><strong>Level 6:</strong> Expert</li>
-          </ul>
-          <p class="mb-4">
-            Pilots must achieve at least Level 4 (Operational) proficiency to obtain and maintain their licenses for international operations.
-          </p>
-          
-          <h3 class="text-xl font-semibold mb-4 mt-8">Tips for ICAO English Assessment</h3>
-          <ul class="list-disc pl-5 space-y-2 mb-6">
-            <li>Practice standard phraseology until it becomes second nature</li>
-            <li>Improve your ability to handle non-routine situations using plain English</li>
-            <li>Work on clear pronunciation, especially of numbers and the phonetic alphabet</li>
-            <li>Practice active listening to improve comprehension</li>
-            <li>Expand your aviation vocabulary</li>
-            <li>Practice speaking at an appropriate pace, neither too fast nor too slow</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- UAE Cadet Programs Section -->
-    <section id="uae-cadet-programs" class="pt-16">
-      <div class="section-header text-white py-16 px-6 text-center">
-        <h1 class="text-4xl font-bold mb-4">UAE Cadet Pilot Programs</h1>
-        <p class="text-xl max-w-3xl mx-auto">
-          Your comprehensive guide to cadet pilot programs in the UAE
-        </p>
-      </div>
-
-      <div class="py-16 px-6 max-w-6xl mx-auto">
-        <div class="bg-white p-8 rounded-lg shadow-lg mb-12">
-          <h2 class="text-3xl font-bold mb-6">Overview of UAE Cadet Programs</h2>
-          <p class="mb-4">
-            The United Arab Emirates offers several prestigious cadet pilot programs through its national airlines and aviation academies. These programs provide a structured path to becoming a commercial pilot with one of the world's leading airlines. Successful candidates receive world-class training and a guaranteed job opportunity upon completion.
-          </p>
-          <p class="mb-4">
-            UAE cadet pilot programs are highly competitive, with thousands of applicants competing for limited positions each year. This guide will help you understand the requirements, application process, and how to maximize your chances of success.
-          </p>
-        </div>
-
-        <!-- Emirates Airline -->
-        <div id="emirates-program" class="program-card">
-          <div class="program-header">
-            <img src="/placeholder.svg?height=100&width=200" alt="Emirates Logo" class="program-logo">
-            <div>
-              <h3 class="text-xl font-bold">Emirates Airline Cadet Pilot Program</h3>
-              <p>One of the most prestigious cadet programs in the Middle East</p>
-            </div>
-          </div>
-          
-          <div class="mt-4">
-            <h4 class="font-semibold mb-2">Training Location:</h4>
-            <p>Emirates Flight Training Academy (EFTA) in Dubai, with additional training abroad</p>
-          </div>
-          
-          <div class="mt-4">
-            <h4 class="font-semibold mb-2">Application Process:</h4>
-            <ol class="application-steps">
-              <li>Online Application: Submit your application through the Emirates careers website.</li>
-              <li>Initial Screening: Review of academic qualifications and basic requirements.</li>
-              <li>Aptitude Testing: Computer-based tests to assess your cognitive abilities, spatial awareness, and coordination.</li>
-              <li>Assessment Day: Group exercises and preliminary interviews.</li>
-              <li>Final Interview: In-depth interview with senior pilots and HR representatives.</li>
-              <li>Medical Examination: Comprehensive medical check to ensure you meet GCAA Class 1 Medical requirements.</li>
-              <li>Final Selection: Successful candidates are offered a place in the program.</li>
-            </ol>
-          </div>
-          
-          <a href="https://www.emiratesgroupcareers.com/pilots/" class="btn-primary inline-block mt-6" target="_blank">Official Website</a>
-        </div>
-
-        <!-- Etihad Airways -->
-        <div id="etihad-program" class="program-card">
-          <div class="program-header">
-            <img src="/placeholder.svg?height=100&width=200" alt="Etihad Logo" class="program-logo">
-            <div>
-              <h3 class="text-xl font-bold">Etihad Airways Cadet Pilot Programme</h3>
-              <p>A comprehensive training program for future Etihad pilots</p>
-            </div>
-          
-          <div class="mt-4">
-            <h4 class="font-semibold mb-2">Training Duration:</h4>
-            <p>Approximately 18-24 months including ground school and flight training</p>
-          </div>
-          
-          <div class="mt-4">
-            <h4 class="font-semibold mb-2">Training Location:</h4>
-            <p>Etihad Aviation Training in Abu Dhabi, with additional training abroad</p>
-          </div>
-          
-          <div class="mt-4">
-            <h4 class="font-semibold mb-2">Application Process:</h4>
-            <ol class="application-steps">
-              <li>Online Application: Submit your application through the Etihad careers website.</li>
-              <li>Initial Screening: Review of academic qualifications and basic requirements.</li>
-              <li>Aptitude Testing: Computer-based tests to assess your cognitive abilities and coordination.</li>
-              <li>Assessment Day: Group exercises and preliminary interviews.</li>
-              <li>Final Interview: In-depth interview with senior pilots and HR representatives.</li>
-              <li>Medical Examination: Comprehensive medical check to ensure you meet GCAA Class 1 Medical requirements.</li>
-              <li>Final Selection: Successful candidates are offered a place in the program.</li>
-            </ol>
-          </div>
-          
-          <a href="https://careers.etihad.com/content/Pilot-Careers/?locale=en_GB" class="btn-primary inline-block mt-6" target="_blank">Official Website</a>
-        </div>
-
-        <!-- flydubai -->
-        <div id="flydubai-program" class="program-card">
-          <div class="program-header">
-            <img src="/placeholder.svg?height=100&width=200" alt="flydubai Logo" class="program-logo">
-            <div>
-              <h3 class="text-xl font-bold">flydubai Cadet Pilot Programme</h3>
-              <p>Training the next generation of flydubai pilots</p>
-            </div>
-          
-          <div class="mt-4">
-            <h4 class="font-semibold mb-2">Training Duration:</h4>
-            <p>Approximately 18-24 months</p>
-          </div>
-          
-          <div class="mt-4">
-            <h4 class="font-semibold mb-2">Training Location:</h4>
-            <p>Various flight training academies partnered with flydubai</p>
-          </div>
-          
-          <div class="mt-4">
-            <h4 class="font-semibold mb-2">Application Process:</h4>
-            <ol class="application-steps">
-              <li>Online Application: Submit your application through the flydubai careers website.</li>
-              <li>Initial Screening: Review of academic qualifications and basic requirements.</li>
-              <li>Aptitude Testing: Computer-based tests to assess your cognitive abilities.</li>
-              <li>Assessment Day: Group exercises and preliminary interviews.</li>
-              <li>Final Interview: In-depth interview with senior pilots and HR representatives.</li>
-              <li>Medical Examination: Comprehensive medical check to ensure you meet GCAA Class 1 Medical requirements.</li>
-              <li>Final Selection: Successful candidates are offered a place in the program.</li>
-            </ol>
-          </div>
-          
-          <a href="https://careers.flydubai.com/en/job-search-results/" class="btn-primary inline-block mt-6" target="_blank">Official Website</a>
-        </div>
-
-        <!-- Air Arabia -->
-        <div id="airarabia-program" class="program-card">
-          <div class="program-header">
-            <img src="/placeholder.svg?height=100&width=200" alt="Air Arabia Logo" class="program-logo">
-            <div>
-              <h3 class="text-xl font-bold">Air Arabia Cadet Pilot Programme</h3>
-              <p>Building the future of Air Arabia's flight deck</p>
-            </div>
-          
-          
-          <div class="mt-4">
-            <h4 class="font-semibold mb-2">Training Duration:</h4>
-            <p>Approximately 18-24 months</p>
-          </div>
-          
-          <div class="mt-4">
-            <h4 class="font-semibold mb-2">Training Location:</h4>
-            <p>Alpha Aviation Academy in Sharjah, UAE</p>
-          </div>
-          
-          <div class="mt-4">
-            <h4 class="font-semibold mb-2">Application Process:</h4>
-            <ol class="application-steps">
-              <li>Online Application: Submit your application through the Air Arabia careers website.</li>
-              <li>Initial Screening: Review of academic qualifications and basic requirements.</li>
-              <li>Aptitude Testing: Computer-based tests to assess your cognitive abilities.</li>
-              <li>Assessment Day: Group exercises and preliminary interviews.</li>
-              <li>Final Interview: In-depth interview with senior pilots and HR representatives.</li>
-              <li>Medical Examination: Comprehensive medical check to ensure you meet GCAA Class 1 Medical requirements.</li>
-              <li>Final Selection: Successful candidates are offered a place in the program.</li>
-            </ol>
-          </div>
-          
-          <a href="https://careers.airarabia.com/" class="btn-primary inline-block mt-6" target="_blank">Official Website</a>
-        </div>
-
-        <!-- Tips for Success -->
-        <div class="bg-white p-8 rounded-lg shadow-lg mt-12">
-          <h2 class="text-2xl font-bold mb-6">Tips for Success</h2>
-          <p class="mb-4">Here are some tips to help you succeed in your application:</p>
-          <ul class="list-disc pl-5 space-y-2">
-            <li><strong>Academic Excellence:</strong> Focus on achieving high grades in Math, Physics, and English.</li>
-            <li><strong>English Proficiency:</strong> Work on improving your English language skills, both written and spoken.</li>
-            <li><strong>Physical Fitness:</strong> Maintain good physical health to pass the medical examination.</li>
-            <li><strong>Aptitude Test Preparation:</strong> Practice spatial awareness, coordination, and cognitive ability tests.</li>
-            <li><strong>Aviation Knowledge:</strong> Develop a basic understanding of aviation principles and current affairs.</li>
-            <li><strong>Interview Skills:</strong> Prepare for common interview questions and practice your communication skills.</li>
-            <li><strong>Research:</strong> Learn about the airline you're applying to, including its fleet, routes, and company values.</li>
-          </ul>
-        </div>
-      </div>
-    
-
     <!-- CONTACT SECTION -->
     <section id="contact" class="py-16 px-6">
       <div class="max-w-6xl mx-auto">
-        <h2 class="title mb-8 text-center">Contact Us</h2>
-        <p class="paragraph mb-8 text-center max-w-3xl mx-auto">
+        <h2 class="text-3xl font-bold mb-8 text-center text-primary-color">Contact Us</h2>
+        <p class="text-lg mb-8 text-center max-w-3xl mx-auto">
           Have questions or feedback? We'd love to hear from you! Fill out the form below and our team will get back to you as soon as possible.
         </p>
         
         <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
           <div class="bg-white p-8 rounded-lg shadow-lg">
-            <h3 class="subtitle mb-6">Send Us a Message</h3>
+            <h3 class="text-xl font-bold mb-6 text-primary-color">Send Us a Message</h3>
             <form class="contact-form">
               <div class="mb-4">
                 <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Name</label>
@@ -2201,10 +1777,10 @@
           
           <div>
             <div class="bg-white p-8 rounded-lg shadow-lg mb-8">
-              <h3 class="subtitle mb-6">Contact Information</h3>
+              <h3 class="text-xl font-bold mb-6 text-primary-color">Contact Information</h3>
               <div class="space-y-4">
                 <div class="flex items-start">
-                  <div class="text-blue-600 mr-3 mt-1">
+                  <div class="text-secondary-color mr-3 mt-1">
                     <i class="fas fa-envelope"></i>
                   </div>
                   <div>
@@ -2213,7 +1789,7 @@
                   </div>
                 </div>
                 <div class="flex items-start">
-                  <div class="text-blue-600 mr-3 mt-1">
+                  <div class="text-secondary-color mr-3 mt-1">
                     <i class="fas fa-map-marker-alt"></i>
                   </div>
                   <div>
@@ -2225,8 +1801,8 @@
             </div>
             
             <div class="bg-white p-8 rounded-lg shadow-lg">
-              <h3 class="subtitle mb-6">Connect With Us</h3>
-              <p class="paragraph mb-4">Follow us on social media for the latest updates, resources, and aviation news.</p>
+              <h3 class="text-xl font-bold mb-6 text-primary-color">Connect With Us</h3>
+              <p class="mb-4">Follow us on social media for the latest updates, resources, and aviation news.</p>
               <div class="social-icons">
                 <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
                 <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
@@ -2235,3 +1811,565 @@
               </div>
               <p class="text-sm text-gray-500 mt-2">Social media accounts coming soon!</p>
             </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white py-12">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div>
+          <div class="flex items-center text-2xl font-bold mb-4">
+            <i class="fas fa-plane text-secondary-color mr-2"></i>
+            Cadet Pilot Hub
+          </div>
+          <p class="mb-4">Your complete resource for cadet pilot preparation in the UAE and beyond.</p>
+          <div class="social-icons">
+            <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+          </div>
+        </div>
+        
+        <div>
+          <h3 class="text-lg font-semibold mb-4 text-secondary-color">Quick Links</h3>
+          <ul class="space-y-2">
+            <li><a href="#home" class="hover:text-secondary-color transition duration-300">Home</a></li>
+            <li><a href="#about" class="hover:text-secondary-color transition duration-300">About Us</a></li>
+            <li><a href="#resources" class="hover:text-secondary-color transition duration-300">Resources</a></li>
+            <li><a href="#shop" class="hover:text-secondary-color transition duration-300">Shop</a></li>
+            <li><a href="#contact" class="hover:text-secondary-color transition duration-300">Contact</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h3 class="text-lg font-semibold mb-4 text-secondary-color">Resources</h3>
+          <ul class="space-y-2">
+            <li><a href="#math-preparation" class="hover:text-secondary-color transition duration-300">Math Preparation</a></li>
+            <li><a href="#physics-preparation" class="hover:text-secondary-color transition duration-300">Physics Preparation</a></li>
+            <li><a href="#english-terminology" class="hover:text-secondary-color transition duration-300">Aviation English</a></li>
+            <li><a href="#uae-cadet-programs" class="hover:text-secondary-color transition duration-300">UAE Cadet Programs</a></li>
+            <li><a href="#interview-qa" class="hover:text-secondary-color transition duration-300">Interview Preparation</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h3 class="text-lg font-semibold mb-4 text-secondary-color">Newsletter</h3>
+          <p class="mb-4">Subscribe to our newsletter for the latest updates and resources.</p>
+          <form class="flex">
+            <input type="email" placeholder="Your email" class="px-4 py-2 rounded-l-md w-full focus:outline-none text-gray-800">
+            <button type="submit" class="bg-secondary-color px-4 py-2 rounded-r-md hover:bg-opacity-90 transition duration-300">
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+      
+      <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+        <p>&copy; 2023 Cadet Pilot Hub. All rights reserved.</p>
+        <div class="mt-2">
+          <a href="#" class="text-gray-400 hover:text-secondary-color mx-2 transition duration-300">Privacy Policy</a>
+          <a href="#" class="text-gray-400 hover:text-secondary-color mx-2 transition duration-300">Terms of Service</a>
+          <a href="#" class="text-gray-400 hover:text-secondary-color mx-2 transition duration-300">Cookie Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // Mobile menu toggle
+    function toggleMobileMenu() {
+      const mobileMenu = document.getElementById('mobile-menu');
+      mobileMenu.classList.toggle('hidden');
+    }
+    
+    // Login modal toggle
+    function toggleLoginModal() {
+      const modal = document.getElementById('login-modal');
+      modal.style.display = modal.style.display === 'flex' ? 'none' : 'flex';
+    }
+    
+    // Login/Signup tab switching
+    function switchTab(tab) {
+      const loginTab = document.getElementById('login-tab');
+      const signupTab = document.getElementById('signup-tab');
+      const loginForm = document.getElementById('login-form');
+      const signupForm = document.getElementById('signup-form');
+      
+      if (tab === 'login') {
+        loginTab.classList.add('border-blue-500');
+        signupTab.classList.remove('border-blue-500');
+        loginTab.classList.remove('text-gray-500');
+        signupTab.classList.add('text-gray-500');
+        loginForm.classList.remove('hidden');
+        signupForm.classList.add('hidden');
+      } else {
+        signupTab.classList.add('border-blue-500');
+        loginTab.classList.remove('border-blue-500');
+        signupTab.classList.remove('text-gray-500');
+        loginTab.classList.add('text-gray-500');
+        signupForm.classList.remove('hidden');
+        loginForm.classList.add('hidden');
+      }
+    }
+    
+    // Back to top button
+    window.addEventListener('scroll', function() {
+      const backToTopButton = document.getElementById('back-to-top');
+      if (window.pageYOffset > 300) {
+        backToTopButton.classList.add('visible');
+      } else {
+        backToTopButton.classList.remove('visible');
+      }
+    });
+    
+    // Simulation toggles
+    function toggleSimulation(id) {
+      const simulation = document.getElementById(id);
+      if (simulation.style.display === 'block') {
+        simulation.style.display = 'none';
+      } else {
+        simulation.style.display = 'block';
+        
+        // Initialize the simulation canvas
+        if (id === 'airfoil-simulation') {
+          initAirfoilSimulation();
+        } else if (id === 'forces-simulation') {
+          initForcesSimulation();
+        } else if (id === 'bernoulli-simulation') {
+          initBernoulliSimulation();
+        } else if (id === 'density-simulation') {
+          updateDensitySimulation();
+        }
+      }
+    }
+    
+    // Airfoil simulation
+    function initAirfoilSimulation() {
+      const canvas = document.getElementById('airfoil-canvas');
+      if (!canvas.getContext) return;
+      
+      const ctx = canvas.getContext('2d');
+      updateAirfoilSimulation();
+    }
+    
+    function updateAirfoilSimulation() {
+      const angleSlider = document.getElementById('angle-of-attack');
+      const airspeedSlider = document.getElementById('airspeed');
+      const angleValue = document.getElementById('angle-value');
+      const airspeedValue = document.getElementById('airspeed-value');
+      const liftValue = document.getElementById('lift-value');
+      
+      const angle = parseInt(angleSlider.value);
+      const airspeed = parseInt(airspeedSlider.value);
+      
+      angleValue.textContent = angle + '°';
+      airspeedValue.textContent = airspeed + ' knots';
+      
+      // Simple lift calculation (for demonstration)
+      const lift = Math.round((airspeed * airspeed * Math.sin(angle * Math.PI / 180) * 0.5) / 10) * 10;
+      liftValue.textContent = lift.toLocaleString() + ' lbs';
+      
+      // Draw the simulation
+      const canvas = document.getElementById('airfoil-canvas');
+      const ctx = canvas.getContext('2d');
+      
+      // Clear canvas
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      // Draw airfoil
+      ctx.save();
+      ctx.translate(canvas.width / 2, canvas.height / 2);
+      ctx.rotate(angle * Math.PI / 180);
+      
+      // Airfoil shape
+      ctx.beginPath();
+      ctx.moveTo(-100, 0);
+      ctx.bezierCurveTo(-80, -20, 80, -20, 100, 0);
+      ctx.bezierCurveTo(80, 10, -80, 10, -100, 0);
+      ctx.fillStyle = '#3182ce';
+      ctx.fill();
+      ctx.stroke();
+      
+      ctx.restore();
+      
+      // Draw airflow lines
+      const flowSpeed = airspeed / 50;
+      ctx.strokeStyle = '#a0aec0';
+      
+      for (let y = 20; y < canvas.height; y += 30) {
+        for (let x = 0; x < canvas.width; x += 40) {
+          const distFromCenter = Math.abs(y - canvas.height / 2);
+          let lineLength = 20 + flowSpeed * 5;
+          
+          if (distFromCenter < 60) {
+            // Airflow is affected by the airfoil
+            lineLength = lineLength * (0.5 + distFromCenter / 60);
+          }
+          
+          ctx.beginPath();
+          ctx.moveTo(x, y);
+          ctx.lineTo(x + lineLength, y);
+          ctx.stroke();
+          
+          // Arrow head
+          ctx.beginPath();
+          ctx.moveTo(x + lineLength, y);
+          ctx.lineTo(x + lineLength - 5, y - 3);
+          ctx.lineTo(x + lineLength - 5, y + 3);
+          ctx.closePath();
+          ctx.fillStyle = '#a0aec0';
+          ctx.fill();
+        }
+      }
+    }
+    
+    // Forces in flight simulation
+    function initForcesSimulation() {
+      updateForcesSimulation();
+    }
+    
+    function updateForcesSimulation() {
+      const phaseSelect = document.getElementById('flight-phase');
+      const weightSlider = document.getElementById('aircraft-weight');
+      const weightValue = document.getElementById('weight-value');
+      const liftForce = document.getElementById('lift-force');
+      const weightForce = document.getElementById('weight-force');
+      const thrustForce = document.getElementById('thrust-force');
+      const dragForce = document.getElementById('drag-force');
+      
+      const phase = phaseSelect.value;
+      const weight = parseInt(weightSlider.value);
+      
+      weightValue.textContent = weight.toLocaleString() + ' lbs';
+      weightForce.textContent = weight.toLocaleString() + ' lbs';
+      
+      // Set forces based on flight phase
+      switch(phase) {
+        case 'cruise':
+          liftForce.textContent = weight.toLocaleString() + ' lbs';
+          thrustForce.textContent = Math.round(weight * 0.2).toLocaleString() + ' lbs';
+          dragForce.textContent = Math.round(weight * 0.2).toLocaleString() + ' lbs';
+          break;
+        case 'climb':
+          liftForce.textContent = Math.round(weight * 0.9).toLocaleString() + ' lbs';
+          thrustForce.textContent = Math.round(weight * 0.4).toLocaleString() + ' lbs';
+          dragForce.textContent = Math.round(weight * 0.25).toLocaleString() + ' lbs';
+          break;
+        case 'descent':
+          liftForce.textContent = Math.round(weight * 0.8).toLocaleString() + ' lbs';
+          thrustForce.textContent = Math.round(weight * 0.1).toLocaleString() + ' lbs';
+          dragForce.textContent = Math.round(weight * 0.15).toLocaleString() + ' lbs';
+          break;
+        case 'takeoff':
+          liftForce.textContent = Math.round(weight * 1.1).toLocaleString() + ' lbs';
+          thrustForce.textContent = Math.round(weight * 0.5).toLocaleString() + ' lbs';
+          dragForce.textContent = Math.round(weight * 0.3).toLocaleString() + ' lbs';
+          break;
+        case 'landing':
+          liftForce.textContent = Math.round(weight * 1.2).toLocaleString() + ' lbs';
+          thrustForce.textContent = Math.round(weight * 0.15).toLocaleString() + ' lbs';
+          dragForce.textContent = Math.round(weight * 0.4).toLocaleString() + ' lbs';
+          break;
+      }
+      
+      // Draw the simulation
+      const canvas = document.getElementById('forces-canvas');
+      const ctx = canvas.getContext('2d');
+      
+      // Clear canvas
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      // Draw aircraft
+      ctx.save();
+      ctx.translate(canvas.width / 2, canvas.height / 2);
+      
+      // Rotate based on flight phase
+      let rotation = 0;
+      if (phase === 'climb') rotation = -10 * Math.PI / 180;
+      if (phase === 'descent') rotation = 5 * Math.PI / 180;
+      if (phase === 'takeoff') rotation = -15 * Math.PI / 180;
+      if (phase === 'landing') rotation = -3 * Math.PI / 180;
+      
+      ctx.rotate(rotation);
+      
+      // Aircraft body
+      ctx.beginPath();
+      ctx.moveTo(-80, 0);
+      ctx.lineTo(80, 0);
+      ctx.lineTo(100, 10);
+      ctx.lineTo(-20, 10);
+      ctx.closePath();
+      ctx.fillStyle = '#3182ce';
+      ctx.fill();
+      ctx.stroke();
+      
+      // Wings
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      ctx.lineTo(-30, -40);
+      ctx.lineTo(30, -40);
+      ctx.lineTo(60, 0);
+      ctx.closePath();
+      ctx.fillStyle = '#3182ce';
+      ctx.fill();
+      ctx.stroke();
+      
+      // Tail
+      ctx.beginPath();
+      ctx.moveTo(-60, 0);
+      ctx.lineTo(-80, -20);
+      ctx.lineTo(-60, -20);
+      ctx.closePath();
+      ctx.fillStyle = '#3182ce';
+      ctx.fill();
+      ctx.stroke();
+      
+      // Draw force arrows
+      // Lift (up)
+      drawArrow(ctx, 0, 0, 0, -80, 'green', 'LIFT');
+      
+      // Weight (down)
+      drawArrow(ctx, 0, 0, 0, 80, 'red', 'WEIGHT');
+      
+      // Thrust (forward)
+      drawArrow(ctx, 0, 0, 100, 0, 'blue', 'THRUST');
+      
+      // Drag (backward)
+      drawArrow(ctx, 0, 0, -100, 0, 'orange', 'DRAG');
+      
+      ctx.restore();
+    }
+    
+    function drawArrow(ctx, fromX, fromY, toX, toY, color, label) {
+      const headLength = 15;
+      const headAngle = Math.PI / 6;
+      
+      // Calculate the angle of the line
+      const angle = Math.atan2(toY - fromY, toX - fromX);
+      
+      // Line
+      ctx.beginPath();
+      ctx.moveTo(fromX, fromY);
+      ctx.lineTo(toX, toY);
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 3;
+      ctx.stroke();
+      
+      // Arrowhead
+      ctx.beginPath();
+      ctx.moveTo(toX, toY);
+      ctx.lineTo(toX - headLength * Math.cos(angle - headAngle), toY - headLength * Math.sin(angle - headAngle));
+      ctx.lineTo(toX - headLength * Math.cos(angle + headAngle), toY - headLength * Math.sin(angle + headAngle));
+      ctx.closePath();
+      ctx.fillStyle = color;
+      ctx.fill();
+      
+      // Label
+      ctx.fillStyle = color;
+      ctx.font = 'bold 14px Arial';
+      ctx.textAlign = 'center';
+      
+      // Position the label based on the direction
+      const labelDistance = 20;
+      let labelX, labelY;
+      
+      if (Math.abs(toX - fromX) > Math.abs(toY - fromY)) {
+        // Horizontal arrow
+        labelX = (fromX + toX) / 2;
+        labelY = fromY - labelDistance;
+      } else {
+        // Vertical arrow
+        labelX = fromX + labelDistance;
+        labelY = (fromY + toY) / 2;
+      }
+      
+      ctx.fillText(label, labelX, labelY);
+    }
+    
+    // Bernoulli simulation
+    function initBernoulliSimulation() {
+      updateBernoulliSimulation();
+    }
+    
+    function updateBernoulliSimulation() {
+      const flowSpeedSlider = document.getElementById('flow-speed');
+      const constrictionSlider = document.getElementById('tube-constriction');
+      const flowSpeedValue = document.getElementById('flow-speed-value');
+      const constrictionValue = document.getElementById('constriction-value');
+      
+      const flowSpeed = parseInt(flowSpeedSlider.value);
+      const constriction = parseInt(constrictionSlider.value);
+      
+      // Update display values
+      const speedLabels = ['Very Low', 'Low', 'Medium-Low', 'Medium', 'Medium-High', 'High', 'Very High', 'Extremely High', 'Ultra High', 'Maximum'];
+      const constrictionLabels = ['Very Wide', 'Wide', 'Medium', 'Narrow', 'Very Narrow'];
+      
+      flowSpeedValue.textContent = speedLabels[flowSpeed - 1];
+      constrictionValue.textContent = constrictionLabels[constriction - 1];
+      
+      // Update pressure and velocity displays
+      const pressureA = document.getElementById('pressure-a');
+      const velocityA = document.getElementById('velocity-a');
+      const pressureB = document.getElementById('pressure-b');
+      const velocityB = document.getElementById('velocity-b');
+      
+      pressureA.textContent = 'High';
+      velocityA.textContent = speedLabels[flowSpeed - 1];
+      
+      // Pressure at B decreases as constriction increases
+      const pressureBLevel = Math.max(1, 10 - (flowSpeed * constriction / 2));
+      const pressureBLabels = ['Extremely Low', 'Very Low', 'Low', 'Medium-Low', 'Medium', 'Medium-High', 'High', 'Very High', 'Extremely High', 'Maximum'];
+      pressureB.textContent = pressureBLabels[Math.floor(pressureBLevel) - 1];
+      
+      // Velocity at B increases with flow speed and constriction
+      const velocityBLevel = Math.min(10, flowSpeed + constriction);
+      velocityB.textContent = speedLabels[velocityBLevel - 1];
+      
+      // Draw the simulation
+      const canvas = document.getElementById('bernoulli-canvas');
+      const ctx = canvas.getContext('2d');
+      
+      // Clear canvas
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      // Draw tube
+      const tubeHeight = 80;
+      const tubeY = canvas.height / 2 - tubeHeight / 2;
+      const constrictionWidth = 150 - (constriction * 20);
+      
+      // Wide section
+      ctx.beginPath();
+      ctx.rect(50, tubeY, 200, tubeHeight);
+      ctx.fillStyle = '#f0f9ff';
+      ctx.fill();
+      ctx.stroke();
+      
+      // Constriction
+      ctx.beginPath();
+      ctx.rect(250, tubeY + (tubeHeight - constrictionWidth) / 2, 150, constrictionWidth);
+      ctx.fillStyle = '#f0f9ff';
+      ctx.fill();
+      ctx.stroke();
+      
+      // Wide section
+      ctx.beginPath();
+      ctx.rect(400, tubeY, 200, tubeHeight);
+      ctx.fillStyle = '#f0f9ff';
+      ctx.fill();
+      ctx.stroke();
+      
+      // Draw flow particles
+      ctx.fillStyle = '#3182ce';
+      
+      // Number of particles based on flow speed
+      const particleCount = 50 + flowSpeed * 10;
+      
+      for (let i = 0; i < particleCount; i++) {
+        // Random position
+        const x = (Date.now() / 50 + i * 10) % canvas.width;
+        
+        // Y position depends on which section of the tube
+        let y;
+        if (x < 250) {
+          // First wide section
+          y = tubeY + Math.random() * tubeHeight;
+        } else if (x < 400) {
+          // Constriction
+          y = tubeY + (tubeHeight - constrictionWidth) / 2 + Math.random() * constrictionWidth;
+        } else {
+          // Second wide section
+          y = tubeY + Math.random() * tubeHeight;
+        }
+        
+        // Particle size depends on section (smaller in constriction)
+        let size;
+        if (x < 250 || x > 400) {
+          size = 3;
+        } else {
+          size = 2;
+        }
+        
+        ctx.beginPath();
+        ctx.arc(x, y, size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      
+      // Label sections
+      ctx.font = 'bold 16px Arial';
+      ctx.fillStyle = '#000';
+      ctx.textAlign = 'center';
+      ctx.fillText('Point A', 150, tubeY - 10);
+      ctx.fillText('Point B', 325, tubeY - 10);
+    }
+    
+    // Density altitude simulation
+    function updateDensitySimulation() {
+      const pressureAltSlider = document.getElementById('pressure-altitude');
+      const tempSlider = document.getElementById('temperature');
+      const humiditySlider = document.getElementById('humidity');
+      
+      const pressureAlt = parseInt(pressureAltSlider.value);
+      const temp = parseInt(tempSlider.value);
+      const humidity = parseInt(humiditySlider.value);
+      
+      // Update display values
+      document.getElementById('pressure-alt-value').textContent = pressureAlt.toLocaleString() + ' ft';
+      document.getElementById('temp-value').textContent = temp + '°C';
+      document.getElementById('humidity-value').textContent = humidity + '%';
+      
+      // Calculate density altitude (simplified formula for demonstration)
+      // DA = PA + (120 * (OAT - ISA))
+      const isaTemp = 15 - (pressureAlt / 1000) * 2; // ISA temperature at given altitude
+      const densityAlt = pressureAlt + (120 * (temp - isaTemp)) + (humidity / 10 * 100);
+      
+      document.getElementById('density-altitude').textContent = Math.round(densityAlt).toLocaleString() + ' ft';
+      
+      // Calculate performance impacts
+      const takeoffImpact = Math.round((densityAlt - pressureAlt) / 1000 * 3);
+      const climbImpact = Math.round((densityAlt - pressureAlt) / 1000 * 2.5);
+      const powerImpact = Math.round((densityAlt - pressureAlt) / 1000 * 2);
+      
+      document.getElementById('takeoff-impact').textContent = 'Increased by ' + takeoffImpact + '%';
+      document.getElementById('climb-impact').textContent = 'Decreased by ' + climbImpact + '%';
+      document.getElementById('power-impact').textContent = 'Decreased by ' + powerImpact + '%';
+    }
+    
+    // Initialize active navigation link
+    document.addEventListener('DOMContentLoaded', function() {
+      // Set active nav link based on scroll position
+      const sections = document.querySelectorAll('section');
+      const navLinks = document.querySelectorAll('.nav-link');
+      
+      function setActiveLink() {
+        let current = '';
+        
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.clientHeight;
+          
+          if (window.pageYOffset >= sectionTop - 200 && 
+              window.pageYOffset < sectionTop + sectionHeight - 200) {
+            current = section.getAttribute('id');
+          }
+        });
+        
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === '#' + current) {
+            link.classList.add('active');
+          }
+        });
+      }
+      
+      window.addEventListener('scroll', setActiveLink);
+      setActiveLink();
+    });
+  </script>
+</body>
+</html>
